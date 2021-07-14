@@ -1,8 +1,82 @@
+
+:root
+{
+    --bodycolor: rgb(27, 27, 27);
+    --textcolor:rgb(248, 248, 248);
+}
+
 body 
 {
     max-height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url('../media/mesh-gradient3.png');
-    background-size: 100%;
+    background-color: var(--bodycolor);
+    color: var(--textcolor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.landing-container
+{
+    width: 90vw;
+    max-width: 1060px;
+    display: flex;
+    flex-direction: row;
+}
+.lbox
+{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+svg.stack
+{
+  width: 250px;  
+  align-self: center;
+}
+
+.text
+{
+    align-self: center;
+    margin: auto;
+    width: max-content;
+    padding: 20px;
+}
+.notefy-heading
+{
+    font-size: 7em;
+    margin: 0px;
+    color: var(--textcolor);
+}
+
+.tagline
+{
+    align-self: center;
+    font-size: 2.3em;
+    font-weight: 600;
+    color: var(--textcolor);
+    margin: 10px 0;
+    letter-spacing: 1px;
+}
+.crafted
+{
+    margin: 30px 0;
+    padding: 20px 0;
+    font-size: 1.3em;
+    word-spacing: 2px;
+}
+
+.crafted span
+{
+    font-weight: 700;
+    font-size: 1.35em;
+}
+.githublogo
+{
+    height: 0.9em;
+    margin: 0 10px;
 }
