@@ -18,3 +18,6 @@ npm-error.log
 
 # VS Code Settings
 .vscode
+
+# Ignore migrations
+**/migrations

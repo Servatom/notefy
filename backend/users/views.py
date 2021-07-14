@@ -6,8 +6,9 @@ from notes.permissions import IsAuthor
 
 User = get_user_model()
 
-class CreateUserView(generics.CreateAPIView):
-    serializer_class = UserSerializer
+
+# class CreateUserView(generics.CreateAPIView):
+    #  serializer_class = UserSerializer
 
 class UpdateDetailUserView(generics.RetrieveUpdateAPIView):
     permission_classes = (IsAuthor, )
