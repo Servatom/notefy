@@ -1,0 +1,8 @@
+body 
+{
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('../media/mesh-gradient3.png');
+    background-size: 100%;
+}
