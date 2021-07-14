@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import LandingPage from './components/LandingPage';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
