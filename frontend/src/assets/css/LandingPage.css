@@ -16,21 +16,40 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     
 }
 
 .landing-container
 {
     width: 90vw;
-    max-width: 1060px;
+    max-width: 1160px;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 .lbox
 {
     width: 40%;
     display: flex;
     flex-direction: column;
+}
+.rbox
+{
+    margin-left: 80px;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.left, .right
+{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
 }
 
 svg.stack
@@ -73,10 +92,23 @@ svg.stack
 .crafted span
 {
     font-weight: 700;
-    font-size: 1.35em;
+    font-size: 1.25em;
 }
 .githublogo
 {
     height: 0.9em;
     margin: 0 10px;
+    fill: red !important;
+}
+
+
+.rbox img
+{
+    width: 70%;
+    margin: 30px;
+
+}
+img.wednesday
+{
+    width: 60%;
 }
