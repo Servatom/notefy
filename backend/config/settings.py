@@ -162,8 +162,17 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_CONFIRMATION = "mandatory"
+
+LOGIN_URL = "/api/users/auth/login"
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtppro.zoho.in'
+EMAIL_HOST_USER = 'notefy@servatom.com'
+EMAIL_HOST_PASSWORD = 'hariom123@Note'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 SITE_ID = 1 
