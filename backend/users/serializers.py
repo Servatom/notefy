@@ -24,6 +24,12 @@ class CustomRegisterSerializer(RegisterSerializer):
     def perform_create(self, serializer):
         return serializer.save()
 
+    def save(self, request):
+        user  = super().save(request)
+        user.name = self.data.get('name')
+        user.save()
+        return user
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
