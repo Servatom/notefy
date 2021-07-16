@@ -97,9 +97,10 @@ svg.stack
 .githublogo
 {
     height: 0.9em;
-    margin: 0 10px;
-    fill: red !important;
+    margin: 0 8px;
+    fill: var(--textcolor);
 }
+
 
 
 .rbox img
