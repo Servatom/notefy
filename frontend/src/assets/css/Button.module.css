@@ -1,0 +1,42 @@
+.Button{
+    cursor: pointer;
+    padding: 8px 24px; 
+    color: #ffffff;
+    border: none;
+    border-radius: 10px; 
+    font-family: 'Montserrat';
+    height: 100%;
+
+}
+
+.Button:hover{
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(to right, #FFF 50%, #d8dc1b 90%, #FFF 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* text-fill-color: transparent; */
+    
+    animation: waves 1.5s forwards ease-out;
+}
+
+@keyframes waves {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+.Active {
+    background: #2357DD;    
+}
+
+.Danger {
+    background: #EE675C;
+}
+
+.Parent {
+    display: inline-block; 
+    height: 40px; 
+    border-radius: 10px; 
+}
