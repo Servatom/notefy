@@ -1,0 +1,50 @@
+.InputWrapper{
+    margin: 24px 0px;    
+}
+
+.InputGroup {
+    position: relative;
+    display: flex; 
+    align-items: center;
+
+
+}
+.Input{
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 4px;
+    background-color: #000000;
+    border-style: none;
+    height: 40px; 
+    color: #fff; 
+    padding-left: 40px; 
+    font-size: 14px; 
+}
+
+.InputGroup span{
+    position: absolute;
+    left: 8px; 
+}
+.Input::placeholder{
+    color: #7e7e7e;
+    font-size: 14px; 
+
+}
+
+.Input:focus{
+    border: 1px solid #2357DD;
+    box-shadow: 0px 4px 4px rgba(35, 87, 221, 0.15);
+    width: 100%;
+}
+
+.Label{
+    float: left;
+    margin: 8px 0px;
+    font-size: 14px; 
+}
+
+.InputError:focus{
+    border: 1px solid #FF5E5E;
+    box-shadow: 0px 4px 4px rgba(255, 94, 94, 0.15);
+}
