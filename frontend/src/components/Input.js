@@ -1,6 +1,6 @@
 import React from 'react';
-import classes from './Input.module.css'
-import SVGIcon from '../Icon/Icon'; 
+import classes from '../assets/css/Input.module.css';
+import SVGIcon from './Icon'; 
 
 const Input = (props) => {
     const inputClasses = [classes.Input];

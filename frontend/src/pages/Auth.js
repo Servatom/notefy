@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import classes from './Auth.module.css'; 
-import Button from '../Components/Button/Button';
-import Input from '../Components/Input/Input';
+import classes from '../assets/css/Auth.module.css'; 
+import Button from '../components/Button';
+import Input from '../components/Input';
 
-
-import axios from 'axios'; 
+import axios from 'axios';
 
 
 class Auth extends Component {
