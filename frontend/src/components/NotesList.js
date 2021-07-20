@@ -5,14 +5,16 @@ import Note from "./Note";
 const NotesList =(props) =>
 {
     return(
-        <div className="notes-list">
-            {
-                props.notes.map((note)=>{
-                    return(<Note note={note}/>)
-                })
-            }
-            <AddNote/>
-        </div>
+        
+            <div className="notes-list">    
+                <AddNote onSave={props.addNew}/>
+                {
+                    props.notes.map((note)=>{
+                        return(<Note note={note}/>)
+                    })
+                } 
+            </div>
+        
     );
 }
 

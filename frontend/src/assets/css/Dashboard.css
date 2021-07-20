@@ -1,3 +1,5 @@
+
+
 .dashboard
 {
     display: flex;
@@ -9,9 +11,9 @@
 
 .side-nav
 {
-    width: 23%;
-    min-width: 200px;
+    width: 25%;
+    min-width: 250px;
     height: 95%;
     margin-right: 10px;
-    border-right: 1px dotted var(--textcolor);
+    /* border-right: 1px dashed var(--textcolor); */
 }
