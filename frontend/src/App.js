@@ -3,6 +3,7 @@ import './App.css';
 import LandingPage from './pages/LandingPage';
 import Auth from "./pages/Auth";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         </Route>
         
         <Route path="/dashboard" exact>
-
+          <Dashboard/>
         </Route>
       </Switch>
     </Router>
