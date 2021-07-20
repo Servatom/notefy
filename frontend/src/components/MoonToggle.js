@@ -1,6 +1,6 @@
 import "../assets/css/MoonToggle.css";
 
-function MoonToggle()
+function MoonToggle(props)
 {
     function toggleTheme()
         {
@@ -19,8 +19,9 @@ function MoonToggle()
             
         }
     
+        let className="fas fa-moon darkTheme " + props.className;
     return(
-        <i class="fas fa-moon darkTheme" onClick={toggleTheme}></i>
+        <i className={className} onClick={toggleTheme}></i>
     );
 
 

@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 4px 4px 2px rgb(128, 127, 127);
 }
 .note p{
     margin: 16px 0 6px;
@@ -16,6 +17,7 @@
 .addnote
 {
     background-color: rgb(255, 217, 223);
+    
 }
 
 .note-footer
@@ -40,7 +42,9 @@ small
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    height: fit-content;
+    max-height: 90%;
+    border-radius: 10px;
+    overflow: scroll;
 }
 
 .addnote textarea{

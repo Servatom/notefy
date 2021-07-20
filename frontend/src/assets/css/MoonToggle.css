@@ -5,7 +5,7 @@
     position: absolute;
     right: 0;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 1.4em;
     transition: 0.3s;
     color: var(--textcolor);
 }
@@ -17,3 +17,11 @@
     color: var(--bodycolor);
 }
 
+.moonNav
+{
+    position: static;
+    right: 0;
+    width: fit-content;
+    margin-top: auto;
+    margin-bottom: 30px;
+}
