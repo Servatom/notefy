@@ -1,0 +1,74 @@
+.note
+{
+    background-color: rgb(243, 233, 140);
+    color: rgb(27, 27, 27);
+    padding: 1rem;
+    border-radius: 7px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.note p{
+    margin: 16px 0 6px;
+}
+
+.addnote
+{
+    background-color: rgb(255, 217, 223);
+}
+
+.note-footer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+small
+{
+    opacity: 0.7;
+}
+
+.notes-list
+{
+    align-self: flex-start;
+    padding: 20px;
+    width: 100%;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    height: fit-content;
+}
+
+.addnote textarea{
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    margin: 16px 0 6px;
+    resize: none;
+}
+.addnote textarea:focus
+{
+    border: none;
+    outline: none;
+}
+
+.saveBtn
+{
+    cursor: pointer;
+    background-color: rgba(59, 59, 59, 0.829);
+    color: rgb(248, 248, 248);
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+}
+.saveBtn:hover
+{
+    background-color: rgb(27, 27, 27);
+}
