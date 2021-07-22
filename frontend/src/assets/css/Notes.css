@@ -9,6 +9,8 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 4px 4px 2px rgb(128, 127, 127);
+    animation: appear 0.3s ease-in-out;
+    transition: 0.2s;
 }
 .note p{
     margin: 16px 0 6px;
@@ -37,11 +39,11 @@ small
 .notes-list
 {
     align-self: flex-start;
-    padding: 20px;
-    width: 100%;
+    width: 98%;
+    padding: 1%;
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
     max-height: 90%;
     border-radius: 10px;
     overflow: scroll;
@@ -76,3 +78,42 @@ small
 {
     background-color: rgb(27, 27, 27);
 }
+
+.delete-icon
+{
+    cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.2);
+}
+.delete-icon:hover
+{
+    transform: scale(1.4);
+    transition: 0.3s;
+}
+
+.deleted
+{
+    animation: disappear 0.3s ease-in-out;
+}
+
+@keyframes appear {
+
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+    
+}
+@keyframes disappear {
+
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0);
+    }
+    
+}
+
