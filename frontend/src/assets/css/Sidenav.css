@@ -29,7 +29,6 @@
     margin: 10px 0;
     font-size: 1.3rem;
     cursor: pointer;
-    width: 69%;
     padding: 7px 10px;
     border-radius: 5px;
     display: flex;
@@ -60,4 +59,6 @@
 .sidenav a{
     cursor: pointer;
     text-decoration: none;
+    width: 73%;
+    min-width: 250px;
 }
