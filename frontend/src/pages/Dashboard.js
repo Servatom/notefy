@@ -1,7 +1,7 @@
 import Searchbar from "../components/Searchbar";
 import NotesList from "../components/NotesList";
 import "../assets/css/Dashboard.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {nanoid} from 'nanoid';
 import SideNav from "../components/SideNav";
 
@@ -14,8 +14,23 @@ const Dashboard=()=>{
         //     date:"18/7/2021"
         // },
     ])
-    const [searchText, setSearchText]=useState("");
+    
+    
+    // retrievs saved notes on first run. only executes once coz no dependencies provided
+    useEffect(() => {
+        let savedNotes = JSON.parse(localStorage.getItem('notes-local'))
+        
+        if(savedNotes)
+        setNotes(savedNotes);
+    }, []);
 
+    // stores notes to local storage whenever the notes list changes
+    useEffect(() => {
+        localStorage.setItem('notes-local',JSON.stringify(notes));
+    }, [notes]);
+    
+    const [searchText, setSearchText]=useState("");
+    
     const newNoteHandler =(newnote)=>
     {
         setNotes([...notes, newnote]);
@@ -28,7 +43,6 @@ const Dashboard=()=>{
         setNotes(newNotes);
     }
 
-        
 
 
     return(

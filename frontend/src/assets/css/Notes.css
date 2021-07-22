@@ -4,7 +4,9 @@
     color: rgb(27, 27, 27);
     padding: 1rem;
     border-radius: 7px;
-    height: 170px;
+    min-height: 170px;
+    max-height: 300px;
+    overflow: scroll;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,9 +44,9 @@ small
     width: 98%;
     padding: 1%;
     display: grid;
-    grid-gap: 1rem;
+    grid-gap: 1.2rem;
     grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-    max-height: 90%;
+    max-height: 100%;
     border-radius: 10px;
     overflow: scroll;
 }
