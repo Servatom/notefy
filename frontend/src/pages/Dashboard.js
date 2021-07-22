@@ -1,4 +1,4 @@
-
+import Searchbar from "../components/Searchbar";
 import NotesList from "../components/NotesList";
 import "../assets/css/Dashboard.css";
 import { useState } from "react";
@@ -13,40 +13,34 @@ const Dashboard=()=>{
         //     text:"This is dummy note 1",
         //     date:"18/7/2021"
         // },
-        // {
-        //     id:nanoid(),
-        //     text:"This is dummy note 2",
-        //     date:"19/7/2021"
-        // },
-        // {
-        //     id:nanoid(),
-        //     text:"This is dummy note 3",
-        //     date:"20/7/2021"
-        // },
-        // {
-        //     id:nanoid(),
-        //     text:"This is dummy note 4",
-        //     date:"20/7/2021"
-        // },
-        // {
-        //     id:nanoid(),
-        //     text:"This is dummy note 5",
-        //     date:"20/7/2021"
-        // },
     ])
-    
+    const [searchText, setSearchText]=useState("");
 
     const newNoteHandler =(newnote)=>
     {
         setNotes([...notes, newnote]);
     }
 
+    
+    const deleteNoteHandler =(id)=>
+    {
+        const newNotes = notes.filter((note)=>note.id!==id);
+        setNotes(newNotes);
+    }
+
+        
+
+
     return(
         <div className="dashboard">
             <div className="side-nav">
                 <SideNav/>
             </div>
-            <NotesList notes={notes} addNew={newNoteHandler}/>
+            <div className="cont">
+                <Searchbar searchHandler={setSearchText}/>
+                <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} addNew={newNoteHandler} deleteNote={deleteNoteHandler}/>
+            </div>
+            
             
         </div>
     );
