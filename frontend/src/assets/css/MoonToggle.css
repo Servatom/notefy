@@ -17,11 +17,4 @@
     color: var(--bodycolor);
 }
 
-.moonNav
-{
-    position: static;
-    right: 0;
-    width: fit-content;
-    margin-top: auto;
-    margin-bottom: 30px;
-}
+
