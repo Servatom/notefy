@@ -14,7 +14,14 @@
     animation: appear 0.3s ease-in-out;
     transition: 0.2s;
 }
-.note p{
+
+.noteText
+{
+    overflow: scroll;
+    height: 100%;
+}
+.note p
+{
     margin: 16px 0 6px;
 }
 
@@ -98,6 +105,20 @@ small
     animation: disappear 0.3s ease-in-out;
 }
 
+.expanded
+{
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    max-height: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+    animation: 0.5s appear2;
+    box-shadow: 0px 0px 100px 1000px rgba(0, 0, 0, 0.568);
+}
+
 @keyframes appear {
 
     0%{
@@ -105,6 +126,16 @@ small
     }
     100%{
         transform: scale(1);
+    }
+    
+}
+@keyframes appear2 {
+
+    0%{
+        transform: scale(0) translate(-50%,-50%);
+    }
+    100%{
+        transform: scale(1) translate(-50%,-50%);
     }
     
 }

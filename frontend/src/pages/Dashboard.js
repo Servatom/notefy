@@ -33,7 +33,7 @@ const Dashboard=()=>{
     
     const newNoteHandler =(newnote)=>
     {
-        setNotes([...notes, newnote]);
+        setNotes([newnote, ...notes]);
     }
 
     
@@ -43,12 +43,16 @@ const Dashboard=()=>{
         setNotes(newNotes);
     }
 
+    const deleteAllNotes=()=>
+    {
+        setNotes([]);
+    }
 
 
     return(
         <div className="dashboard">
             <div className="side-nav">
-                <SideNav/>
+                <SideNav deleteAll={deleteAllNotes}/>
             </div>
             <div className="cont">
                 <Searchbar searchHandler={setSearchText}/>
