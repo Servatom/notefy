@@ -13,8 +13,14 @@
     box-shadow: 4px 4px 2px rgb(128, 127, 127);
     animation: appear 0.3s ease-in-out;
     transition: 0.2s;
+    scrollbar-base-color: transparent;
+}
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
+/* Optional: show position indicator in red */
 .noteText
 {
     overflow: scroll;
