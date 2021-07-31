@@ -26,18 +26,19 @@ body
     max-width: 1160px;
     display: flex;
     flex-direction: row;
+    height: 80vh;
     position: relative;
 }
 .lbox
 {
-    width: 40%;
+    width: 45%;
     display: flex;
     flex-direction: column;
 }
 .rbox
 {
-    margin-left: 80px;
-    width: 60%;
+    margin-left: 0px;
+    width: 55%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -54,7 +55,9 @@ body
 
 svg.stack
 {
-  width: 250px;  
+  max-width: 250px; 
+  width: 15vw; 
+  min-width: 200px;
   align-self: center;
 }
 
@@ -67,7 +70,8 @@ svg.stack
 }
 .notefy-heading
 {
-    font-size: 7em;
+    font-size: 8vw; 
+    /* 7em  */
     margin: 0px;
     color: var(--textcolor);
 }
@@ -76,6 +80,7 @@ svg.stack
 {
     align-self: center;
     font-size: 2.3em;
+    font-size: 2.5vw;
     font-weight: 600;
     color: var(--textcolor);
     margin: 10px 0;

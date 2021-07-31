@@ -3,8 +3,9 @@
     background-color: rgb(243, 233, 140);
     color: rgb(27, 27, 27);
     padding: 1rem;
+    padding-bottom: 0px;
     border-radius: 7px;
-    min-height: 170px;
+    min-height: 180px;
     max-height: 300px;
     overflow: scroll;
     display: flex;
@@ -64,7 +65,7 @@ small
     overflow: scroll;
 }
 
-.addnote textarea{
+.addnote textarea, .expanded textarea{
     background-color: transparent;
     border: none;
     height: 100%;
@@ -73,7 +74,14 @@ small
     margin: 16px 0 6px;
     resize: none;
 }
-.addnote textarea:focus
+
+.expanded textarea
+{
+    width: calc(100% - 16px);
+    height: 95%;
+    padding: 0;
+}
+.addnote textarea:focus , .expanded textarea:focus
 {
     border: none;
     outline: none;
@@ -105,6 +113,17 @@ small
     transform: scale(1.4);
     transition: 0.3s;
 }
+.edit-icon
+{
+    margin: 0 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.edit-icon:hover
+{
+    transform: scale(1.3);
+    transition: 0.3s;
+}
 
 .deleted
 {
@@ -120,11 +139,35 @@ small
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    padding-bottom: 10px;
     z-index: 2;
     animation: 0.5s appear2;
     box-shadow: 0px 0px 100px 1000px rgba(0, 0, 0, 0.568);
 }
 
+.close-icon
+{
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-icon:hover
+{
+    transform: scale(1.3);
+    transition: 0.2s;
+}
+
+.edit-icon-expanded
+{
+    cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.2);
+}
+
+.edit-icon-expanded:hover
+{
+    transition: 0.3s;
+    transform: scale(1.4);
+}
 @keyframes appear {
 
     0%{

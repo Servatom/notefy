@@ -1,5 +1,5 @@
 import "../assets/css/Notes.css";
-import { MdDeleteSweep} from 'react-icons/md';
+import { MdDeleteSweep, MdEdit} from 'react-icons/md';
 import swal from 'sweetalert';
 import { useState } from "react";
 import ExpandNote from "./ExpandNote";
@@ -19,16 +19,13 @@ const Note =(props) =>{
           .then((willDelete) => {
             if (willDelete) 
             {
-              swal("Poof! Your note has been deleted!", {
-                icon: "success",
-              });
             props.onDelete(props.note.id); 
             noteMinimiser();
             } 
-            else 
-            {
-              swal("Your note is safe!");
-            }
+            // else 
+            // {
+            //   swal("Your note is safe!");
+            // }
           });
     }
     
@@ -40,6 +37,17 @@ const Note =(props) =>{
     
     const noteMinimiser=()=>{
       setIsExpanded(false);
+      setEdit(false);
+    }
+
+
+    const [edit, setEdit]=useState(false);
+
+    const editHandler=()=>{
+        
+      setIsExpanded(true);
+      setEdit(true);
+
     }
 
     return(
@@ -51,12 +59,16 @@ const Note =(props) =>{
             
             <div className="note-footer">
                 <small>{props.note.date}</small>
-                <MdDeleteSweep className="delete-icon" onClick={deleteHandler}/>
+                <div>
+                  <MdEdit className="edit-icon" onClick={editHandler} />
+                  <MdDeleteSweep className="delete-icon" onClick={deleteHandler}/>
+                </div>
+                
             </div>
         </div>
         {
           isExpansed?
-          <ExpandNote note={props.note} deleteHandler={deleteHandler} onClose={noteMinimiser}/>
+          <ExpandNote note={props.note} deleteHandler={deleteHandler} onClose={noteMinimiser} onEdit={editHandler} isEdit={edit}/>
           :null
           }
         </>
