@@ -10,7 +10,7 @@ const NotesList =(props) =>
                 <AddNote onSave={props.addNew}/>
                 {
                     props.notes.map((note)=>{
-                        return(<Note note={note} onDelete={props.deleteNote}/>)
+                        return(<Note note={note} onDelete={props.deleteNote} onEdit={props.editNote} />)
                     })
                 } 
             </div>
