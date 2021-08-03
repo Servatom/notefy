@@ -32,3 +32,37 @@
     border-radius: 10px;
     overflow: scroll;
 }
+
+.watermark
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    top: 70%;
+    right: 40%;
+    transform: translate(50%,-50%);
+    filter: grayscale(1);
+    opacity: 0.15;
+    z-index: -1;
+    transition: 0.5s;
+    animation: fade 0.5s ease-in-out;
+}
+
+.watermark img
+{
+    height: 200px;
+    width: fit-content;
+    margin: 5px auto 20px;
+}
+
+@keyframes fade 
+{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0.15;
+    }
+}

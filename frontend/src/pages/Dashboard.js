@@ -4,6 +4,7 @@ import "../assets/css/Dashboard.css";
 import { useState, useEffect } from "react";
 import {nanoid} from 'nanoid';
 import SideNav from "../components/SideNav";
+import logo from "../assets/media/logo.png";
 
 const Dashboard=()=>{
     
@@ -43,11 +44,27 @@ const Dashboard=()=>{
         setNotes(newNotes);
     }
 
+    const editNoteHandler =(editedNote)=>
+    {
+        const newNotes = notes.filter((note)=>note.id!==editedNote.id);
+        setNotes([editedNote, ...newNotes]);
+    }
+
     const deleteAllNotes=()=>
     {
         setNotes([]);
     }
 
+    const watermark =() =>
+    {
+
+        return(
+            <div className="watermark">
+            <img src={logo}/>
+            <p>It feels so empty here ;( ... Add some notes!</p>
+        </div>
+        );
+    }
 
     return(
         <div className="dashboard">
@@ -56,7 +73,12 @@ const Dashboard=()=>{
             </div>
             <div className="cont">
                 <Searchbar searchHandler={setSearchText}/>
-                <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} addNew={newNoteHandler} deleteNote={deleteNoteHandler}/>
+                <NotesList notes={notes.filter((note)=>note.text.toLowerCase().includes(searchText))} addNew={newNoteHandler} deleteNote={deleteNoteHandler} editNote={editNoteHandler}/>
+                {
+                    !notes.length?
+                    watermark()
+                    :null
+                }
             </div>
             
             
