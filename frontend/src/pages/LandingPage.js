@@ -5,6 +5,7 @@ import mynote from "../assets/media/mynote.png";
 import colors from "../assets/media/colors.png";
 import notesoverlap from "../assets/media/notesoverlap.png";
 import MoonToggle from "../components/MoonToggle";
+import Login from "../components/Login";
 
 
 
@@ -41,6 +42,7 @@ function LandingPage()
                 </div>
             </div>
         </div>
+        <Login/>
         
         </>
     );
