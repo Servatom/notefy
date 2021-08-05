@@ -6,6 +6,7 @@ import {IoLogOut} from 'react-icons/io5';
 import {AiFillDelete} from 'react-icons/ai';
 import { useState } from "react";
 import swal from 'sweetalert';
+import { Link, Redirect } from "react-router-dom";
 
 const SideNav =(props)=>
 {   
@@ -35,6 +36,26 @@ const SideNav =(props)=>
           });
     }
 
+    const logoutHandler=()=>
+    {
+      swal(
+        {
+          text:"Are you sure you want to log out?",
+          icon:"warning",
+          dangerMode:true,
+          buttons: true,
+        }
+      )
+      .then((willlogout)=>{
+        if(willlogout)
+        {
+          console.log("logout");
+          window.location.href="http://localhost:3000";
+          
+        }
+      })
+    }
+ 
 
     return(
         <div className="sidenav">
@@ -46,14 +67,14 @@ const SideNav =(props)=>
             
             <a><h4 className="active" ><MdDashboard className="icon"/>Dashboard</h4></a>
             <a><h4 className="" ><MdSettings className="icon"/>Settings</h4></a>
-            <a><h4 className="" ><IoLogOut className="icon"/>Logout</h4></a>
+            <a onClick={logoutHandler}><h4 className="" ><IoLogOut className="icon"/>Logout</h4></a>
             <div className="sidenavIcons">
                 <MoonToggle className="sidenav-moon"/>
                 <AiFillDelete className="delete-all" onClick={allDeleteHandler}/>
             </div>
             
         </div>
-        
+
     );
 }
 
