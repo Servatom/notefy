@@ -82,6 +82,10 @@ input:focus
     font-weight: 600;
 }
 
+.registerBtn
+{
+    margin-top: 60px !important;
+}
 .form-wrapper button:hover
 {
     background-color: #f5e44f;
@@ -93,12 +97,27 @@ input:focus
     position: absolute;
     /* width: calc(55% - 40px); */
     height: calc(100% - 200px);
-    transform: translate(-120px,0);
+    transform: translate(-160px,0);
     transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
+    z-index: 1;
 }
 
 .cover-register
 {
-    transform: translate(85%, 0%);
+    transform: translate(76%, 0%);
     transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
+}
+
+
+.warning
+{
+    color: red;
+    position: absolute;
+    display: block;
+}
+
+.login-warning
+{
+    position: static;
+    margin: 20px 0;
 }
