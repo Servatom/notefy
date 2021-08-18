@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import {nanoid} from 'nanoid';
 import SideNav from "../components/SideNav";
 import logo from "../assets/media/logo.png";
+import URL from "../URL";
+import axios from "axios";
 
 const Dashboard=()=>{
     
@@ -35,6 +37,7 @@ const Dashboard=()=>{
     const newNoteHandler =(newnote)=>
     {
         setNotes([newnote, ...notes]);
+        axios.post()
     }
 
     

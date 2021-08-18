@@ -1,6 +1,6 @@
 .form-wrapper
 {
-    margin: 10vh auto;
+    margin: 10vh auto 5vh;
     padding: 100px 40px;
     width: 80%;
     display: flex;
@@ -82,6 +82,10 @@ input:focus
     font-weight: 600;
 }
 
+.registerBtn
+{
+    margin-top: 60px !important;
+}
 .form-wrapper button:hover
 {
     background-color: #f5e44f;
@@ -91,14 +95,29 @@ input:focus
 .cover
 {
     position: absolute;
-    width: calc(50% - 40px);
+    /* width: calc(55% - 40px); */
     height: calc(100% - 200px);
-    transform: translate(-50px,0);
+    transform: translate(-160px,0);
     transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
+    z-index: 1;
 }
 
 .cover-register
 {
-    transform: translate(100%, 0%);
+    transform: translate(76%, 0%);
     transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
+}
+
+
+.warning
+{
+    color: red;
+    position: absolute;
+    display: block;
+}
+
+.login-warning
+{
+    position: static;
+    margin: 20px 0;
 }
