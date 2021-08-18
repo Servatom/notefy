@@ -1,6 +1,6 @@
 .form-wrapper
 {
-    margin: 10vh auto;
+    margin: 10vh auto 5vh;
     padding: 100px 40px;
     width: 80%;
     display: flex;
@@ -91,14 +91,14 @@ input:focus
 .cover
 {
     position: absolute;
-    width: calc(50% - 40px);
+    /* width: calc(55% - 40px); */
     height: calc(100% - 200px);
-    transform: translate(-50px,0);
+    transform: translate(-120px,0);
     transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
 }
 
 .cover-register
 {
-    transform: translate(100%, 0%);
+    transform: translate(85%, 0%);
     transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
 }

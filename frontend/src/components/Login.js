@@ -42,6 +42,8 @@ const Login =()=>
                     <input type="text" required/>
                     <label>Password</label>
                     <input type="password" required/>
+                    <label>Confirm Password</label>
+                    <input type="password" required/>
                     <button type="submit">Register</button>
                 </form>
             </div>
