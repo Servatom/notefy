@@ -13,7 +13,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=255, unique=True, verbose_name="email address"
     )
     name = models.CharField("Name", max_length=20)
-    is_email_confirmed = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
