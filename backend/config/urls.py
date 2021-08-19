@@ -22,6 +22,6 @@ urlpatterns = [
     path('api/notes/', include('notes.urls')),
     path('api/users/', include('users.urls')),
     path('api/auth/', include('dj_rest_auth.urls')),
-    path('api/auth/login', CustomLoginView.as_view(), name='login'),
+    path('api/auth/login/', CustomLoginView.as_view(), name='login'),
     
 ]

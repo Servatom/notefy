@@ -1,9 +1,13 @@
 import { useState } from "react";
 import "../assets/css/Login.css";
+import "../assets/css/loader.css";
 import swal from 'sweetalert';
 import typing from "../assets/media/typing.gif";
+import axios from "axios";
+import URL from "../URL";
+import {Redirect, Router} from 'react-router-dom'
 
-const Login =()=>
+const Login =(props)=>
 {
     
     const [coverClass, setCoverClass] = useState("cover cover-register");
@@ -16,18 +20,10 @@ const Login =()=>
         });
     }
 
-    const [login, setLogin] = useState({
+    const [loading, setLoading] = useState(false);
+    const [created, setCreated] = useState(false);
+    const [error, setError] = useState(false);
 
-        email: "",
-        password: ""
-    });
-
-    const [register, setRegister] = useState({
-
-        email: "",
-        username: "",
-        password: ""
-    });
 
     const [email, setEmail] = useState();
     const emailChangeHandler=(event)=>
@@ -60,7 +56,29 @@ const Login =()=>
         e.preventDefault();
         if(pass==pass2)
         {
+            setLoading(true)
             setWarning(false)
+            
+                const registerDetails={
+                    "email": email,
+                    "password1": pass,
+                    "password2": pass,
+                    "name": name
+                };
+            
+            
+                axios.post(`${URL}/api/users/registration/`, registerDetails)
+                .then(res =>{console.log("Status code: ",res.status);
+                    setLoading(false);
+                    if(res.status==201)
+                    setCreated(true)
+                    else
+                    setError(true)
+                })
+                .catch((error) => {
+                    console.log("Problem submitting New Post, Error: ", error.status);
+                    setWarning(true);
+                  });
         }
         else
         {
@@ -71,8 +89,22 @@ const Login =()=>
     const loginHandler=(e)=>
     {
         e.preventDefault();
-        setWarning(true);
+        const authDetails = 
+            {
+                "email": email,
+                "password": pass
+            }
+        
 
+        axios.post(`${URL}/api/auth/login/`, authDetails)
+        .then((res)=>{console.log(res);
+            props.onLogin(true);
+        })
+        .catch((error) => {
+            setWarning(true);
+            console.log("Problem submitting New Post, Error: ", error.status);
+            setWarning(true);
+          });
     }
     
     return(
@@ -89,7 +121,7 @@ const Login =()=>
                     <a className="forgot-password" onClick={forgetPasswordHandler}>Forgot password?</a>
                     {
                         warning?
-                            <span className="warning login-warning">User doesn't exist</span>
+                            <span className="warning login-warning">User doesn't exist :/</span>
                         :null
                     }
                     <button type="submit" onClick={loginHandler}>Log in</button>
@@ -111,6 +143,11 @@ const Login =()=>
                     {
                         warning?
                             <span className="warning">The passwords do not match!!</span>
+                        :(created?<span className="warning success">Account created! Verify your email.</span>:error?<span className="warning">Could not create user :/ </span>:null)
+                    }
+                    {
+                        loading?
+                        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
                         :null
                     }
                     <button type="submit" className="registerBtn" onClick={registerHandler}>Register</button>

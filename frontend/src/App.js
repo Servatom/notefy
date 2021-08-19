@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
 import LandingPage from './pages/LandingPage';
 import Auth from "./pages/Auth";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+
 import Dashboard from './pages/Dashboard';
+import { useState } from 'react';
 
 function App() {
+
+  const [loggedIn, setLoggedin] = useState(false);
+
   return (
     <Router>
       <Switch>
         
-        <Route path="/" exact>
-          <LandingPage/>
+        <Route exact path="/">
+          {loggedIn ? <Redirect to="/dashboard" /> : <LandingPage onLogin={setLoggedin}/>}
         </Route>
-        
         <Route path="/auth" exact>
           <Auth/>
         </Route>
         
         <Route path="/dashboard" exact>
-          <Dashboard/>
+          <Dashboard />
         </Route>
       </Switch>
     </Router>

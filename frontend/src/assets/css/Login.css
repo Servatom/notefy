@@ -111,7 +111,7 @@ input:focus
 
 .warning
 {
-    color: red;
+    color: rgb(248, 66, 66);
     position: absolute;
     display: block;
 }
@@ -120,4 +120,9 @@ input:focus
 {
     position: static;
     margin: 20px 0;
+}
+
+.success
+{
+    color: chartreuse;
 }
