@@ -8,7 +8,7 @@ import logo from "../assets/media/logo.png";
 import URL from "../URL";
 import axios from "axios";
 
-const Dashboard=()=>{
+const Dashboard=(props)=>{
     
     const [notes, setNotes] = useState([
         // {
@@ -17,6 +17,14 @@ const Dashboard=()=>{
         //     date:"18/7/2021"
         // },
     ])
+    
+    let token;
+    useEffect(()=>{
+        token=props.token;
+        console.log(token);
+        
+    },[])
+    
     
     
     // retrievs saved notes on first run. only executes once coz no dependencies provided

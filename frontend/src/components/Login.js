@@ -22,7 +22,10 @@ const Login =(props)=>
 
     const [loading, setLoading] = useState(false);
     const [created, setCreated] = useState(false);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState({
+        status: false,
+        body: ""
+    });
 
 
     const [email, setEmail] = useState();
@@ -50,69 +53,131 @@ const Login =(props)=>
     }
 
 
-    const [warning, setWarning] = useState(false);
+    const [warning, setWarning] = useState({
+        status: false,
+        body: ""
+    });
     const registerHandler=(e)=>
     {
         e.preventDefault();
+
         if(pass==pass2)
         {
             setLoading(true)
-            setWarning(false)
-            
-                const registerDetails={
-                    "email": email,
-                    "password1": pass,
-                    "password2": pass,
-                    "name": name
-                };
+            setError({
+                status: false,
+                body: ""
+            })
             
             
-                axios.post(`${URL}/api/users/registration/`, registerDetails)
-                .then(res =>{console.log("Status code: ",res.status);
-                    setLoading(false);
-                    if(res.status==201)
-                    setCreated(true)
-                    else
-                    setError(true)
-                })
-                .catch((error) => {
-                    console.log("Problem submitting New Post, Error: ", error.status);
-                    setWarning(true);
-                  });
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            
+            let registerDetails = JSON.stringify({
+                "email": email,
+                "password1": pass,
+                "password2": pass,
+                "name": name
+            });
+            
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: registerDetails,
+              redirect: 'follow'
+            };
+            
+            fetch(`${URL}/api/users/registration/`, requestOptions)
+            .then(response => {
+               const data= response.json();
+               setLoading(false)
+                if(response.status==201)
+                setCreated(true)
+
+               return data;
+            })
+            .then(result => {
+                console.log(result)
+                
+                let firstkey = Object.keys(result)[0];
+                
+                setError(
+                    {
+                        status: true,
+                        body: result[firstkey]
+                    }
+                )
+                
+            })
+            .catch(error => console.log('error', error));
         }
         else
         {
-            setWarning(true);
+            setError({
+                status: true,
+                body: "The passwords dont match!"
+            });
         }
     }
 
-    const loginHandler=(e)=>
+    const loginHandler= (e)=>
     {
         e.preventDefault();
-        const authDetails = 
-            {
-                "email": email,
-                "password": pass
-            }
         
-
-        axios.post(`${URL}/api/auth/login/`, authDetails)
-        .then((res)=>{console.log(res);
-            props.onLogin(true);
-        })
-        .catch((error) => {
-            setWarning(true);
-            console.log("Problem submitting New Post, Error: ", error.status);
-            setWarning(true);
-          });
-    }
+        
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            
+            let authDetails = JSON.stringify({
+              "email": email,
+              "password": pass
+            });
+            
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: authDetails,
+              redirect: 'follow'
+            };
+            
+            fetch(`${URL}/api/auth/login/`, requestOptions)
+            .then(response => {
+               const data= response.json();
+                if(response.status==200)
+                props.onLogin(true);
+                
+               return data;
+            })
+            .then(result => {
+                console.log(result)
+                props.setKey(result.key);
+                
+                let firstkey = Object.keys(result)[0];
+                
+                setWarning(
+                    {
+                        status: true,
+                        body: result[firstkey]
+                    }
+                )
+                
+            })
+            .catch(error => console.log('error', error));
+                        
+        
+    }    
     
     return(
         <div className="form-wrapper">
+            <img src={typing} className={coverClass}/>
             <div className="login">
-                <img src={typing} className={coverClass}/>
                 <h1>Welcome back</h1>
-                <p>New here? <a onClick={()=>{setCoverClass("cover"); setWarning(false)}}>Create an account now!</a></p>
+                <p>New here? <a 
+                onClick={()=>{
+                    setCoverClass("cover"); 
+                    setWarning({status: false, body: ""});
+                    setError({status: false, body: ""})
+                    }}>Create an account now!</a></p>
                 <form>
                     <label>Email ID</label>
                     <input type="text" required onChange={emailChangeHandler} value={email}/>
@@ -120,8 +185,8 @@ const Login =(props)=>
                     <input type="password" required onChange={passChangeHandler} value={pass}/>
                     <a className="forgot-password" onClick={forgetPasswordHandler}>Forgot password?</a>
                     {
-                        warning?
-                            <span className="warning login-warning">User doesn't exist :/</span>
+                        warning.status?
+                            <span className="warning login-warning">{warning.body}</span>
                         :null
                     }
                     <button type="submit" onClick={loginHandler}>Log in</button>
@@ -130,7 +195,12 @@ const Login =(props)=>
             <div className="divider"> </div>
             <div className="register">
                 <h1>Register Now</h1>
-                <p>Existing User? <a onClick={()=>{setCoverClass("cover cover-register"); setWarning(false)}}>Click here to login!</a></p>
+                <p>Existing User? <a 
+                onClick={()=>{
+                    setCoverClass("cover cover-register"); 
+                    setWarning({status: false, body: ""});
+                    setError({status: false, body: ""})
+                    }}>Click here to login!</a></p>
                 <form>
                     <label>Email ID</label>
                     <input type="email" required required onChange={emailChangeHandler} value={email}/>
@@ -141,9 +211,8 @@ const Login =(props)=>
                     <label>Confirm Password</label>
                     <input type="password" required onChange={pass2ChangeHandler} value={pass2}/>
                     {
-                        warning?
-                            <span className="warning">The passwords do not match!!</span>
-                        :(created?<span className="warning success">Account created! Verify your email.</span>:error?<span className="warning">Could not create user :/ </span>:null)
+                        created?<span className="warning success">Account created! Verify your email.</span>
+                        :error.status?<span className="warning error">{error.body}</span>:null
                     }
                     {
                         loading?

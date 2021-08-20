@@ -7,6 +7,7 @@
     flex-direction: row;
     justify-content: space-between;
     position: relative;
+    align-items: center;
 }
 
 .login, .register
@@ -19,6 +20,7 @@
 {
     width: 3px;
     background-color: rgb(243, 233, 140);
+    align-self: stretch;
 }
 
 .form-wrapper h1
@@ -97,14 +99,15 @@ input:focus
     position: absolute;
     /* width: calc(55% - 40px); */
     height: calc(100% - 200px);
-    transform: translate(-160px,0);
+    transform: translate(-120px,0);
     transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
     z-index: 1;
+    align-self: flex-start;
 }
 
 .cover-register
 {
-    transform: translate(76%, 0%);
+    transform: translate(82%, 0%);
     transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
 }
 
@@ -125,4 +128,9 @@ input:focus
 .success
 {
     color: chartreuse;
+}
+
+.error
+{
+    margin-top: -8px;
 }
