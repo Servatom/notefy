@@ -42,7 +42,7 @@ function LandingPage(props)
                 </div>
             </div>
         </div>
-        <Login onLogin={props.onLogin}/>
+        <Login onLogin={props.onLogin} setKey={props.setKey}/>
         
         </>
     );
