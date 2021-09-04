@@ -9,7 +9,7 @@ import Login from "../components/Login";
 
 
 
-function LandingPage(props)
+function LandingPage()
 {
     return(
         <>
@@ -42,7 +42,7 @@ function LandingPage(props)
                 </div>
             </div>
         </div>
-        <Login onLogin={props.onLogin} setKey={props.setKey}/>
+        <Login/>
         
         </>
     );

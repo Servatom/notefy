@@ -4,11 +4,12 @@ import Auth from "./pages/Auth";
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 import Dashboard from './pages/Dashboard';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import AuthContext from './store/auth-context';
 
 function App() {
 
-  const [loggedIn, setLoggedin] = useState(false);
+  const authCtx = useContext(AuthContext);
   const [key, setKey] = useState();
 
   console.log(key);
@@ -17,16 +18,27 @@ function App() {
     <Router>
       <Switch>
         
-        <Route exact path="/">
-          {loggedIn ? <Redirect to="/dashboard" /> : <LandingPage onLogin={setLoggedin} setKey={setKey}/>}
-        </Route>
-        <Route path="/auth" exact>
-          <Auth/>
+      <Route exact path="/">
+          { authCtx.isLoggedIn?
+          <Redirect to="/dashboard"/>
+          :<LandingPage/>}
         </Route>
         
+        {authCtx.isLoggedIn && (
         <Route path="/dashboard" exact>
-          <Dashboard token={key} />
+          <Dashboard />
+        </Route>)}
+
+        {!authCtx.isLoggedIn && (
+        <Route path="/" exact>
+          <LandingPage />
+        </Route>)}
+
+
+        <Route path="*">
+          <Redirect to="/"/>
         </Route>
+
       </Switch>
     </Router>
     

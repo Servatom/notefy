@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../assets/css/Login.css";
 import "../assets/css/loader.css";
 import swal from 'sweetalert';
 import typing from "../assets/media/typing.gif";
 import axios from "axios";
 import URL from "../URL";
-import {Redirect, Router} from 'react-router-dom'
+import { useHistory } from "react-router";
+import AuthContext from "../store/auth-context";
 
-const Login =(props)=>
+
+const Login =()=>
 {
     
+
+    const authCtx = useContext(AuthContext);
+    const history = useHistory();
+
+
     const [coverClass, setCoverClass] = useState("cover cover-register");
     
     const forgetPasswordHandler=()=>{
@@ -57,6 +64,8 @@ const Login =(props)=>
         status: false,
         body: ""
     });
+
+    //Register handler
     const registerHandler=(e)=>
     {
         e.preventDefault();
@@ -120,10 +129,12 @@ const Login =(props)=>
         }
     }
 
+
+    // Login handler
     const loginHandler= (e)=>
     {
         e.preventDefault();
-        
+        setLoading(true);
         
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -143,14 +154,16 @@ const Login =(props)=>
             fetch(`${URL}/api/auth/login/`, requestOptions)
             .then(response => {
                const data= response.json();
-                if(response.status==200)
-                props.onLogin(true);
-                
+
+               setLoading(false);
                return data;
             })
             .then(result => {
                 console.log(result)
-                props.setKey(result.key);
+                authCtx.login(result.key);
+
+                if(result.key)
+                history.replace("/dashboard");
                 
                 let firstkey = Object.keys(result)[0];
                 
@@ -158,6 +171,14 @@ const Login =(props)=>
                     {
                         status: true,
                         body: result[firstkey]
+                    }
+                )
+
+                if(result.key)
+                setWarning(
+                    {
+                        status: true,
+                        body: "Loggin successful"
                     }
                 )
                 
