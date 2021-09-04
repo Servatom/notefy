@@ -4,14 +4,16 @@ import logo from "../assets/media/logo.png";
 import {MdDashboard, MdSettings} from 'react-icons/md';
 import {IoLogOut} from 'react-icons/io5';
 import {AiFillDelete} from 'react-icons/ai';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import swal from 'sweetalert';
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import AuthContext from "../store/auth-context";
 
 const SideNav =(props)=>
 {   
 
-    
+    const authCtx = useContext(AuthContext);
+    const history = useHistory();
     const allDeleteHandler=()=>
     {
         swal({
@@ -50,7 +52,8 @@ const SideNav =(props)=>
         if(willlogout)
         {
           console.log("logout");
-          window.location.href="http://localhost:3000";
+          authCtx.logout();
+          history.replace("/");
           
         }
       })
