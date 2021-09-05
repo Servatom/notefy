@@ -5,7 +5,7 @@ import { MdDeleteSweep, MdEdit} from 'react-icons/md';
 const ExpandNote=(props)=>{
     
     
-    const [noteText, setNoteText] = useState(props.note.text);
+    const [noteText, setNoteText] = useState(props.note.body);
     const [wordcount, setWordCount] = useState(noteText.length);
     const [edit, setEdit] = useState(props.isEdit);
     
@@ -22,7 +22,7 @@ const ExpandNote=(props)=>{
         if(edit==false)
         return(
                 <>
-                <small>{props.note.date}</small>
+                <small>{props.note.updated_at}</small>
                 <div>
                     <MdEdit className="edit-icon-expanded" style={{marginRight:"30px"}} onClick={()=>{setEdit(true)}}/>
                     <MdDeleteSweep className="delete-icon" onClick={props.deleteHandler}/>
@@ -56,7 +56,7 @@ const ExpandNote=(props)=>{
         {
             id:props.note.id,
             text: noteText,
-            date: day+"/"+month+"/"+year
+            // date: day+"/"+month+"/"+year
         }
         props.editHandler(editedNote);
         setEdit(!edit);
