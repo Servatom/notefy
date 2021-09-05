@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "426f8e4d-2081-4298-bc65-dfb598361e23",
+		"name": "Notefy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@test.com\",\n    \"name\": \"lol\",\n    \"password\": \"vistaPista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://notefyapi.servatom.com/api/users/register/",
+					"protocol": "https",
+					"host": [
+						"notefyapi",
+						"servatom",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"email\": \"test@test.com\",\n    \"password\": \"vistaPista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://notefyapi.servatom.com/api/auth/login/",
+					"protocol": "https",
+					"host": [
+						"notefyapi",
+						"servatom",
+						"com"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List notes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token <TOKEN_FROM_LOGIN>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://notefyapi.servatom.com/api/notes/",
+					"protocol": "https",
+					"host": [
+						"notefyapi",
+						"servatom",
+						"com"
+					],
+					"path": [
+						"api",
+						"notes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDetail",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token <TOKEN_FROM_LOGIN>",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://notefyapi.servatom.com/api/notes/1/",
+					"protocol": "https",
+					"host": [
+						"notefyapi",
+						"servatom",
+						"com"
+					],
+					"path": [
+						"api",
+						"notes",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token <TOKEN_FROM_LOGIN>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"This is a test\",\n    \"body\": \"lol\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://notefyapi.servatom.com/api/notes/create/",
+					"protocol": "https",
+					"host": [
+						"notefyapi",
+						"servatom",
+						"com"
+					],
+					"path": [
+						"api",
+						"notes",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNote",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token <TOKEN_FROM_LOGIN>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"RAGHAVTINKER\",\n    \"body\": \"https://github.com/raghavtinker\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://notefyapi.servatom.com/api/notes/2/",
+					"protocol": "https",
+					"host": [
+						"notefyapi",
+						"servatom",
+						"com"
+					],
+					"path": [
+						"api",
+						"notes",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
