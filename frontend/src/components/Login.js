@@ -35,25 +35,25 @@ const Login =()=>
     });
 
 
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState("");
     const emailChangeHandler=(event)=>
     {
         setEmail(event.target.value);
     }
 
-    const [pass, setPass] = useState();
+    const [pass, setPass] = useState("");
     const passChangeHandler=(event)=>
     {
         setPass(event.target.value);
     }
 
-    const [pass2, setPass2] = useState();
+    const [pass2, setPass2] = useState("");
     const pass2ChangeHandler=(event)=>
     {
         setPass2(event.target.value);
     }
 
-    const [name, setName] = useState();
+    const [name, setName] = useState("");
     const nameChangeHandler=(event)=>
     {
         setName(event.target.value);
@@ -69,6 +69,7 @@ const Login =()=>
     const registerHandler=(e)=>
     {
         e.preventDefault();
+        setCreated(false);
 
         if(pass==pass2)
         {
@@ -84,8 +85,7 @@ const Login =()=>
             
             let registerDetails = JSON.stringify({
                 "email": email,
-                "password1": pass,
-                "password2": pass,
+                "password": pass,
                 "name": name
             });
             
@@ -96,12 +96,15 @@ const Login =()=>
               redirect: 'follow'
             };
             
-            fetch(`${URL}/api/users/registration/`, requestOptions)
+            fetch(`${URL}/api/users/register/`, requestOptions)
             .then(response => {
                const data= response.json();
                setLoading(false)
-                if(response.status==201)
+
+                if(response.status==200)
                 setCreated(true)
+                else
+                setCreated(false);
 
                return data;
             })
@@ -110,6 +113,7 @@ const Login =()=>
                 
                 let firstkey = Object.keys(result)[0];
                 
+
                 setError(
                     {
                         status: true,
@@ -232,7 +236,7 @@ const Login =()=>
                     <label>Confirm Password</label>
                     <input type="password" required onChange={pass2ChangeHandler} value={pass2}/>
                     {
-                        created?<span className="warning success">Account created! Verify your email.</span>
+                        created?<span className="warning success">Account created!</span>
                         :error.status?<span className="warning error">{error.body}</span>:null
                     }
                     {
