@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  notefy_api:
+    image: notefy_api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "6969:6969"
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-w0#2)y(%-&rg_ydch=f+jdlb%gxi=q+x(u97#0gdde19uk(a84
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,16 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Rest framework
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'sslserver',
     'dj_rest_auth',
-
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
-    'corsheaders',
-
+    
     # Local
     'notes',
     'users'
@@ -86,7 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-AUTH_USER_MODEL = "users.User"
 
 
 # Database
@@ -143,36 +139,30 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'users.User'
+
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # For browsable API
-        'rest_framework.authentication.SessionAuthentication',
         # For httpie, curl or Postman
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
 
-REST_AUTH_SERIALIZERS = {'LOGIN_SERIALIZER': 'users.serializers.LoginSerializer'}
-REST_AUTH_REGISTER_SERIALIZERS = {
-    "REGISTER_SERIALIZER": "users.serializers.CustomRegisterSerializer",
-}
+#REST_AUTH_SERIALIZERS = {'LOGIN_SERIALIZER': 'users.serializers.LoginSerializer'}
+#REST_AUTH_REGISTER_SERIALIZERS = {
+ #   "REGISTER_SERIALIZER": "users.serializers.CustomRegisterSerializer",
+#}
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_USERNAME_REQUIRED = False
+
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-LOGIN_URL = "/api/users/auth/login"
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
+AUTHENTICATION_BACKENDS = (
+   "django.contrib.auth.backends.ModelBackend",
+)
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtppro.zoho.in'
-EMAIL_HOST_USER = 'notefy@servatom.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 SITE_ID = 1 
 

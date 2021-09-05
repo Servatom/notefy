@@ -1,10 +1,9 @@
+from django.contrib import admin
 from django.urls import path, include
-from .views import UpdateDetailUserView, ListUserView
-
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
-    path('', ListUserView.as_view(), name='list-user'),
-    path('profile/<pk>/', UpdateDetailUserView.as_view(), name='update-user'),
-    path('registration/', include('dj_rest_auth.registration.urls')),
-    
+    path('register/', views.UserCreate.as_view(), name='register'),
 ]

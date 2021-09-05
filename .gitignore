@@ -21,3 +21,6 @@ npm-error.log
 
 # Ignore migrations
 **/migrations
+
+# SSl cert
+*.pem
