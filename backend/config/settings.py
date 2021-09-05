@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -165,5 +165,7 @@ AUTHENTICATION_BACKENDS = (
 
 
 SITE_ID = 1 
+
+# Time zone support
 
 CORS_ORIGIN_ALLOW_ALL = True
