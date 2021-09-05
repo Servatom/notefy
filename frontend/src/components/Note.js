@@ -54,11 +54,11 @@ const Note =(props) =>{
         <>
         <div className="note" >
           <div className="noteText" onClick={noteExpander}>
-          <p>{props.note.text}</p>
+          <p>{props.note.body}</p>
           </div>
             
             <div className="note-footer">
-                <small>{props.note.date}</small>
+                <small>{props.note.updated_at}</small>
                 <div>
                   <MdEdit className="edit-icon" onClick={editHandler} />
                   <MdDeleteSweep className="delete-icon" onClick={deleteHandler}/>

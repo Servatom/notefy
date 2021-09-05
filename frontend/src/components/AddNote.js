@@ -23,9 +23,9 @@ const saveHandler=()=>
         const year = date.getFullYear();
 
         let newnote={
-            id:nanoid(),
+
             text: noteText,
-            date: day+"/"+month+"/"+year
+            // date: day+"/"+month+"/"+year
         };
         props.onSave(newnote);
         setNoteText("");
