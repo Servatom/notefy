@@ -1,4 +1,9 @@
 
+.settings
+{
+    display: flex;
+    flex-direction: column;
+}
 .settingsHeader{
     display: flex;
     flex-direction: row;
@@ -27,6 +32,7 @@
     width: 150px;
     border-radius: 150px;
     margin: 0 auto;
+    margin-right: 50px;
     overflow: hidden;
    text-align: right;
 }
@@ -36,4 +42,24 @@
     height: 150px;
     object-fit: cover;
     object-position: center;
+}
+
+
+.settingsForm
+{
+    padding: 0;
+    margin: 0;
+    margin-top: 30px;
+}
+
+.settingsForm form
+{
+    width: 50%;
+}
+.catGif
+{
+    opacity: 0.6;
+    height: 60vh;
+    width: 80vh;
+    filter: invert();
 }
