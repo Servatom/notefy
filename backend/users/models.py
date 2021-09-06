@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from users.managers import UserManager
 from django.db import models
 from django.contrib.auth.models import BaseUserManager
+from users.generateAvatar import *
 
 class User(AbstractBaseUser):
     """
@@ -16,6 +17,7 @@ class User(AbstractBaseUser):
     name = models.CharField("Name", max_length=20)
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    avatar = models.CharField("avatar", max_length=400, default=selectImage())
     
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["name",]
