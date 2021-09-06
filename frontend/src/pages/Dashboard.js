@@ -7,6 +7,7 @@ import SideNav from "../components/SideNav";
 import logo from "../assets/media/logo.png";
 import URL from "../URL";
 import AuthContext from "../store/auth-context";
+import Settings from "../components/Settings";
 
 const Dashboard=(props)=>{
     
@@ -28,6 +29,7 @@ const Dashboard=(props)=>{
         // setNotes(savedNotes);
 
         getNotes();
+        getUserDetails();
     }, []);
 
     // stores notes to local storage whenever the notes list changes
@@ -35,9 +37,27 @@ const Dashboard=(props)=>{
     //     localStorage.setItem('notes-local',JSON.stringify(notes));
     // }, [notes]);
     
-    const [searchText, setSearchText]=useState("");
-    
+    const [userInfo, setUserInfo] = useState({});
+    const getUserDetails=()=>
+    {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Token "+authCtx.token);
 
+        var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+
+        fetch("https://notefyapi.servatom.com/api/users/detail/", requestOptions)
+        .then(response => response.json())
+        .then(result => setUserInfo(result))
+        .catch(error => console.log('error', error));
+    }
+    
+    
+    
+    const [searchText, setSearchText]=useState("");
 
     //new note handler
     const newNoteHandler =(newnote)=>
@@ -148,8 +168,12 @@ const Dashboard=(props)=>{
 
     const deleteAllNotes=()=>
     {
-        setNotes([]);
+        notes.map((note)=>{
+            deleteNoteHandler(note.id);
+        })
+        getNotes();
     }
+
 
     const watermark =() =>
     {
@@ -162,18 +186,27 @@ const Dashboard=(props)=>{
         );
     }
 
+    const [currentTab, setCurrentTab] = useState(1);
+
     return(
         <div className="dashboard">
             <div className="side-nav">
-                <SideNav deleteAll={deleteAllNotes}/>
+                <SideNav deleteAll={deleteAllNotes} setCurrentTab={setCurrentTab} currentTab={currentTab}/>
             </div>
             <div className="cont">
-                <Searchbar searchHandler={setSearchText}/>
-                <NotesList notes={notes.filter((note)=>note.body.toLowerCase().includes(searchText))} addNew={newNoteHandler} deleteNote={deleteNoteHandler} editNote={editNoteHandler}/>
                 {
-                    !notes.length?
-                    watermark()
-                    :null
+                    currentTab===1?
+                    <>
+                    <Searchbar searchHandler={setSearchText}/>
+                    <NotesList notes={notes.filter((note)=>note.body.toLowerCase().includes(searchText))} addNew={newNoteHandler} deleteNote={deleteNoteHandler} editNote={editNoteHandler}/>
+                    {
+                        !notes.length?
+                        watermark()
+                        :null
+                    }
+                    </>
+                    :
+                    <Settings userInfo={userInfo}/>
                 }
             </div>
             
