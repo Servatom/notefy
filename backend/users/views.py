@@ -30,3 +30,18 @@ class UserDetailView(APIView):
         result = serializer.data
         print(serializer.data)
         return Response(result)
+    
+class ResetPasswordView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+
+        # check old password
+        email = request.user.email
+        user = models.User.objects.get(email=email)
+
+        if not user.check_password(request.data['old_password']):
+            return Response({"detail": "old password is wrong"}, status=400)
+        # change new password
+        user.set_password(request.data['new_password'])
+        user.save()
+        return Response({"detail": "password changed"})
