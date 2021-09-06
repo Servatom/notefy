@@ -15,7 +15,12 @@ class User(AbstractBaseUser):
         max_length=255, unique=True, verbose_name="email address"
     )
     name = models.CharField("Name", max_length=20)
-    is_staff = models.BooleanField(default=False)
+    
+    is_staff = models.BooleanField(default=False, null=True)
+    is_admin = models.BooleanField(default=False, null=True)
+    is_active = models.BooleanField(default=True, null=True)
+    is_superuser = models.BooleanField(default=False, null=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     avatar = models.CharField("avatar", max_length=400, default=selectImage())
     
