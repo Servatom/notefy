@@ -68,8 +68,8 @@ const SideNav =(props)=>
             </div>
             
             
-            <a><h4 className="active" ><MdDashboard className="icon"/>Dashboard</h4></a>
-            <a><h4 className="" ><MdSettings className="icon"/>Settings</h4></a>
+            <a><h4 onClick={()=>props.setCurrentTab(1)} className={props.currentTab===1?"active":""} ><MdDashboard className="icon"/>Dashboard</h4></a>
+            <a><h4 onClick={()=>props.setCurrentTab(2)} className={props.currentTab===2?"active":""} ><MdSettings className="icon"/>Settings</h4></a>
             <a onClick={logoutHandler}><h4 className="" ><IoLogOut className="icon"/>Logout</h4></a>
             <div className="sidenavIcons">
                 <MoonToggle className="sidenav-moon"/>
