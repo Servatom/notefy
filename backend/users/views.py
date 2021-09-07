@@ -4,7 +4,7 @@ from users import serializers
 from users import models
 from users.forms import UserRegisterForm
 from rest_framework.permissions import IsAuthenticated
-
+from users.generateAvatar import *
 
 class UserCreate(APIView):
     """
@@ -54,3 +54,17 @@ class ChangeName(APIView):
         user.name = request.data['name']
         user.save()
         return Response({"detail": "name changed"})
+
+class AvatarChange(APIView):
+    permission_classes = (IsAuthenticated,)
+    def put(self, request):
+        email = request.user.email
+        user = models.User.objects.get(email=email)
+        prev_image = user.avatar
+        new_avatar = selectImage()
+        while(new_avatar == prev_image):
+            new_avatar = selectImage()
+        
+        user.avatar = new_avatar
+        user.save()
+        return Response({"detail": "avatar changed", "new_avatar": new_avatar})

@@ -10,3 +10,4 @@ services:
       - "6969:6969"
     volumes:
       - ./db.sqlite3:/app/db.sqlite3
+    restart: always
