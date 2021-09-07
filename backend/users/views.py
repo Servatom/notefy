@@ -40,8 +40,17 @@ class ResetPasswordView(APIView):
         user = models.User.objects.get(email=email)
 
         if not user.check_password(request.data['old_password']):
-            return Response({"detail": "old password is wrong"}, status=400)
+            return Response({"detail": "Old password is incorrect"}, status=400)
         # change new password
         user.set_password(request.data['new_password'])
         user.save()
         return Response({"detail": "password changed"})
+
+class ChangeName(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        email = request.user.email
+        user = models.User.objects.get(email=email)
+        user.name = request.data['name']
+        user.save()
+        return Response({"detail": "name changed"})
