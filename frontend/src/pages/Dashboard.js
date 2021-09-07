@@ -206,7 +206,7 @@ const Dashboard=(props)=>{
                     }
                     </>
                     :
-                    <Settings userInfo={userInfo}/>
+                    <Settings userInfo={userInfo} setUserInfo={setUserInfo}/>
                 }
             </div>
             

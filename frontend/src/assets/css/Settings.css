@@ -26,13 +26,20 @@
     align-items: center;
 }
 
+.avatar
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+}
+
 .pfpContainer
 {
     height: 150px;
     width: 150px;
     border-radius: 150px;
     margin: 0 auto;
-    margin-right: 50px;
     overflow: hidden;
    text-align: right;
 }
@@ -44,6 +51,18 @@
     object-position: center;
 }
 
+.changeAvatar
+{
+    margin-top: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.changeAvatar:hover
+{
+    text-decoration: underline;
+    color: var(--yellowcolor);
+}
 
 .settingsForm
 {
@@ -62,4 +81,24 @@
     height: 60vh;
     width: 80vh;
     filter: invert();
+}
+
+.passbox
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icondiv
+{
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.changepassBtn
+{
+    margin-top: 50px !important;
 }
