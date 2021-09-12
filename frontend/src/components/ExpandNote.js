@@ -63,20 +63,23 @@ const ExpandNote=(props)=>{
     }
     
     return(
-        <div className="note expanded">
-            <GrClose className="close-icon" onClick={props.onClose}/>
-          <div className="noteText">
-          {
-             EditText()
-        }
-          </div>
-            
-            <div className="note-footer">
-                {
-                    EditFooter()
-                }
+        <>
+            <div className="backdrop" onClick={props.onClose}></div>
+            <div className="note expanded">
+                <GrClose className="close-icon" onClick={props.onClose}/>
+            <div className="noteText" onClick={()=>{setEdit(true);}}>
+            {
+                EditText()
+            }
             </div>
-        </div>
+                
+                <div className="note-footer">
+                    {
+                        EditFooter()
+                    }
+                </div>
+            </div>
+        </>
     );
 }
 
