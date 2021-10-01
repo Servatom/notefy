@@ -1,211 +1,185 @@
-.note
-{
-    background-color: rgb(243, 233, 140);
-    color: rgb(27, 27, 27);
-    padding: 1rem;
-    padding-bottom: 0px;
-    border-radius: 7px;
-    min-height: 200px;
-    max-height: 300px;
-    overflow: scroll;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 4px 4px 2px rgb(128, 127, 127);
-    animation: appear 0.3s ease-in-out;
-    transition: 0.2s;
-    scrollbar-base-color: transparent;
+.note {
+  background-color: rgb(243, 233, 140);
+  color: rgb(27, 27, 27);
+  padding: 1rem;
+  padding-bottom: 0px;
+  border-radius: 7px;
+  min-height: 200px;
+  max-height: 300px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 4px 4px 2px rgb(128, 127, 127);
+  animation: appear 0.3s ease-in-out;
+  transition: 0.2s;
+  scrollbar-base-color: transparent;
+  scrollbar-width: none; /* Firefox 64 */
 }
 ::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 /* Optional: show position indicator in red */
-.noteText
-{
-    overflow: scroll;
-    height: 100%;
+.noteText {
+  overflow: scroll;
+  height: 100%;
+  scrollbar-width: none; /* Firefox 64 */
 }
-.note p
-{
-    margin: 16px 0 6px;
-}
-
-.addnote
-{
-    background-color: rgb(255, 217, 223);
-    
+.note p {
+  margin: 16px 0 6px;
 }
 
-.note-footer
-{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
+.addnote {
+  background-color: rgb(255, 217, 223);
 }
 
-small
-{
-    opacity: 0.7;
+.note-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
-.notes-list
-{
-    align-self: flex-start;
-    width: 98%;
-    padding: 1%;
-    display: grid;
-    grid-gap: 1.2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-    max-height: 100%;
-    border-radius: 10px;
-    overflow: scroll;
+small {
+  opacity: 0.7;
 }
 
-.addnote textarea, .expanded textarea{
-    background-color: transparent;
-    border: none;
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    margin: 16px 0 6px;
-    resize: none;
+.notes-list {
+  align-self: flex-start;
+  width: 98%;
+  padding: 1%;
+  display: grid;
+  grid-gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-height: 100%;
+  border-radius: 10px;
+  overflow: scroll;
 }
 
-.expanded textarea
-{
-    width: calc(100% - 16px);
-    height: 95%;
-    padding: 0;
-}
-.addnote textarea:focus , .expanded textarea:focus
-{
-    border: none;
-    outline: none;
-}
-
-.saveBtn
-{
-    cursor: pointer;
-    background-color: rgba(59, 59, 59, 0.829);
-    color: rgb(248, 248, 248);
-    padding: 3px 8px;
-    border-radius: 5px;
-    font-size: 1rem;
-    border: none;
-}
-.saveBtn:hover
-{
-    background-color: rgb(27, 27, 27);
+.addnote textarea,
+.expanded textarea {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  margin: 16px 0 6px;
+  resize: none;
 }
 
-.delete-icon
-{
-    cursor: pointer;
-    transition: 0.3s;
-    transform: scale(1.2);
+.expanded textarea {
+  width: calc(100% - 16px);
+  height: 95%;
+  padding: 0;
 }
-.delete-icon:hover
-{
-    transform: scale(1.4);
-    transition: 0.3s;
-}
-.edit-icon
-{
-    margin: 0 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.edit-icon:hover
-{
-    transform: scale(1.3);
-    transition: 0.3s;
+.addnote textarea:focus,
+.expanded textarea:focus {
+  border: none;
+  outline: none;
 }
 
-.deleted
-{
-    animation: disappear 0.3s ease-in-out;
+.saveBtn {
+  cursor: pointer;
+  background-color: rgba(59, 59, 59, 0.829);
+  color: rgb(248, 248, 248);
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: none;
+}
+.saveBtn:hover {
+  background-color: rgb(27, 27, 27);
 }
 
-.backdrop
-{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
+.delete-icon {
+  cursor: pointer;
+  transition: 0.3s;
+  transform: scale(1.2);
+}
+.delete-icon:hover {
+  transform: scale(1.4);
+  transition: 0.3s;
+}
+.edit-icon {
+  margin: 0 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.edit-icon:hover {
+  transform: scale(1.3);
+  transition: 0.3s;
 }
 
-.expanded
-{
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    max-height: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    padding-bottom: 10px;
-    z-index: 2;
-    animation: 0.5s appear2;
-    box-shadow: 0px 0px 100px 1000px rgba(0, 0, 0, 0.568);
+.deleted {
+  animation: disappear 0.3s ease-in-out;
 }
 
-.close-icon
-{
-    cursor: pointer;
-    transition: 0.2s;
-}
-.close-icon:hover
-{
-    transform: scale(1.3);
-    transition: 0.2s;
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
 }
 
-.edit-icon-expanded
-{
-    cursor: pointer;
-    transition: 0.3s;
-    transform: scale(1.2);
+.expanded {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  max-height: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 10px;
+  z-index: 2;
+  animation: 0.5s appear2;
+  box-shadow: 0px 0px 100px 1000px rgba(0, 0, 0, 0.568);
 }
 
-.edit-icon-expanded:hover
-{
-    transition: 0.3s;
-    transform: scale(1.4);
+.close-icon {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.close-icon:hover {
+  transform: scale(1.3);
+  transition: 0.2s;
+}
+
+.edit-icon-expanded {
+  cursor: pointer;
+  transition: 0.3s;
+  transform: scale(1.2);
+}
+
+.edit-icon-expanded:hover {
+  transition: 0.3s;
+  transform: scale(1.4);
 }
 @keyframes appear {
-
-    0%{
-        transform: scale(0);
-    }
-    100%{
-        transform: scale(1);
-    }
-    
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 @keyframes appear2 {
-
-    0%{
-        transform: scale(0) translate(-50%,-50%);
-    }
-    100%{
-        transform: scale(1) translate(-50%,-50%);
-    }
-    
+  0% {
+    transform: scale(0) translate(-50%, -50%);
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
 }
 @keyframes disappear {
-
-    0%{
-        transform: scale(1);
-    }
-    100%{
-        transform: scale(0);
-    }
-    
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
-
