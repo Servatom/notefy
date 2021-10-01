@@ -2,15 +2,16 @@
   <a href="https://github.com/servatom/notefy">
     <img src="frontend/public/logo.png" alt="Logo" width="80" height="80">
   </a>
-
-  <h3 align="center">Notefy</h3>
-
-<!--   <p align="center">
-    A simple weather app using HTML5, CSS3 and JavaScript along with OpenWeatherMap API. 
-    <br />
-  </p> -->
+  <h1 align="center">Notefy</h1>
 </p>
+<div align="center">
+  <h4>
+    <a href="https://github.com/servatom/notefy/stargazers"><img src="https://img.shields.io/github/stars/servatom/notefy.svg?style=plasticr"/></a>
+    <a href="https://github.com/servatom/notefy/commits/master"><img src="https://img.shields.io/github/last-commit/servatom/notefy.svg?style=plasticr"/></a>
+    <a href="https://github.com/servatom/notefy/commits/master"><img src="https://img.shields.io/github/commit-activity/y/servatom/notefy.svg?style=plasticr"/></a>
 
+  </h4>
+</div>
 <table>
 <tr>
 <td>
@@ -24,10 +25,13 @@ Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet
 Here is the website :  https://notefy.servatom.com
 
 
-## Site
+## Our very own note taking tool
+<!-- ![](https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/typing.gif) -->
+<div> 
+  <img src="https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/typing.gif"  width="500" height="400">
+</div>
 
 ### Landing Page
-
 
 ![](https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/Landing.png)
 
@@ -58,7 +62,9 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 
 ## Built with 
-
+                                                                                                                        
+Reactjs
+                                                                                                                        
 ## Team
 
 ## [License](https://github.com/Servatom/notefy/blob/main/LICENSE)
