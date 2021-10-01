@@ -1,68 +1,61 @@
-
-
-.dashboard
-{
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    flex-direction: row;
-    align-items: center;
+.dashboard {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: row;
+  align-items: center;
 }
 
-.side-nav
-{
-    width: 20%;
-    min-width: 250px;
-    height: 93%;
-    margin-right: 10px;
-    padding: 20px 30px;
-    padding-left: 50px;
-    /* border-right: 1px dashed var(--textcolor); */
+.side-nav {
+  width: 20%;
+  min-width: 250px;
+  height: 93%;
+  margin-right: 10px;
+  padding: 20px 30px;
+  padding-left: 50px;
+  /* border-right: 1px dashed var(--textcolor); */
 }
 
-.cont
-{
-    align-self: flex-start;
-    padding: 20px;
-    margin-right: 20px;
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    max-height: 92%;
-    border-radius: 10px;
-    overflow: scroll;
+.cont {
+  align-self: flex-start;
+  padding: 20px;
+  margin-right: 20px;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  max-height: 92%;
+  border-radius: 10px;
+  overflow: scroll;
+  scrollbar-width: none; /* Firefox 64 */
 }
 
-.watermark
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    position: absolute;
-    top: 70%;
-    right: 40%;
-    transform: translate(50%,-50%);
-    filter: grayscale(1);
+.watermark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  top: 70%;
+  right: 40%;
+  transform: translate(50%, -50%);
+  filter: grayscale(1);
+  opacity: 0.15;
+  z-index: -1;
+  transition: 0.5s;
+  animation: fade 0.5s ease-in-out;
+}
+
+.watermark img {
+  height: 200px;
+  width: fit-content;
+  margin: 5px auto 20px;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 0.15;
-    z-index: -1;
-    transition: 0.5s;
-    animation: fade 0.5s ease-in-out;
-}
-
-.watermark img
-{
-    height: 200px;
-    width: fit-content;
-    margin: 5px auto 20px;
-}
-
-@keyframes fade 
-{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 0.15;
-    }
+  }
 }
