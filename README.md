@@ -1,11 +1,20 @@
+<p align="center">
+  <a href="https://github.com/servatom/notefy">
+    <img src="frontend/public/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-# ![WebApp](https://iharsh234.github.io/WebApp/images/demo/demo_landing.JPG)
-# notefy
-<img src="frontend/public/logo.png" align="right" />
+  <h3 align="center">Notefy</h3>
+
+<!--   <p align="center">
+    A simple weather app using HTML5, CSS3 and JavaScript along with OpenWeatherMap API. 
+    <br />
+  </p> -->
+</p>
+
 <table>
 <tr>
 <td>
-  A webapp using Quandl API to display history of stock growth in a given period of time. It helps predict the growth of stocks from the  charts of stock performace in any period of time. It helps to judge stocks, with the principle of momentum investing, which returns 1% per month on average.
+Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet attractive UI and great functionality!
 </td>
 </tr>
 </table>
@@ -18,9 +27,9 @@ Here is the website :  https://notefy.servatom.com
 ## Site
 
 ### Landing Page
-Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
 
-![](https://iharsh234.github.io/WebApp/images/demo/web_app_face.JPG)
+
+![]()
 
 
 ## Mobile support
@@ -59,4 +68,5 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 ## Team
 
-## [License]()
+## [License](https://github.com/Servatom/notefy/blob/main/LICENSE)
+MIT License Copyright (c) 2021 Servatom
