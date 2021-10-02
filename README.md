@@ -12,7 +12,7 @@
 
   </h4>
 </div>
-<table>
+<table  align="center">
 <tr>
 <td>
 Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet attractive UI and great functionality! 
