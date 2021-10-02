@@ -8,8 +8,11 @@
 <div align="center">
   <h4>
     <a href="https://github.com/servatom/notefy/stargazers"><img src="https://img.shields.io/github/stars/servatom/notefy.svg?style=plasticr"/></a>
+    <a href="https://GitHub.com/servatom/notefy/network/"><img src="https://badgen.net/github/forks/servatom/notefy"/></a>
     <a href="https://github.com/servatom/notefy/commits/master"><img src="https://img.shields.io/github/last-commit/servatom/notefy.svg?style=plasticr"/></a>
     <a href="https://github.com/servatom/notefy/commits/master"><img src="https://img.shields.io/github/commit-activity/y/servatom/notefy.svg?style=plasticr"/></a>
+    <a href="https://github.com/Servatom/notefy/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
+    <a href="https://github.com/Servatom/notefy/compare"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"/></a>
   </h4>
 </div>
 
@@ -40,6 +43,7 @@ Here is the website :  https://notefy.servatom.com
 <h1 align="center"><a href="https://notefy.servatom.com">Usage</a></h2>
 
 ## Want to run this repo locally?
+<h3>Open your command line and start with the following commands:</h3>
 
 
 ## To fix a bug or enhance an existing module, follow these steps:
@@ -64,9 +68,10 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 ## Built with
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com) <br>
 [![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org) <br>
 [![](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com) <br>
-
+[![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://https://docker.com/)
 
 ## Project Motivation
 
@@ -102,4 +107,5 @@ Please take a moment to go through [CONTRIBUTING.md](https://github.com/Servatom
 Solve the issues [here](https://github.com/Servatom/notefy/issues)
 
 ## [License](https://github.com/Servatom/notefy/blob/main/LICENSE)
+
 Usage is provided under the MIT License. See LICENSE for the full details.
