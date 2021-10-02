@@ -4,20 +4,21 @@
   </a>
   <h1 align="center">Notefy</h1>
 </p>
+
 <div align="center">
   <h4>
     <a href="https://github.com/servatom/notefy/stargazers"><img src="https://img.shields.io/github/stars/servatom/notefy.svg?style=plasticr"/></a>
     <a href="https://github.com/servatom/notefy/commits/master"><img src="https://img.shields.io/github/last-commit/servatom/notefy.svg?style=plasticr"/></a>
     <a href="https://github.com/servatom/notefy/commits/master"><img src="https://img.shields.io/github/commit-activity/y/servatom/notefy.svg?style=plasticr"/></a>
-
   </h4>
 </div>
+
 <table  align="center">
-<tr>
-<td>
-Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet attractive UI and great functionality! 
-</td>
-</tr>
+  <tr>
+    <td>
+      Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet attractive UI and great functionality! 
+     </td>
+   </tr>
 </table>
 
 
@@ -26,8 +27,8 @@ Here is the website :  https://notefy.servatom.com
 
 
 ## Our very own note taking tool !!
-<div> 
-  <img src="https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/typing.gif"  width="500" height="400">
+<div align="center"> 
+  <img src="https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/typing.gif" width="500" height="400">
 </div>
 
 ### Landing Page
@@ -36,12 +37,14 @@ Here is the website :  https://notefy.servatom.com
 
 
 
-## [Usage](https://notefy.servatom.com) 
+<h1 align="center"><a href="https://notefy.servatom.com">Usage</a></h2>
 
-### Development
-Want to contribute? Great!
+## Want to run this repo locally?
+
 
 ## To fix a bug or enhance an existing module, follow these steps:
+
+<h3>Want to contribute? Great!</h3>
 
 - Fork the repo
 - Create a new branch (`git checkout -b improve-feature`)
@@ -53,12 +56,7 @@ Want to contribute? Great!
 
 We will review and accept the PR.
 
-## Want to run this repo locally?
-
-
-
-
-### Bug / Feature Request
+<h3>Bug / Feature Request</h3>
 
 If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/Servatom/notefy/issues) by including your search query and the expected result.
 
