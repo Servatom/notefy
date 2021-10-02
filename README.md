@@ -35,7 +35,7 @@ Here is the website :  https://notefy.servatom.com
 
 ![](https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/Landing.png)
 
-
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <h1 align="center"><a href="https://notefy.servatom.com">Usage</a></h2>
 
@@ -62,14 +62,37 @@ If you find a bug (the website couldn't handle the query and / or gave undesired
 
 If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/Servatom/notefy/issues/new). Please include sample queries and their corresponding results.
 
-
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 ## Built with
+[![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org) <br>
+[![](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com) <br>
 
 
 ## Project Motivation
 
 
 ## Team
+
+<p>
+  :mortar_board: <i>All maintainers in this project are under-graduate students in the <a href="https://csed.thapar.edu">Department of
+Computer Science and Engineering, TIET</a> <b>@</b> <a href="https://www.thapar.edu/">Thapar University</a></i> <br> <br>
+  
+  :woman: <b>Rupanshi Jain</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>jainrupanshi@outlook.com</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/rdotjain">@rdotjain</a> <br>
+  
+  :boy: <b>Yashvardhan Arora</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>yash22arora@gmail.com</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/yash22arora">@yash22arora</a> <br>
+
+  :boy: <b>Raghav Sharma</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>raghav.sharma17@outlook.com</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/raghavTinker">@raghavTinker</a> <br>
+
+  :boy: <b>Adamay Mann</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>meadamann2002@gmail.com</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/mannadamay12">@mannadamay12</a> <br>
+</p>
 
 ## Contributions
 
