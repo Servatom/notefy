@@ -55,68 +55,8 @@ const Login = () => {
     body: "",
   });
 
-  //Register handler
-  const registerHandler = (e) => {
-    e.preventDefault();
-    setCreated(false);
-
-    if (pass == pass2) {
-      setLoading(true);
-      setError({
-        status: false,
-        body: "",
-      });
-
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      let registerDetails = JSON.stringify({
-        email: email,
-        password: pass,
-        name: name,
-      });
-
-      var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: registerDetails,
-        redirect: "follow",
-      };
-
-      fetch(`${URL}/api/users/register/`, requestOptions)
-        .then((response) => {
-          const data = response.json();
-          setLoading(false);
-
-          if (response.status == 200) setCreated(true);
-          else setCreated(false);
-
-          return data;
-        })
-        .then((result) => {
-          console.log(result);
-
-          let firstkey = Object.keys(result)[0];
-
-          setError({
-            status: true,
-            body: result[firstkey],
-          });
-        })
-        .catch((error) => console.log("error", error));
-    } else {
-      setError({
-        status: true,
-        body: "The passwords dont match!",
-      });
-    }
-  };
-
-  // Login handler
-  const loginHandler = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
+  // Login Function
+  const login = () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -159,6 +99,71 @@ const Login = () => {
           });
       })
       .catch((error) => console.log("error", error));
+  };
+
+  //Register handler
+  const registerHandler = (e) => {
+    e.preventDefault();
+    setCreated(false);
+
+    if (pass == pass2) {
+      setLoading(true);
+      setError({
+        status: false,
+        body: "",
+      });
+
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      let registerDetails = JSON.stringify({
+        email: email,
+        password: pass,
+        name: name,
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: registerDetails,
+        redirect: "follow",
+      };
+
+      fetch(`${URL}/api/users/register/`, requestOptions)
+        .then((response) => {
+          const data = response.json();
+
+          if (response.status == 200) {
+            login();
+          } else setCreated(false);
+          setLoading(false);
+
+          return data;
+        })
+        .then((result) => {
+          console.log(result);
+
+          let firstkey = Object.keys(result)[0];
+
+          setError({
+            status: true,
+            body: result[firstkey],
+          });
+        })
+        .catch((error) => console.log("error", error));
+    } else {
+      setError({
+        status: true,
+        body: "The passwords dont match!",
+      });
+    }
+  };
+
+  // Login handler
+  const loginHandler = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    login();
   };
   var width = Math.max(window.screen.width);
   console.log("mq", width);
