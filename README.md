@@ -25,7 +25,7 @@ Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet
 Here is the website :  https://notefy.servatom.com
 
 
-## Our very own note taking tool
+## Our very own note taking tool !!
 <div> 
   <img src="https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/typing.gif"  width="500" height="400">
 </div>
