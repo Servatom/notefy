@@ -2,9 +2,20 @@
   <a href="https://github.com/servatom/notefy">
     <img src="frontend/public/logo.png" alt="Logo" width="80" height="80">
   </a>
+<<<<<<< HEAD
   <h3 align="center">Notefy</h3>
+=======
+  <h1 align="center">Notefy</h1>
+>>>>>>> 4795b30633a14f4bbfc3f39111c85d36031a39e2
 </p>
+<div align="center">
+  <h4>
+    <a href="https://github.com/servatom/notefy/stargazers"><img src="https://img.shields.io/github/stars/servatom/notefy.svg?style=plasticr"/></a>
+    <a href="https://github.com/servatom/notefy/commits/master"><img src="https://img.shields.io/github/last-commit/servatom/notefy.svg?style=plasticr"/></a>
+    <a href="https://github.com/servatom/notefy/commits/master"><img src="https://img.shields.io/github/commit-activity/y/servatom/notefy.svg?style=plasticr"/></a>
 
+  </h4>
+</div>
 <table>
 <tr>
 <td>
@@ -18,10 +29,13 @@ Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet
 Here is the website :  https://notefy.servatom.com
 
 
-## Site
+## Our very own note taking tool
+<!-- ![](https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/typing.gif) -->
+<div> 
+  <img src="https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/typing.gif"  width="500" height="400">
+</div>
 
 ### Landing Page
-
 
 ![](https://github.com/mannadamay12/notefy/blob/main/frontend/src/assets/media/Landing.png)
 
@@ -56,12 +70,19 @@ If you find a bug (the website couldn't handle the query and / or gave undesired
 If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/Servatom/notefy/issues/new). Please include sample queries and their corresponding results.
 
 
+<<<<<<< HEAD
 ## Built with
 
 
 ## Project Motivation
 
 
+=======
+## Built with 
+                                                                                                                        
+Reactjs
+                                                                                                                        
+>>>>>>> 4795b30633a14f4bbfc3f39111c85d36031a39e2
 ## Team
 
 ## Contributions
