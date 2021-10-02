@@ -56,6 +56,8 @@ Here is the website :  https://notefy.servatom.com
     │   ├── public
     │   │   └── index.html   
     │   │
+    │   │    
+    │   │
     │   ├── src
     │   │   ├── assets
     │   │   │   ├── css
@@ -84,41 +86,89 @@ Here is the website :  https://notefy.servatom.com
     │   │   |    
     │   │   ├──store
     │   │   |   └── auth-context.js
+    │   |   |
     │   │   |    
+    │   │   |    
+    |   │   │── App.js
+    |   │   │── App.css
+    |   │   │── index.js
+    |   │   │── index.css
+    |   │   │── URL.js
+    |   │   │── CONSTANTS.js
     │   │   |  
     │   │   |    
     │   │   |    
     │   │   | 
     ├── backend
     │   ├── config
-    │   │   |  
-    │   │   |    
-    │   │   |  
-    │   │   |  
-    │   │   |    
-    │   │   |    
-    │   │   |  
-    │   │   |    
-    │   │   |    
-    
+    |   |   ├── asgi.py
+    |   |   ├── __init__.py
+    │   │   ├── settings.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   │    
+    │   │     
+    │   │      
+    │   │── docker-compose.yml
+    │   │── Dockerfile
+    │   │── key.pem
+    │   │── manage.py
+    │   |   
+    │   │     
+    │   │      
+    │   │── notes
+    |   |   ├── apps.py
+    |   |   ├── __init__.py
+    │   │   ├── getDateTime.py
+    │   │   ├── models.py
+    │   │   ├── permissions.py
+    |   |   |── urls.py
+    │   │   └── views.py
+    │   │     
+    │   │  
+    │   │     
+    │   │  
+    |   │── origin.pem
+    |   |── requirements.txt
+    |   |── run.sh
+    │   │     
+    │   │     
+    │   │── users  
+    |   |   ├── admin.py
+    |   |   ├── forms.py
+    │   │   ├── generateAvatar.py
+    │   │   ├── __init__.py
+    │   │   ├── managers.py
+    |   |   |── models.py
+    │   │   ├── serializers.py
+    |   |   |── urls.py
+    │   │   └── views.py   
+
     
    
 
 <h1 align="center"><a href="https://notefy.servatom.com">Usage</a></h1>
 
 ## Want to run this repo locally?
-<h3>Open your command line and start with the following commands:</h3>
+<h2>Open your command line and start with the following commands:</h2>
 
 <p> To render react-frontend, run :</p>
 <pre><code>$ cd frontend</code></pre>
+<p>Install the node modules</p>
 <pre><code>$ npm i</code></pre>
+<p>Now start the react modules</p>
 <pre><code>$ npm start</code></pre>
 
-<p>You can run the server by:</p>
+<h3>You can run the server by:</h3>
+<p>Fistly, install the requirements using <code>pipenv</code></p>
+<pre><code>$ pip install pipenv
+$ pipenv install
+$ pipenv shell
+$ pip install -r requirements.txt</code></pre>
 <pre><code>$ cd backend</code></pre>
-<i>Assuming you are present in the root directory</i><br>
-<pre><code>$ pip install</code></pre>
-<pre><code>$ py start</code></pre>
+<p>Start the backend</p>
+<pre><code>$ python manage.py migrate
+$ python manage.py runserver</code></pre>
 
 ## To fix a bug or enhance an existing module, follow these steps:
 
