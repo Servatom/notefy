@@ -134,4 +134,10 @@ img.wednesday {
   .notes-image {
     width: 70% !important;
   }
+  .notefy-heading {
+    font-size: 12vw;
+  }
+  .crafted {
+    font-size: 1rem;
+  }
 }
