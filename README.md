@@ -2,19 +2,13 @@
   <a href="https://github.com/servatom/notefy">
     <img src="frontend/public/logo.png" alt="Logo" width="80" height="80">
   </a>
-
   <h3 align="center">Notefy</h3>
-
-<!--   <p align="center">
-    A simple weather app using HTML5, CSS3 and JavaScript along with OpenWeatherMap API. 
-    <br />
-  </p> -->
 </p>
 
 <table>
 <tr>
 <td>
-Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet attractive UI and great functionality!
+Notefy is a note-taking web app built with ReactJS and Django, with a subtle yet attractive UI and great functionality! 
 </td>
 </tr>
 </table>
@@ -38,7 +32,7 @@ Here is the website :  https://notefy.servatom.com
 ### Development
 Want to contribute? Great!
 
-To fix a bug or enhance an existing module, follow these steps:
+## To fix a bug or enhance an existing module, follow these steps:
 
 - Fork the repo
 - Create a new branch (`git checkout -b improve-feature`)
@@ -50,6 +44,11 @@ To fix a bug or enhance an existing module, follow these steps:
 
 We will review and accept the PR.
 
+## Want to run this repo locally?
+
+
+
+
 ### Bug / Feature Request
 
 If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/Servatom/notefy/issues) by including your search query and the expected result.
@@ -57,9 +56,20 @@ If you find a bug (the website couldn't handle the query and / or gave undesired
 If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/Servatom/notefy/issues/new). Please include sample queries and their corresponding results.
 
 
-## Built with 
+## Built with
+
+
+## Project Motivation
+
 
 ## Team
+
+## Contributions
+
+All contributions are welcome.
+Please take a moment to go through [CONTRIBUTING.md](https://github.com/Servatom/notefy/blob/main/CONTRIBUTING.md)
+
+Solve the issues [here](https://github.com/Servatom/notefy/issues)
 
 ## [License](https://github.com/Servatom/notefy/blob/main/LICENSE)
 MIT License Copyright (c) 2021 Servatom
