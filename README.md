@@ -79,4 +79,4 @@ Please take a moment to go through [CONTRIBUTING.md](https://github.com/Servatom
 Solve the issues [here](https://github.com/Servatom/notefy/issues)
 
 ## [License](https://github.com/Servatom/notefy/blob/main/LICENSE)
-MIT License Copyright (c) 2021 Servatom
+Usage is provided under the MIT License. See LICENSE for the full details.
