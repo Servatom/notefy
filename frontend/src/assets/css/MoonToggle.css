@@ -1,20 +1,16 @@
-.fa-moon
-{
+.fa-moon {
     padding: 5px;
     font-size: 1.4em;
     position: absolute;
-    right: 0;
+    right: 2rem;
     cursor: pointer;
     border-radius: 1.4em;
     transition: 0.3s;
     color: var(--textcolor);
 }
 
-.fa-moon:hover
-{
+.fa-moon:hover {
     transition: 0.3s;
     background-color: var(--textcolor);
     color: var(--bodycolor);
 }
-
-

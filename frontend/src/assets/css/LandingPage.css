@@ -1,14 +1,11 @@
-
-:root
-{
+:root {
     --bodycolor: rgb(27, 27, 27);
-    --textcolor:rgb(248, 248, 248);
+    --textcolor: rgb(248, 248, 248);
 }
 
-body 
-{
+body {
     /* max-height: 100vh; */
-    min-height: 100vh;
+    /* min-height: 100vh; */
     margin: 0;
     padding: 0;
     background-color: var(--bodycolor);
@@ -17,11 +14,10 @@ body
     justify-content: center;
     align-items: center;
     position: relative;
-    
+    overflow-x: hidden;
 }
 
-.landing-container
-{
+.landing-container {
     width: 90vw;
     max-width: 1160px;
     display: flex;
@@ -30,14 +26,14 @@ body
     position: relative;
     margin-top: 10vh;
 }
-.lbox
-{
+
+.lbox {
     width: 45%;
     display: flex;
     flex-direction: column;
 }
-.rbox
-{
+
+.rbox {
     margin-left: 0px;
     width: 55%;
     display: flex;
@@ -45,8 +41,9 @@ body
     justify-content: center;
     align-items: center;
 }
-.left, .right
-{
+
+.left,
+.right {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -54,31 +51,28 @@ body
     justify-content: center;
 }
 
-svg.stack
-{
-  max-width: 250px; 
-  width: 15vw; 
-  min-width: 200px;
-  align-self: center;
+svg.stack {
+    max-width: 250px;
+    width: 15vw;
+    min-width: 200px;
+    align-self: center;
 }
 
-.text
-{
+.text {
     align-self: center;
     margin: auto;
     width: max-content;
     padding: 20px;
 }
-.notefy-heading
-{
-    font-size: 8vw; 
+
+.notefy-heading {
+    font-size: 8vw;
     /* 7em  */
     margin: 0px;
     color: var(--textcolor);
 }
 
-.tagline
-{
+.tagline {
     align-self: center;
     font-size: 2.3em;
     font-size: 2.5vw;
@@ -87,21 +81,20 @@ svg.stack
     margin: 10px 0;
     letter-spacing: 1px;
 }
-.crafted
-{
+
+.crafted {
     margin: 30px 0;
     padding: 20px 0;
     font-size: 1.3em;
     word-spacing: 2px;
 }
 
-.crafted span
-{
+.crafted span {
     font-weight: 700;
     font-size: 1.25em;
 }
-.githublogo
-{
+
+.githublogo {
     height: 0.9em;
     margin: 0 8px;
     fill: var(--textcolor);
@@ -109,13 +102,102 @@ svg.stack
 
 
 
-.rbox img
-{
+.rbox img {
     width: 70%;
     margin: 30px;
 
 }
-img.wednesday
-{
+
+img.wednesday {
     width: 60%;
+}
+
+@media screen and (max-width: 912px) {
+    .lbox {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .rbox {
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .landing-container {
+        flex-wrap: wrap;
+        width: auto !important;
+        display: flex;
+        flex-direction: row;
+        height: auto;
+        position: relative;
+    }
+
+    .left {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: auto;
+    }
+
+    .img.wednesday {
+        width: 50%;
+    }
+
+    .rbox img {
+        width: 50%;
+    }
+
+    .right {
+        flex-direction: column;
+        width: auto;
+    }
+}
+
+/* STYLES HERE for DEVICES with physical max-screen width of 480px */
+
+
+@media only screen and (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .notefy-heading {
+        font-size: 13vw;
+    }
+
+
+    .rbox {
+        margin-left: 5px;
+        width: 120vw;
+        flex-direction: column;
+    }
+
+    .landing-container {
+
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .left {
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: auto;
+    }
+
+    .img.wednesday {
+        width: 50%;
+    }
+
+    .rbox img {
+        width: 50%;
+        flex-direction: column;
+    }
+
+    .right {
+        width: 100%;
+        flex-direction: column;
+    }
+
+
+
 }
