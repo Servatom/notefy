@@ -161,6 +161,27 @@ small {
   transition: 0.3s;
   transform: scale(1.4);
 }
+
+/* if you ever want to change the p tags with textareas  */
+
+/* .note-text-area-small {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  resize: none;
+  width: 100%;
+  height: 100%;
+}
+
+.note-text-area-small:focus {
+  outline: none;
+} */
+
+.note-p-textspace {
+  white-space: pre-wrap;
+}
+
 @keyframes appear {
   0% {
     transform: scale(0);
@@ -186,7 +207,7 @@ small {
   }
 }
 
-@media all and (max-width: 350px){
+@media all and (max-width: 350px) {
   .note {
     width: 250px;
   }
