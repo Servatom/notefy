@@ -42,7 +42,7 @@ class LoginState extends State<Login> {
               onPressed: () async {
                 final response = await http.post(
                     Uri.parse("https://notefyapi.servatom.com/api/auth/login/"),
-                    body: {"email": email.text, "password": password.text});
+                    body: {"email": email, "password": password});
                 if (response.statusCode == 200) {
                   print("Success");
                 } else {
