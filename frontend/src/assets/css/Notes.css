@@ -185,3 +185,16 @@ small {
     transform: scale(0);
   }
 }
+
+@media all and (max-width: 350px){
+  .note {
+    width: 250px;
+  }
+  .notes-list {
+    width: 98%;
+    padding: 1%;
+    display: grid;
+    grid-gap: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
