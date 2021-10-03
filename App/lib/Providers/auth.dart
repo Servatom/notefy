@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:http/http.dart' as http;
 
 Future<void> loginUser(email, password) async {

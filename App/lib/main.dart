@@ -1,3 +1,4 @@
+import 'package:app/screens/dashboard.dart';
 import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:app/screens/registerscreen.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         RegisterScreen.id: (context) => RegisterScreen(),
         Splashscreen.id: (context) => Splashscreen(),
         MainScreen.id: (context) => MainScreen(),
+        DashBoard.id: (context) => DashBoard(),
       },
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:app/Providers/auth.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
@@ -5,6 +7,8 @@ import 'package:app/screens/mainscreen.dart';
 import 'package:app/screens/registerscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/Roundedbutton.dart';
+
+import 'dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -69,7 +73,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 RoundedButton(
                   onPressed: () async {
-                    loginUser(email, password);
+                    // loginUser(email, password);
+                    Navigator.pushNamed(
+                      context,
+                      DashBoard.id,
+                    );
                   },
                   title: "Login",
                 ),
