@@ -46,67 +46,66 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                 ),
-                Center(
-                  child: Flexible(
-                    child: Image.asset(
-                      'images/logo.png',
-                      alignment: Alignment.center,
-                      scale: 1.2,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                InputField(
-                    obscure: false,
-                    hinttext: "Email",
-                    onChanged: (value) {
-                      email = value;
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                InputField(
-                    obscure: false,
-                    hinttext: 'Name',
-                    onChanged: (value) {
-                      name = value;
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                InputField(
-                    obscure: true,
-                    hinttext: 'Password',
-                    onChanged: (value) {
-                      password = value;
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: RoundedButton(
-                    title: 'Register',
-                    onPressed: () async {
-                      registerUser(email, name, password);
-                    },
-                  ),
-                ),
-                Center(
-                  child: GestureDetector(
-                    child: Text(
-                      'Already a user? Login Here!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Flexible(
+                      child: Image.asset(
+                        'images/logo.png',
+                        alignment: Alignment.center,
+                        scale: 1.2,
                       ),
                     ),
-                    onTap: () {
-                      Navigator.pushNamed(context, LoginScreen.id);
-                    },
-                  ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    InputField(
+                        obscure: false,
+                        hinttext: "Email",
+                        onChanged: (value) {
+                          email = value;
+                        }),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InputField(
+                        obscure: false,
+                        hinttext: 'Name',
+                        onChanged: (value) {
+                          name = value;
+                        }),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InputField(
+                        obscure: true,
+                        hinttext: 'Password',
+                        onChanged: (value) {
+                          password = value;
+                        }),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    RoundedButton(
+                      title: 'Register',
+                      onPressed: () async {
+                        registerUser(email, name, password);
+                      },
+                    ),
+                    GestureDetector(
+                      child: Text(
+                        'Already a user? Login Here!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, LoginScreen.id);
+                      },
+                    ),
+                  ],
                 ),
               ]),
         ),

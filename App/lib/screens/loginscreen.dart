@@ -23,80 +23,90 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kbgcolor,
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: IconButton(
-                icon: Icon(
-                  Icons.keyboard_arrow_left,
-                  color: Colors.white,
-                  size: 40,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(
+            top: 50,
+            left: 20,
+            right: 20,
+            bottom: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context, MainScreen.id);
-                },
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Image.asset(
-                    'images/logo.png',
-                    alignment: Alignment.center,
-                    scale: 1.2,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.keyboard_arrow_left,
+                    color: Colors.white,
+                    size: 40,
                   ),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                InputField(
-                    obscure: false,
-                    hinttext: 'Email',
-                    onChanged: (value) {
-                      email = value;
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                InputField(
-                    obscure: true,
-                    hinttext: 'Password',
-                    onChanged: (value) {
-                      password = value;
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                RoundedButton(
-                  onPressed: () async {
-                    // loginUser(email, password);
-                    Navigator.pushNamed(
-                      context,
-                      DashBoard.id,
-                    );
+                  onPressed: () {
+                    Navigator.pushNamed(context, MainScreen.id);
                   },
-                  title: "Login",
                 ),
-                GestureDetector(
-                  child: Text(
-                    'New here? Register Now!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: Image.asset(
+                      'images/logo.png',
+                      alignment: Alignment.center,
+                      scale: 1.2,
                     ),
                   ),
-                  onTap: () {
-                    Navigator.pushNamed(context, RegisterScreen.id);
-                  },
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(
+                    height: 50,
+                  ),
+                  InputField(
+                      obscure: false,
+                      hinttext: 'Email',
+                      onChanged: (value) {
+                        email = value;
+                      }),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  InputField(
+                      obscure: true,
+                      hinttext: 'Password',
+                      onChanged: (value) {
+                        password = value;
+                      }),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  RoundedButton(
+                    onPressed: () async {
+                      // loginUser(email, password);
+                      Navigator.pushNamed(
+                        context,
+                        DashBoard.id,
+                      );
+                    },
+                    title: "Login",
+                  ),
+                  GestureDetector(
+                    child: Text(
+                      'New here? Register Now!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, RegisterScreen.id);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
