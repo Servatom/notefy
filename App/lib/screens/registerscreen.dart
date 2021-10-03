@@ -5,6 +5,7 @@ import 'package:app/components/roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
 import 'package:app/screens/dashboard.dart';
+import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -104,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, DashBoard.id);
+                        Navigator.pushNamed(context, LoginScreen.id);
                       },
                     ),
                   ],
