@@ -7,7 +7,6 @@ import 'package:app/screens/mainscreen.dart';
 import 'package:app/screens/registerscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/Roundedbutton.dart';
-
 import 'dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -82,8 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   RoundedButton(
                     onPressed: () {
-                      // loginUser(email, password);
-                      print('chala ja');
+                      loginUser(email, password);
                       Navigator.pushNamed(
                         context,
                         DashBoard.id,
@@ -101,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, DashBoard.id);
+                      Navigator.pushNamed(context, RegisterScreen.id);
                     },
                   ),
                 ],

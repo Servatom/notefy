@@ -1,4 +1,5 @@
 // ignore: prefer_const_constructors
+import 'package:app/components/drawer.dart';
 import 'package:app/constants.dart';
 import 'package:app/models/notes.dart';
 import 'package:flutter/material.dart';
@@ -12,20 +13,14 @@ class DashBoard extends StatelessWidget {
     final notesList = Notes().notesList;
     return Scaffold(
         backgroundColor: kbgcolor,
+        drawer: DashboardDrawer(),
         appBar: AppBar(
           backgroundColor: kyellow,
+          iconTheme: IconThemeData(color: kbgcolor),
           // ignore: prefer_const_constructors
           title: Text(
             'Notefy',
             style: TextStyle(color: kbgcolor),
-          ),
-          leading: IconButton(
-            onPressed: () {},
-            // ignore: prefer_const_constructors
-            icon: Icon(
-              Icons.logout,
-              color: kbgcolor,
-            ),
           ),
           centerTitle: true,
           actions: [
@@ -33,8 +28,7 @@ class DashBoard extends StatelessWidget {
               onPressed: () {},
               // ignore: prefer_const_constructors
               icon: Icon(
-                Icons.menu,
-                color: kbgcolor,
+                Icons.search,
               ),
             )
           ],
@@ -49,8 +43,11 @@ class DashBoard extends StatelessWidget {
             size: 30,
           ),
         ),
-        body: ListView.builder(itemBuilder: (context, index) {
-          return Container();
-        }));
+        body: ListView.builder(
+          itemCount: notesList.length,
+          itemBuilder: (context, index) {
+            return Container();
+          },
+        ));
   }
 }
