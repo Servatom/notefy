@@ -7,7 +7,6 @@ import 'package:app/screens/mainscreen.dart';
 import 'package:app/screens/registerscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/roundedbutton.dart';
-
 import 'dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -107,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, RegisterScreen.id);
+                      Navigator.pushNamed(context, DashBoard.id);
                     },
                   ),
                   Text(status == false ? 'Unable To Login' : '',

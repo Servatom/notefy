@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import '../screens/profile.dart';
 
 class DashboardDrawer extends StatelessWidget {
   @override
@@ -21,6 +22,7 @@ class DashboardDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            ProfileScreen(),
             Spacer(),
             Container(
               padding: EdgeInsets.all(20),
