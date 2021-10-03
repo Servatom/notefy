@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:app/screens/dashboard.dart';
 import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
