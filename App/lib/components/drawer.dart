@@ -23,6 +23,9 @@ class DashboardDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 50,
+            ),
             ProfileScreen(),
             Spacer(),
             Container(
