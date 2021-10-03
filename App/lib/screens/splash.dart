@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+
 import 'package:app/constants.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +54,7 @@ class _SplashscreenState extends State<Splashscreen> {
                           speed: const Duration(milliseconds: 200)),
                     ],
                     onTap: () {
-                      print("Tap Event");
+                      // print("Tap Event");
                     },
                   ),
                 ),

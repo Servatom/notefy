@@ -1,15 +1,15 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
   RoundedButton({required this.title, required this.onPressed});
-  late String title;
-  late Function onPressed;
+  final String title;
+  final Function onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      // ignore: prefer_const_constructors
+      
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         elevation: 5.0,
