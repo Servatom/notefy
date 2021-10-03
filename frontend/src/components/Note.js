@@ -51,28 +51,28 @@ const Note =(props) =>{
     }
 
     return(
-      <>
-      <div className="note" >
-        <div className="noteText" onClick={noteExpander}>        
-        <p className="note-p-textspace">{props.note.body}</p>
-        </div>
-          
-          <div className="note-footer">
-              <small>{props.note.updated_at}</small>
-              <div>
-                <MdEdit className="edit-icon" onClick={editHandler} />
-                <MdDeleteSweep className="delete-icon" onClick={deleteHandler}/>
-              </div>
-              
+        <>
+        <div className="note" >
+          <div className="noteText" onClick={noteExpander}>
+          <p>{props.note.body}</p>
           </div>
-      </div>
-      {
-        isExpansed?
-        <ExpandNote note={props.note} deleteHandler={deleteHandler} onClose={noteMinimiser} editHandler={props.onEdit} isEdit={edit}/>
-        :null
-        }
-      </>
-  );
+            
+            <div className="note-footer">
+                <small>{props.note.updated_at}</small>
+                <div>
+                  <MdEdit className="edit-icon" onClick={editHandler} />
+                  <MdDeleteSweep className="delete-icon" onClick={deleteHandler}/>
+                </div>
+                
+            </div>
+        </div>
+        {
+          isExpansed?
+          <ExpandNote note={props.note} deleteHandler={deleteHandler} onClose={noteMinimiser} editHandler={props.onEdit} isEdit={edit}/>
+          :null
+          }
+        </>
+    );
 }
 
 export default Note;
