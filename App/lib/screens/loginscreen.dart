@@ -81,8 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   RoundedButton(
-                    onPressed: () async {
+                    onPressed: () {
                       // loginUser(email, password);
+                      print('chala ja');
                       Navigator.pushNamed(
                         context,
                         DashBoard.id,
@@ -100,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, RegisterScreen.id);
+                      Navigator.pushNamed(context, DashBoard.id);
                     },
                   ),
                 ],
