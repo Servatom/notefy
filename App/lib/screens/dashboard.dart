@@ -49,8 +49,11 @@ class DashBoard extends StatelessWidget {
             size: 30,
           ),
         ),
-        body: ListView.builder(itemBuilder: (context, index) {
-          return Container();
-        }));
+        body: ListView.builder(
+          itemBuilder: (context, index) {
+            return Container();
+          },
+          itemCount: notesList.length,
+        ));
   }
 }

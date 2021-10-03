@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   RoundedButton(
                     onPressed: () {
-                      // loginUser(email, password);
+                      loginUser(email, password);
                       print('chala ja');
                       Navigator.pushNamed(
                         context,
