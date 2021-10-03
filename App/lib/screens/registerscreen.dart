@@ -1,8 +1,10 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+
 import 'package:app/Providers/auth.dart';
-import 'package:app/components/Roundedbutton.dart';
+import 'package:app/components/roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
-import 'package:app/screens/loginscreen.dart';
+import 'package:app/screens/dashboard.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
 

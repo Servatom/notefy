@@ -1,17 +1,18 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class InputField extends StatelessWidget {
-  final bool obscure;
-  final String hinttext;
-  final Function onChanged;
-  InputField({
+   InputField({
     required this.hinttext,
     required this.onChanged,
     required this.obscure,
   });
+  final bool obscure;
+  final String hinttext;
+  final Function onChanged;
+ 
   @override
   Widget build(BuildContext context) {
     return TextField(

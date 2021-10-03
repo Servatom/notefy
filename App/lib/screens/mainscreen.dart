@@ -1,8 +1,10 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:app/constants.dart';
 import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/registerscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:app/components/Roundedbutton.dart';
+import 'package:app/components/roundedbutton.dart';
 
 class MainScreen extends StatelessWidget {
   static const String id = 'main_screen';
