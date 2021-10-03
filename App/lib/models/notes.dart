@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'note.dart';
 
 class Notes {
