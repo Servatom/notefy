@@ -29,11 +29,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http:
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  animated_splash_screen: ^1.1.0
+  animated_text_kit: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -57,10 +60,34 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  
+  assets:
+    - images/
+  fonts:
+    - family: Satisfy
+      fonts:
+        - asset: fonts/Satisfy-Regular.ttf
+    - family: KaushanScript
+      fonts:
+        - asset: fonts/KaushanScript-Regular.ttf
+    - family: Lobster
+      fonts:
+        - asset: fonts/Lobster-Regular.ttf
+    - family: Pacifico
+      fonts:
+        - asset: fonts/Pacifico-Regular.ttf
+    - family: PermanentMarker
+      fonts:
+        - asset: fonts/PermanentMarker-Regular.ttf
+    - family: IndieFlower
+      fonts:
+        - asset: fonts/IndieFlower-Regular.ttf
+    - family: AkayaKanadaka
+      fonts:
+        - asset: fonts/AkayaKanadaka-Regular.ttf  
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Black.ttf  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
