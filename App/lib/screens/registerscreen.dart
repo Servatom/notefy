@@ -1,8 +1,10 @@
+import 'package:app/Providers/auth.dart';
 import 'package:app/components/Roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
+import 'package:app/screens/loginscreen.dart';
+import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class RegisterScreen extends StatefulWidget {
   static const String id = 'register_screen';
@@ -25,10 +27,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: IconButton(
-              icon: Icon(Icons.keyboard_arrow_left,
-                  color: Colors.white, size: 40),
+              icon: Icon(
+                Icons.keyboard_arrow_left,
+                color: Colors.white,
+                size: 40,
+              ),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, MainScreen.id);
               },
             ),
           ),
@@ -42,8 +47,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     alignment: Alignment.center,
                     scale: 1.2,
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(
+                    height: 50,
+                  ),
                   InputField(
+                      obscure: false,
                       hinttext: "Email",
                       onChanged: (value) {
                         email = value;
@@ -52,6 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 20,
                   ),
                   InputField(
+                      obscure: false,
                       hinttext: 'Name',
                       onChanged: (value) {
                         name = value;
@@ -60,6 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 20,
                   ),
                   InputField(
+                      obscure: true,
                       hinttext: 'Password',
                       onChanged: (value) {
                         password = value;
@@ -70,21 +80,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   RoundedButton(
                     title: 'Register',
                     onPressed: () async {
-                      final response = await http.post(
-                        Uri.parse(
-                            'https://notefyapi.servatom.com/api/users/register/'),
-                        body: {
-                          "email": email,
-                          "name": name,
-                          "password": password
-                        },
-                      );
-                      if (response.statusCode == 200) {
-                        print("Success");
-                      } else {
-                        print("failed");
-                        print(response.reasonPhrase);
-                      }
+                      registerUser(email, name, password);
+                    },
+                  ),
+                  GestureDetector(
+                    child: Text(
+                      'Already a user? Login Here!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, LoginScreen.id);
                     },
                   ),
                 ],

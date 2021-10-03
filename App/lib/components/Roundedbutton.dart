@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 
-class RoundedButton extends StatefulWidget {
+class RoundedButton extends StatelessWidget {
   RoundedButton({required this.title, required this.onPressed});
-
-  final String title;
-  final Function onPressed;
-
-  @override
-  State<RoundedButton> createState() => _RoundedButtonState();
-}
-
-class _RoundedButtonState extends State<RoundedButton> {
+  late String title;
+  late Function onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,15 +13,15 @@ class _RoundedButtonState extends State<RoundedButton> {
         color: Color(0xFFF2E88B),
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
-          onPressed: () => widget.onPressed(),
+          onPressed: () => onPressed(),
           minWidth: 200.0,
           height: 42.0,
           child: Text(
-            widget.title,
+            title,
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
+              fontSize: 27,
               color: Colors.black,
+              fontFamily: 'Roboto',
             ),
           ),
         ),
