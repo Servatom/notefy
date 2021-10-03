@@ -18,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String email = '';
   String password = '';
+  bool status = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,12 +81,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   RoundedButton(
-                    onPressed: () {
-                      loginUser(email, password);
-                      Navigator.pushNamed(
-                        context,
-                        DashBoard.id,
-                      );
+                    onPressed: () async {
+                      String token = await loginUser(email, password);
+                      if (token == 'Error') {
+                        setState(() {
+                          status = false;
+                        });
+                      } else {
+                        Navigator.pushNamed(
+                          context,
+                          DashBoard.id,
+                        );
+                      }
                     },
                     title: "Login",
                   ),
@@ -102,6 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.pushNamed(context, RegisterScreen.id);
                     },
                   ),
+                  Text(status == false ? 'Unable To Login' : '',
+                      style: TextStyle(color: Colors.white)),
                 ],
               ),
             ],
