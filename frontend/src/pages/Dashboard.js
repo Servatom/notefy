@@ -179,7 +179,7 @@ const Dashboard = (props) => {
           deleteAll={deleteAllNotes}
           setCurrentTab={setCurrentTab}
           currentTab={currentTab}
-        />
+        /> 
       </div>
       <div className='cont'>
         <Switch>

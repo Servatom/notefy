@@ -59,3 +59,20 @@
     opacity: 0.15;
   }
 }
+
+@media (min-width: 351px) and (max-width: 600px){
+  .side-nav{
+    width: 20%;
+    min-width: 250px;
+    height: 93%;
+    margin-right: 10px;
+    padding: 20px 30px;
+    padding-left: 50px;
+    display: none;
+  }
+  .cont {
+    margin: auto;
+    width: 85%;
+  }
+}
+
