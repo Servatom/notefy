@@ -4,7 +4,6 @@ import 'package:app/Providers/auth.dart';
 import 'package:app/components/roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
-import 'package:app/screens/dashboard.dart';
 import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';

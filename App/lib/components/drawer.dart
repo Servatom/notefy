@@ -17,8 +17,8 @@ class DashboardDrawer extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.keyboard_arrow_left,
-                  size: 30,
                   color: kyellow,
+                  size: 40,
                 ),
               ),
             ),
