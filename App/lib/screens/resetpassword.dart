@@ -1,23 +1,19 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
-
 import 'package:app/Providers/auth.dart';
-import 'package:app/components/roundedbutton.dart';
+import 'package:app/components/Roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
 import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
 
-import 'dashboard.dart';
-
-class RegisterScreen extends StatefulWidget {
-  static const String id = 'register_screen';
+class resetPassScreen extends StatefulWidget {
+  static const String id = 'resetpass_screen';
 
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  _resetPassScreenState createState() => _resetPassScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _resetPassScreenState extends State<resetPassScreen> {
   String email = '';
   String name = '';
   String password = '';
@@ -65,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     InputField(
                         obscure: false,
-                        hinttext: "Email",
+                        hinttext: "Enter the Old Password",
                         onChanged: (value) {
                           email = value;
                         }),
@@ -74,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     InputField(
                         obscure: false,
-                        hinttext: 'Name',
+                        hinttext: 'Enter the New Password',
                         onChanged: (value) {
                           name = value;
                         }),
@@ -83,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     InputField(
                         obscure: true,
-                        hinttext: 'Password',
+                        hinttext: 'Confirm New Password',
                         onChanged: (value) {
                           password = value;
                         }),
@@ -91,23 +87,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 20,
                     ),
                     RoundedButton(
-                      title: 'Register',
-                      onPressed: () async {
-                        registerUser(email, name, password);
-                      },
-                    ),
-                    GestureDetector(
-                      child: Text(
-                        'Already a user? Login Here!',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                      onTap: () {
-                        Navigator.pushNamed(context, LoginScreen.id);
-                      },
+                      title: 'Confirm',
+                      onPressed: () async {},
                     ),
                   ],
                 ),
