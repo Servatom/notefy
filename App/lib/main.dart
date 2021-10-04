@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         MainScreen.id: (context) => MainScreen(),
         DashBoard.id: (context) => DashBoard(),
         settingscreen.id: (context) => settingscreen(),
+        NoteScreen.id: (context) => NoteScreen(),
       },
     );
   }
