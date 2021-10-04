@@ -4,6 +4,7 @@ import 'package:app/Providers/auth.dart';
 import 'package:app/components/roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, LoginScreen.id);
+                        Navigator.pushNamed(context, RouteNames.login);
                       },
                     ),
                   ],

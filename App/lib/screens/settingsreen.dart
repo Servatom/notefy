@@ -1,7 +1,7 @@
 import 'package:app/constants.dart';
 import 'package:flutter/material.dart';
 
-class settingscreen extends StatelessWidget {
+class SettingsScreen extends StatelessWidget {
   static const String id = 'settings_screen';
   @override
   Widget build(BuildContext context) {
