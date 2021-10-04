@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, DashBoard.id);
+                      Navigator.pushNamed(context, RegisterScreen.id);
                     },
                   ),
                   Text(status == false ? 'Unable To Login' : '',
