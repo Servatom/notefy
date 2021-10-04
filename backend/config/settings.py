@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     
     # Local
     'notes',
-    'users'
+    'users',
+    'todo'
 ]
 
 MIDDLEWARE = [
