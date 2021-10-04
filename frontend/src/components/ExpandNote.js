@@ -12,7 +12,7 @@ const ExpandNote=(props)=>{
     
     const EditText =()=>{
         if(edit==false)
-        return(<p>{noteText}</p>);
+        return(<p className="note-p-textspace">{noteText}</p>);
         else
         return(<textarea placeholder="Add a new note" value={noteText} onChange={changeHandler}/>)
     }

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../screens/profile.dart';
@@ -10,8 +12,11 @@ class DashboardDrawer extends StatelessWidget {
           color: kbgcolor,
           child: Column(children: [
             Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(20),
+              alignment: Alignment.topLeft,
+              padding: const EdgeInsets.only(
+                left: 10,
+                top: 40,
+              ),
               child: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -19,7 +24,7 @@ class DashboardDrawer extends StatelessWidget {
                 icon: Icon(
                   Icons.keyboard_arrow_left,
                   color: kyellow,
-                  size: 40,
+                  size: 35,
                 ),
               ),
             ),
