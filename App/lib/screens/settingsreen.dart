@@ -13,6 +13,8 @@ class settingscreen extends StatelessWidget {
           style: TextStyle(color: Colors.black, fontSize: 20),
         ),
         backgroundColor: kyellow,
+        leading: BackButton(),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -21,11 +23,10 @@ class settingscreen extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   print('xd');
                 },
                 child: Container(
-                  
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10), color: kyellow),
                 ),
@@ -33,13 +34,11 @@ class settingscreen extends StatelessWidget {
             ),
             SizedBox(height: 15),
             Expanded(
-              
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   print('lmao');
                 },
                 child: Container(
-                  
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10), color: kyellow),
                 ),
@@ -61,7 +60,7 @@ class settingscreen extends StatelessWidget {
             SizedBox(height: 15),
             Expanded(
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   print('object');
                 },
                 child: Container(

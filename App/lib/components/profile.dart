@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
+class Profile extends StatefulWidget {
   static const String id = 'Profile_screen';
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  _ProfileState createState() => _ProfileState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileState extends State<Profile> {
   @override
   @override
   Widget build(BuildContext context) {
