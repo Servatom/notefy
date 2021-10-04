@@ -55,20 +55,21 @@ const SideNav = (props) => {
                 <img src={logo} className="navlogo" />
             </div>
 
-            <Link to="/dashboard">
+            
                 <h4
                     onClick={() => {
                         props.closeNav();
                         props.setCurrentTab(1);
+                        history.push("/dashboard");
                     }}
                     className={props.currentTab === 1 ? "active" : ""}
                 >
                     <MdDashboard className="icon" />
                     Notes
                 </h4>
-            </Link>
+            
 
-            <Link to={"/dashboard/todo"}>
+            
                 <h4
                     onClick={() => {
                         props.setCurrentTab(2);
@@ -80,9 +81,9 @@ const SideNav = (props) => {
                     <GoChecklist className="icon" />
                     To-Dos
                 </h4>
-            </Link>
+            
 
-            <Link to={"/dashboard/settings"}>
+            
                 <h4
                     onClick={() => {
                         props.setCurrentTab(3);
@@ -94,7 +95,7 @@ const SideNav = (props) => {
                     <MdSettings className="icon" />
                     Settings
                 </h4>
-            </Link>
+            
             <Link onClick={logoutHandler}>
                 <h4 className="">
                     <IoLogOut className="icon" />
