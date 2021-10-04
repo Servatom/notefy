@@ -5,4 +5,5 @@ class RouteNames {
   static const String landing = '/landing-page';
   static const String dashboard = '/dashboard';
   static const String noterscreen = '/notesscreen';
+  static const String sscreen = '/settings';
 }

@@ -1,12 +1,14 @@
 import 'package:app/models/note.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:app/screens/dashboard.dart';
 import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:app/screens/notescreen.dart';
 import 'package:app/screens/registerscreen.dart';
+import 'package:app/screens/settingsreen.dart';
 import 'package:flutter/material.dart';
 
-import 'RouteNames.dart';
+import 'routenames.dart';
 
 class AppRoutes {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -19,6 +21,8 @@ class AppRoutes {
         return MaterialPageRoute<dynamic>(builder: (_) => LoginScreen());
       case RouteNames.dashboard:
         return MaterialPageRoute<dynamic>(builder: (_) => DashBoard());
+      case RouteNames.sscreen:
+        return MaterialPageRoute<dynamic>(builder: (_) => SettingsScreen());
       case RouteNames.noterscreen:
         var notes = settings.arguments as Note;
         return MaterialPageRoute<dynamic>(
