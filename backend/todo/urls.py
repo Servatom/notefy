@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import ToDoList, ToDoCreate, ToDoDetail
+
+from todo.models import ToDoItem
+from .views import ToDoCategoryView, ToDoItemView
 
 urlpatterns = [
-    path('', ToDoList.as_view(), name="todo-list"),
-    path('<int:pk>/', ToDoDetail.as_view(), name="todo-detail"),
-    path('create/', ToDoCreate.as_view(), name="note-create"),
+    path('category/', ToDoCategoryView.as_view(), name="todo-list"),
+    path('item/', ToDoItemView.as_view(), name="todo-list"),
 ]
