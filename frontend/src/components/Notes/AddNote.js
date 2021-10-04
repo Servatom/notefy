@@ -1,4 +1,4 @@
-import "../assets/css/Notes.css";
+import "../../assets/css/Notes.css";
 import { useState } from "react";
 import {nanoid} from 'nanoid';
 

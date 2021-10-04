@@ -8,6 +8,8 @@ import { useContext, useState } from "react";
 import swal from "sweetalert";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import AuthContext from "../store/auth-context";
+import { BsListTask } from "react-icons/bs";
+import { GoChecklist } from "react-icons/go";
 
 const SideNav = (props) => {
     const authCtx = useContext(AuthContext);
@@ -62,17 +64,32 @@ const SideNav = (props) => {
                     className={props.currentTab === 1 ? "active" : ""}
                 >
                     <MdDashboard className="icon" />
-                    Dashboard
+                    Notes
                 </h4>
             </Link>
-            <Link to={"/dashboard/settings"}>
+
+            <Link to={"/dashboard/todo"}>
                 <h4
                     onClick={() => {
                         props.setCurrentTab(2);
                         props.closeNav();
-                        history.push("/dashboard/settings");
+                        history.push("/dashboard/todo");
                     }}
                     className={props.currentTab === 2 ? "active" : ""}
+                >
+                    <GoChecklist className="icon" />
+                    To-Dos
+                </h4>
+            </Link>
+
+            <Link to={"/dashboard/settings"}>
+                <h4
+                    onClick={() => {
+                        props.setCurrentTab(3);
+                        props.closeNav();
+                        history.push("/dashboard/settings");
+                    }}
+                    className={props.currentTab === 3 ? "active" : ""}
                 >
                     <MdSettings className="icon" />
                     Settings

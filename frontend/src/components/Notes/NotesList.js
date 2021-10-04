@@ -1,4 +1,4 @@
-import "../assets/css/Notes.css";
+import "../../assets/css/Notes.css";
 import AddNote from "./AddNote";
 import Note from "./Note";
 
