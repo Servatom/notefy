@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../constants.dart';
-import '../screens/profile.dart';
+import 'profile.dart';
 
 class DashboardDrawer extends StatelessWidget {
   @override
@@ -15,7 +15,7 @@ class DashboardDrawer extends StatelessWidget {
               alignment: Alignment.topLeft,
               padding: const EdgeInsets.only(
                 left: 10,
-                top: 40,
+                top: 50,
               ),
               child: IconButton(
                 onPressed: () {
@@ -31,7 +31,7 @@ class DashboardDrawer extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            ProfileScreen(),
+            Profile(),
             Spacer(),
             Container(
               padding: EdgeInsets.all(20),

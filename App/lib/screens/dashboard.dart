@@ -4,6 +4,7 @@ import 'package:app/components/drawer.dart';
 import 'package:app/components/note_tile.dart';
 import 'package:app/constants.dart';
 import 'package:app/models/notes.dart';
+import 'package:app/screens/notescreen.dart';
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
@@ -37,7 +38,9 @@ class DashBoard extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: kyellow,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, NoteScreen.id, arguments: NoteTile(title: '',body: ''));
+          },
           child: Icon(
             Icons.add,
             color: kbgcolor,
