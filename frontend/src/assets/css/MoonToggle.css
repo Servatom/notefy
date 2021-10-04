@@ -18,3 +18,10 @@
 }
 
 
+
+@media all and (max-width: 800px){
+    .fa-moon {
+        padding: 1rem;
+        right: 1rem;
+    }
+  }

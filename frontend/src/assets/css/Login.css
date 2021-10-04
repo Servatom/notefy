@@ -119,3 +119,11 @@ input:focus {
 .error {
   margin-top: -8px;
 }
+
+
+@media all and (max-width: 800px){
+  .form-wrapper {
+    margin-top: 5rem;
+    padding: 0;
+  }
+}
