@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
+import 'package:app/Providers/auth.dart';
 import 'package:app/components/drawer.dart';
 import 'package:app/components/note_tile.dart';
 import 'package:app/constants.dart';
+import 'package:app/models/note.dart';
 import 'package:app/models/notes.dart';
-import 'package:app/screens/notescreen.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DashBoard extends StatelessWidget {
   static const String id = 'dashboard';
@@ -29,7 +32,9 @@ class DashBoard extends StatelessWidget {
           centerTitle: true,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                print(Provider.of<Auth>(context, listen: false).getKey());
+              },
               icon: Icon(
                 Icons.search,
               ),
@@ -39,7 +44,15 @@ class DashBoard extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           backgroundColor: kyellow,
           onPressed: () {
-            Navigator.pushNamed(context, NoteScreen.id, arguments: NoteTile(title: '',body: ''));
+            Navigator.pushNamed(
+              context,
+              RouteNames.noterscreen,
+              arguments: Note(
+                body: '',
+                title: '',
+                id: '',
+              ),
+            );
           },
           child: Icon(
             Icons.add,
@@ -51,8 +64,7 @@ class DashBoard extends StatelessWidget {
           itemCount: notesList.length,
           itemBuilder: (context, index) {
             return NoteTile(
-              title: notesList[index].title,
-              body: notesList[index].body,
+              note: notesList[index],
             );
           },
         ));

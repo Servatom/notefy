@@ -1,10 +1,14 @@
-import 'package:app/components/note_tile.dart';
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors
+
 import 'package:app/constants.dart';
+import 'package:app/models/note.dart';
 import 'package:app/models/notes.dart';
 import 'package:flutter/material.dart';
 
 class NoteScreen extends StatefulWidget {
   static const String id = 'notescreen';
+  final Note note;
+  NoteScreen({required this.note});
   @override
   _NoteScreenState createState() => _NoteScreenState();
 }
@@ -12,11 +16,27 @@ class NoteScreen extends StatefulWidget {
 class _NoteScreenState extends State<NoteScreen> {
   late String title;
   late String body;
+  void setVariable() {
+    print(widget.note);
+    if (widget.note != null) {
+      print(widget.note.title);
+      title = widget.note.title;
+      body = widget.note.body;
+    } else {
+      title = '';
+      body = '';
+    }
+  }
+
+  @override
+  void initState() {
+    setVariable();
+    setState(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)?.settings.arguments as NoteTile;
-    title = args.title;
-    body = args.body;
     return Scaffold(
       backgroundColor: kbgcolor,
       appBar: AppBar(
@@ -72,6 +92,7 @@ class _NoteScreenState extends State<NoteScreen> {
               ),
               onFieldSubmitted: (value) {},
             ),
+            // Divider(height: 2,color: Colors.grey,)
             Expanded(
                 child: TextFormField(
               initialValue: body,

@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
-import 'package:app/screens/settingsreen.dart';
+import 'package:app/Providers/auth.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../constants.dart';
 import 'profile.dart';
 
@@ -44,15 +46,15 @@ class DashboardDrawer extends StatelessWidget {
                     ),
                     color: kyellow,
                     onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
+                      Provider.of<Auth>(context, listen: false)
+                          .logoutUser(context);
                     },
                   ),
                   Spacer(),
                   IconButton(
                     color: kyellow,
                     onPressed: () {
-                      Navigator.pushNamed(context, settingscreen.id);
+                      Navigator.pushNamed(context, RouteNames.sscreen);
                     },
                     icon: Icon(
                       Icons.settings,

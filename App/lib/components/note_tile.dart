@@ -1,17 +1,14 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors
 
 import 'package:app/constants.dart';
-import 'package:app/screens/notescreen.dart';
+import 'package:app/models/note.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 
 class NoteTile extends StatelessWidget {
-  final String title;
-  final String body;
+  final Note note;
   // String dateTime
-  NoteTile({
-    required this.title,
-    required this.body,
-  });
+  NoteTile({required this.note});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,8 +19,12 @@ class NoteTile extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, NoteScreen.id,
-              arguments: NoteTile(title: title, body: body));
+          print(note);
+          Navigator.pushNamed(
+            context,
+            RouteNames.noterscreen,
+            arguments: note,
+          );
         },
         child: SizedBox(
           height: 125,
@@ -42,7 +43,7 @@ class NoteTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    title,
+                    note.title,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: kNoteTitle,
@@ -50,7 +51,8 @@ class NoteTile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    body.length > 44 ? '${body.substring(0, 44)}...' : body,
+                    note.body,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: kNoteBody,
                       fontSize: 15,

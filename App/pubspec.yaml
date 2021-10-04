@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   animated_splash_screen: ^1.1.0
   animated_text_kit: ^4.2.1
+  provider: ^6.0.1
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +89,12 @@ flutter:
     - family: Roboto
       fonts:
         - asset: fonts/Roboto-Black.ttf  
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf  
+    - family: PoppinsB
+      fonts:
+        - asset: fonts/Poppins-Medium.ttf  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

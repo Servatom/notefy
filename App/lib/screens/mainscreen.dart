@@ -1,8 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:app/constants.dart';
-import 'package:app/screens/loginscreen.dart';
-import 'package:app/screens/registerscreen.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/roundedbutton.dart';
 
@@ -22,7 +21,7 @@ class MainScreen extends StatelessWidget {
             RoundedButton(
               title: 'Login',
               onPressed: () {
-                Navigator.pushNamed(context, LoginScreen.id);
+                Navigator.pushNamed(context, RouteNames.login);
               },
             ),
             const SizedBox(
@@ -31,7 +30,7 @@ class MainScreen extends StatelessWidget {
             RoundedButton(
               title: 'Register',
               onPressed: () {
-                Navigator.pushNamed(context, RegisterScreen.id);
+                Navigator.pushNamed(context, RouteNames.register);
               },
             ),
           ],
