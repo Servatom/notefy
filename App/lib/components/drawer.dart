@@ -3,6 +3,7 @@
 import 'package:app/Providers/auth.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../constants.dart';
 import 'profile.dart';
 
@@ -45,7 +46,8 @@ class DashboardDrawer extends StatelessWidget {
                     ),
                     color: kyellow,
                     onPressed: () {
-                      Auth().logoutUser(context);
+                      Provider.of<Auth>(context, listen: false)
+                          .logoutUser(context);
                     },
                   ),
                   Spacer(),
