@@ -45,4 +45,8 @@ class Notes {
   List<Note> get notesList {
     return [..._notes];
   }
+
+  void addNote(String title, String body) {
+    _notes.add(Note(body: body, id: '10', title: title));
+  }
 }

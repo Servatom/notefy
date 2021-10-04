@@ -1,5 +1,6 @@
 import 'package:app/components/note_tile.dart';
 import 'package:app/constants.dart';
+import 'package:app/models/notes.dart';
 import 'package:flutter/material.dart';
 
 class NoteScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _NoteScreenState extends State<NoteScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
+            Notes().addNote(title, body);
             Navigator.pop(context);
           },
           icon: Icon(
@@ -49,6 +51,9 @@ class _NoteScreenState extends State<NoteScreen> {
           children: [
             TextFormField(
               initialValue: title,
+              onChanged: (value) {
+                title = value;
+              },
               maxLines: 1,
               style: TextStyle(
                 color: Colors.white,
@@ -70,6 +75,9 @@ class _NoteScreenState extends State<NoteScreen> {
             Expanded(
                 child: TextFormField(
               initialValue: body,
+              onChanged: (value) {
+                body = value;
+              },
               textInputAction: TextInputAction.newline,
               keyboardType: TextInputType.multiline,
               maxLines: null,
