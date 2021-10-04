@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
+import 'package:app/Providers/auth.dart';
 import 'package:app/components/drawer.dart';
 import 'package:app/components/note_tile.dart';
 import 'package:app/constants.dart';
@@ -7,6 +8,7 @@ import 'package:app/models/note.dart';
 import 'package:app/models/notes.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DashBoard extends StatelessWidget {
   static const String id = 'dashboard';
@@ -30,7 +32,9 @@ class DashBoard extends StatelessWidget {
           centerTitle: true,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                print(Provider.of<Auth>(context, listen: false).getKey());
+              },
               icon: Icon(
                 Icons.search,
               ),

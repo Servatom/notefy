@@ -8,6 +8,7 @@ import 'package:app/constants.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String id = 'register_screen';
@@ -93,7 +94,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       title: 'Register',
                       onPressed: () async {
                         try {
-                          await Auth().registerUser(email, name, password);
+                          await Provider.of<Auth>(context, listen: false)
+                              .registerUser(email, name, password);
                           Navigator.pushNamed(
                             context,
                             RouteNames.register,

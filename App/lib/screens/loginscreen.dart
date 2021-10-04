@@ -7,6 +7,7 @@ import 'package:app/constants.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/roundedbutton.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -83,7 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     RoundedButton(
                       onPressed: () async {
                         try {
-                          await Auth().loginUser(email, password);
+                          await Provider.of<Auth>(context, listen: false)
+                              .loginUser(email, password);
                           Navigator.pushNamed(context, RouteNames.dashboard);
                         } catch (e) {
                           showDialog(

@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class Auth {
+class Auth with ChangeNotifier {
   String key = '';
 
   Future<void> loginUser(email, password) async {
@@ -28,6 +28,10 @@ class Auth {
     } catch (e) {
       throw (e);
     }
+  }
+
+  String getKey() {
+    return key;
   }
 
   Future<void> registerUser(email, name, password) async {
