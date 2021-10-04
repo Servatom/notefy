@@ -5,12 +5,10 @@ import {nanoid} from 'nanoid';
 const AddNote=(props)=>{
     
     const [noteText, setNoteText] = useState("");
-    const [wordcount, setWordCount] = useState(0);
 
     const changeHandler =(event)=>
     {
         setNoteText(event.target.value);
-        setWordCount(noteText.length+1);
     }
 const saveHandler=()=>
 {
@@ -29,8 +27,6 @@ const saveHandler=()=>
         };
         props.onSave(newnote);
         setNoteText("");
-
-        setWordCount(0);
     }
 }
     
@@ -40,7 +36,7 @@ const saveHandler=()=>
             onChange={changeHandler}
             value={noteText}/>
             <div className="note-footer">
-                <small>{wordcount}</small>
+                <small>{noteText.length}</small>
                 <button className="saveBtn" onClick={saveHandler}>Save</button>
             </div>
         </div>
