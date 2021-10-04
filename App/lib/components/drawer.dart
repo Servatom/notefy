@@ -34,7 +34,7 @@ class DashboardDrawer extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            Profile(),
+            ProfileScreen(),
             Spacer(),
             Container(
               padding: EdgeInsets.all(20),
