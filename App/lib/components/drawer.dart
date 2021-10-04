@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
+import 'package:app/screens/settingsreen.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'profile.dart';
@@ -17,16 +18,7 @@ class DashboardDrawer extends StatelessWidget {
                 left: 10,
                 top: 50,
               ),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.keyboard_arrow_left,
-                  color: kyellow,
-                  size: 35,
-                ),
-              ),
+              child: BackButton(),
             ),
             SizedBox(
               height: 50,
@@ -50,7 +42,9 @@ class DashboardDrawer extends StatelessWidget {
                   Spacer(),
                   IconButton(
                     color: kyellow,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, settingscreen.id);
+                    },
                     icon: Icon(
                       Icons.settings,
                     ),
