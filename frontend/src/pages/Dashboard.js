@@ -1,5 +1,5 @@
-import Searchbar from "../components/Searchbar";
-import NotesList from "../components/NotesList";
+import Searchbar from "../components/Notes/Searchbar";
+import NotesList from "../components/Notes/NotesList";
 import "../assets/css/Dashboard.css";
 import { useState, useEffect, useContext } from "react";
 import { ImCross, ImMenu } from "react-icons/im";
@@ -11,6 +11,7 @@ import URL from "../URL";
 import AuthContext from "../store/auth-context";
 import Settings from "../components/Settings";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ToDo from "../components/ToDo/ToDo";
 
 const Dashboard = (props) => {
     const [notes, setNotes] = useState([
@@ -217,6 +218,11 @@ const Dashboard = (props) => {
                             />
                             {!notes.length ? watermark() : null}
                         </Route>
+                        
+                        <Route path="/dashboard/todo">
+                                <ToDo/>
+                        </Route>
+
                         <Route path={"/dashboard/settings"}>
                             <Settings
                                 userInfo={userInfo}
