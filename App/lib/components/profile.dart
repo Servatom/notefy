@@ -1,17 +1,19 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 
-class Profile extends StatefulWidget {
+// ignore: use_key_in_widget_constructors
+class ProfileScreen extends StatefulWidget {
   static const String id = 'Profile_screen';
   @override
-  _ProfileState createState() => _ProfileState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
-  @override
+  
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -20,24 +22,45 @@ class _ProfileState extends State<Profile> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
-                child: Text('Image'),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 62,
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundImage: AssetImage('images/parrot.png'),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
+              // ignore: avoid_unnecessary_containers
               Container(
-                child: Text('Change Avatar'),
+                child: Text(
+                  'Change Avatar',
+                  style: TextStyle(color: Colors.white, fontFamily: 'roboto'),
+                ),
               ),
               SizedBox(height: 50),
+              // ignore: avoid_unnecessary_containers
               Container(
-                child: Text('Name'),
+                child: Text(
+                  'Name',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 30, fontFamily: 'lobster'),
+                ),
               ),
               SizedBox(height: 20),
+              // ignore: avoid_unnecessary_containers
               Container(
-                child: Text('Email'),
+                child: Text(
+                  'Email',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 30, fontFamily: 'lobster'),
+                ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
