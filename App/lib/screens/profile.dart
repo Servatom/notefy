@@ -1,11 +1,6 @@
-import 'package:app/Providers/auth.dart';
-import 'package:app/components/inputfield.dart';
-import 'package:app/constants.dart';
-import 'package:app/screens/mainscreen.dart';
-import 'package:app/screens/registerscreen.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:app/components/roundedbutton.dart';
-import 'dashboard.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String id = 'Profile_screen';
