@@ -13,7 +13,16 @@ class settingscreen extends StatelessWidget {
           style: TextStyle(color: Colors.black, fontSize: 20),
         ),
         backgroundColor: kyellow,
-        leading: BackButton(),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.keyboard_arrow_left,
+            color: kyellow,
+            size: 35,
+          ),
+        ),
         automaticallyImplyLeading: false,
       ),
       body: Padding(

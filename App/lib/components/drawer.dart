@@ -18,7 +18,16 @@ class DashboardDrawer extends StatelessWidget {
                 left: 10,
                 top: 50,
               ),
-              child: BackButton(),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.keyboard_arrow_left,
+                  color: kyellow,
+                  size: 35,
+                ),
+              ),
             ),
             SizedBox(
               height: 50,
