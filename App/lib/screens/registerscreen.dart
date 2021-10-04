@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:app/Providers/auth.dart';
+import 'package:app/components/error_box.dart';
 import 'package:app/components/roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
 import 'package:app/routers/routenames.dart';
-import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       size: 40,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, MainScreen.id);
+                      Navigator.pushNamed(context, RouteNames.mainscreen);
                     },
                   ),
                 ),
@@ -92,7 +92,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     RoundedButton(
                       title: 'Register',
                       onPressed: () async {
-                        registerUser(email, name, password);
+                        try {
+                          await Auth().registerUser(email, name, password);
+                          Navigator.pushNamed(
+                            context,
+                            RouteNames.register,
+                          );
+                        } catch (e) {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return ErrorBox(
+                                  errorText: e.toString(),
+                                );
+                              });
+                        }
                       },
                     ),
                     GestureDetector(

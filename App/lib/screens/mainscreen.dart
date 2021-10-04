@@ -2,8 +2,6 @@
 
 import 'package:app/constants.dart';
 import 'package:app/routers/routenames.dart';
-import 'package:app/screens/loginscreen.dart';
-import 'package:app/screens/registerscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/roundedbutton.dart';
 

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
+import 'package:app/Providers/auth.dart';
 import 'package:app/routers/routenames.dart';
-import 'package:app/screens/settingsreen.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'profile.dart';
@@ -45,8 +45,7 @@ class DashboardDrawer extends StatelessWidget {
                     ),
                     color: kyellow,
                     onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
+                      Auth().logoutUser(context);
                     },
                   ),
                   Spacer(),

@@ -6,7 +6,6 @@ import 'package:app/constants.dart';
 import 'package:app/models/note.dart';
 import 'package:app/models/notes.dart';
 import 'package:app/routers/routenames.dart';
-import 'package:app/screens/notescreen.dart';
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
