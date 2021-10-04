@@ -8,8 +8,6 @@ import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
 
-import 'dashboard.dart';
-
 class RegisterScreen extends StatefulWidget {
   static const String id = 'register_screen';
 

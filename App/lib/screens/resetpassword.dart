@@ -1,19 +1,19 @@
-import 'package:app/Providers/auth.dart';
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:app/components/Roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
-import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
 
-class resetPassScreen extends StatefulWidget {
+class ResetPassScreen extends StatefulWidget {
   static const String id = 'resetpass_screen';
 
   @override
-  _resetPassScreenState createState() => _resetPassScreenState();
+  _ResetPassScreenState createState() => _ResetPassScreenState();
 }
 
-class _resetPassScreenState extends State<resetPassScreen> {
+class _ResetPassScreenState extends State<ResetPassScreen> {
   String email = '';
   String name = '';
   String password = '';
