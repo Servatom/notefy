@@ -41,8 +41,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./backend
-          file: ./Dockerfile
-          push: false
+          file: Dockerfile
+          push: true
           tags: servatom/notefy-api:latest
 
       - name: Image digest
