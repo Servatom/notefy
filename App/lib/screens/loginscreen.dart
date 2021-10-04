@@ -1,14 +1,12 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:app/Providers/auth.dart';
+import 'package:app/components/error_box.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
 import 'package:app/routers/routenames.dart';
-import 'package:app/screens/mainscreen.dart';
-import 'package:app/screens/registerscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/roundedbutton.dart';
-import 'dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -19,7 +17,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String email = '';
   String password = '';
-  bool status = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,16 +82,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     RoundedButton(
                       onPressed: () async {
-                        String token = await loginUser(email, password);
-                        if (token == 'Error') {
-                          setState(() {
-                            status = false;
-                          });
-                        } else {
-                          Navigator.pushNamed(
-                            context,
-                            RouteNames.dashboard,
-                          );
+                        try {
+                          await Auth().loginUser(email, password);
+                          Navigator.pushNamed(context, RouteNames.dashboard);
+                        } catch (e) {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return ErrorBox(
+                                  errorText: e.toString(),
+                                );
+                              });
                         }
                       },
                       title: "Login",
@@ -112,8 +110,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushNamed(context, RouteNames.dashboard);
                       },
                     ),
-                    Text(status == false ? 'Unable To Login' : '',
-                        style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ),

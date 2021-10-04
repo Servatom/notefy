@@ -31,6 +31,10 @@
   margin: 16px 0 6px;
 }
 
+.note-effects:hover {
+  transform: scale(1.04);
+}
+
 .addnote {
   background-color: rgb(255, 217, 223);
 }

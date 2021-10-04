@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class InputField extends StatelessWidget {
-   InputField({
+  InputField({
     required this.hinttext,
     required this.onChanged,
     required this.obscure,
@@ -12,13 +12,15 @@ class InputField extends StatelessWidget {
   final bool obscure;
   final String hinttext;
   final Function onChanged;
- 
+
   @override
   Widget build(BuildContext context) {
     return TextField(
       textAlign: TextAlign.center,
+      cursorColor: Colors.black,
       style: TextStyle(
         color: Colors.black,
+        fontFamily: 'PoppinsB',
       ),
       onChanged: (value) {
         onChanged(value);
@@ -47,13 +49,13 @@ class InputField extends StatelessWidget {
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
+          borderSide: BorderSide(color: Colors.black, width: 1.0),
           borderRadius: BorderRadius.all(
             Radius.circular(10.0),
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
+          borderSide: BorderSide(color: Colors.black, width: 2.0),
           borderRadius: BorderRadius.all(
             Radius.circular(10.0),
           ),

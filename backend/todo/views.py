@@ -53,17 +53,7 @@ class ToDoItemView(APIView):
     serializer_class = ToDoItemSerializer
     
     def get(self, request):
-        if 'cat_id' not in request.data:
-            todo_items = ToDoItem.objects.filter(category__author=request.user)
-            serializer = ToDoItemSerializer(todo_items, many=True)
-            return Response(serializer.data)
-
-        # check if category id exists
-        if not ToDoCategory.objects.filter(id=request.data['cat_id']).exists():
-            return Response({"message": "Category not found"},status=404)
-        
-        category_id = request.data['cat_id']
-        todo_items = ToDoItem.objects.filter(category__author=request.user,category__id=category_id)
+        todo_items = ToDoItem.objects.filter(category__author=request.user)
         serializer = ToDoItemSerializer(todo_items, many=True)
         return Response(serializer.data)
     
@@ -109,3 +99,14 @@ class ToDoItemView(APIView):
             return Response({"message": "successfully deleted"},status=204)
         except:
             return Response({"message": "Error"},status=400)
+    
+class ToDoItemByCategory(APIView):
+    permission_classes = (IsAuthor, IsAuthenticated)
+    serializer_class = ToDoItemSerializer
+    def get(self, request, cat):
+        if not ToDoCategory.objects.filter(author=request.user ,id=cat).exists():
+            return Response({"message": "Category not found"},status=404)
+        
+        todo_items = ToDoItem.objects.filter(category__author=request.user, category__id=cat)
+        serializer = ToDoItemSerializer(todo_items, many=True)
+        return Response(serializer.data)
