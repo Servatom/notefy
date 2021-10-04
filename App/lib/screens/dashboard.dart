@@ -34,6 +34,7 @@ class DashBoard extends StatelessWidget {
             IconButton(
               onPressed: () {
                 print(Provider.of<Auth>(context, listen: false).getKey());
+                print('hello');
               },
               icon: Icon(
                 Icons.search,
