@@ -21,6 +21,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String email = '';
   String name = '';
   String password = '';
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
+  final controller3 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     InputField(
                         obscure: false,
                         hinttext: "Email",
+                        textcontroller: controller1,
                         onChanged: (value) {
                           email = value;
                         }),
@@ -75,6 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     InputField(
                         obscure: false,
                         hinttext: 'Name',
+                        textcontroller: controller2,
                         onChanged: (value) {
                           name = value;
                         }),
@@ -84,6 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     InputField(
                         obscure: true,
                         hinttext: 'Password',
+                        textcontroller: controller3,
                         onChanged: (value) {
                           password = value;
                         }),
@@ -96,16 +102,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         try {
                           await Provider.of<Auth>(context, listen: false)
                               .registerUser(email, name, password);
-                          Navigator.pushNamed(
-                            context,
-                            RouteNames.register,
-                          );
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return ErrorBox(
+                                  errorText:
+                                      'User registered. Check your email and verify your account.',
+                                  onpressed: () {
+                                    controller1.clear();
+                                    controller2.clear();
+                                    controller3.clear();
+                                    Navigator.pushNamed(
+                                        context, RouteNames.mainscreen);
+                                  },
+                                );
+                              });
                         } catch (e) {
                           showDialog(
                               context: context,
                               builder: (context) {
                                 return ErrorBox(
                                   errorText: e.toString(),
+                                  onpressed: () {
+                                    controller1.clear();
+                                    controller2.clear();
+                                    controller3.clear();
+                                    Navigator.pop(context);
+                                  },
                                 );
                               });
                         }
