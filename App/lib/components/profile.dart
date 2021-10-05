@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app/Providers/auth.dart';
+import 'package:app/models/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

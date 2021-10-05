@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
-import 'package:app/Providers/auth.dart';
+import 'package:app/models/auth.dart';
 import 'package:app/components/drawer.dart';
 import 'package:app/components/note_tile.dart';
 import 'package:app/constants.dart';
