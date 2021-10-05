@@ -37,7 +37,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: 10,
               ),
-              Container(
+              GestureDetector(
+                onTap: () {
+                  Provider.of<Auth>(context, listen: false).changeAvatar();
+                },
                 child: Text(
                   'Change Avatar',
                   style: TextStyle(color: Colors.white, fontFamily: 'roboto'),
