@@ -1,136 +1,121 @@
-.form-wrapper
-{
-    margin: 10vh auto 5vh;
-    padding: 100px 40px;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
-    align-items: center;
+.form-wrapper {
+  margin: 10vh auto 5vh;
+  padding: 100px 40px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
 }
 
-.login, .register
-{
-    margin: 0 20px;
-    padding: 0px 20px;
+.login,
+.register {
+  margin: 0 20px;
+  padding: 0px 20px;
 }
 
-.divider
-{
-    width: 3px;
-    background-color: rgb(243, 233, 140);
-    align-self: stretch;
+.divider {
+  width: 3px;
+  background-color: rgb(243, 233, 140);
+  align-self: stretch;
 }
 
-.form-wrapper h1
-{
-    font-size: 3rem;
-    margin: 0;
-    color: var(--textcolor);
+.form-wrapper h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: var(--textcolor);
 }
 
-.form-wrapper p
-{
-    font-size: 1.3rem;
+.form-wrapper p {
+  font-size: 1.3rem;
 }
-.form-wrapper a
-{
-    color: rgb(243, 233, 140);
-    cursor: pointer;
-    font-weight: 600;
+.form-wrapper a {
+  color: rgb(243, 233, 140);
+  cursor: pointer;
+  font-weight: 600;
 }
 
-
-label, input{
-    display: block;
-    margin: 5px 0;
+label,
+input {
+  display: block;
+  margin: 5px 0;
 }
 
-.form-wrapper label
-{
-    color: var(--textcolor);
-    font-weight: 600;
+.form-wrapper label {
+  color: var(--textcolor);
+  font-weight: 600;
 }
 
-.form-wrapper input
-{
-    background-color: rgba(139, 137, 137, 0.39);
-    border-radius: 5px;
-    border: none;
-    /* border-bottom: 2px solid var(--textcolor); */
-    padding: 8px 10px;
-    font-size: 1.2rem;
-    color: var(--textcolor);
-    margin: 10px 0 20px;
-    width: 90%;
-    min-width: 200px;
+.form-wrapper input {
+  background-color: rgba(139, 137, 137, 0.39);
+  border-radius: 5px;
+  border: none;
+  /* border-bottom: 2px solid var(--textcolor); */
+  padding: 8px 10px;
+  font-size: 1.2rem;
+  color: var(--textcolor);
+  margin: 10px 0 20px;
+  width: 90%;
+  min-width: 200px;
 }
-input:focus
-{
-    outline: none;
+input:focus {
+  outline: none;
 }
 
-.form-wrapper button
-{
-    display: block;
-    margin: 20px 0px;
-    padding: 8px 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    background-color: rgb(243, 233, 140);
-    border: none;
-    border-radius: 2px;
-    font-weight: 600;
+.form-wrapper button {
+  display: block;
+  margin: 20px 0px;
+  padding: 8px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: rgb(243, 233, 140);
+  border: none;
+  border-radius: 2px;
+  font-weight: 600;
 }
 
-.registerBtn
-{
-    margin-top: 60px !important;
+.registerBtn {
+  margin-top: 60px !important;
 }
-.form-wrapper button:hover
-{
-    background-color: #f5e44f;
+.form-wrapper button:hover {
+  background-color: #f5e44f;
 }
 
-
-.cover
-{
-    position: absolute;
-    /* width: calc(55% - 40px); */
-    height: calc(100% - 200px);
-    transform: translate(-120px,0);
-    transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
-    z-index: 1;
-    align-self: flex-start;
+.display-none {
+  display: none;
 }
 
-.cover-register
-{
-    transform: translate(82%, 0%);
-    transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
+.cover {
+  position: absolute;
+  /* width: calc(55% - 40px); */
+  height: calc(100% - 200px);
+  transform: translate(-120px, 0);
+  transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
+  z-index: 1;
+  align-self: flex-start;
 }
 
-
-.warning
-{
-    color: rgb(248, 66, 66);
-    position: absolute;
-    display: block;
+.cover-register {
+  transform: translate(82%, 0%);
+  transition: 0.3s cubic-bezier(0.66, 0.01, 0, 1.75);
 }
 
-.login-warning
-{
-    position: static;
-    margin: 20px 0;
+.warning {
+  color: rgb(248, 66, 66);
+  position: absolute;
+  display: block;
 }
 
-.success
-{
-    color: chartreuse;
+.login-warning {
+  position: static;
+  margin: 20px 0;
 }
 
-.error
-{
-    margin-top: -8px;
+.success {
+  color: chartreuse;
+}
+
+.error {
+  margin-top: -8px;
 }
