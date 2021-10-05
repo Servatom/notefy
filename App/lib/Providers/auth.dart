@@ -105,4 +105,26 @@ class Auth with ChangeNotifier {
       throw (e);
     }
   }
+
+  Future changeAvatar() async {
+    try {
+      http.Response response = await http.put(
+        Uri.parse('https://notefyapi.servatom.com/api/users/avatar_change/'),
+        headers: {'Authorization': 'Token $key'},
+      );
+
+      String d = response.body;
+      print(response.body);
+      if (response.statusCode == 200) {
+        var data = jsonDecode(d);
+        avatar = data["new_avatar"];
+        print(data);
+        notifyListeners();
+      } else {
+        throw 'No Such user exists';
+      }
+    } catch (e) {
+      throw (e);
+    }
+  }
 }
