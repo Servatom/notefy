@@ -3,7 +3,6 @@ import "../assets/css/Login.css";
 import "../assets/css/loader.css";
 import swal from "sweetalert";
 import typing from "../assets/media/typing.gif";
-import axios from "axios";
 import URL from "../URL";
 import { useHistory } from "react-router";
 import AuthContext from "../store/auth-context";
