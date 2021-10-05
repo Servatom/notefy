@@ -5,6 +5,7 @@ import "../assets/css/Login.css";
 import {MdEmail} from 'react-icons/md';
 import gif from "../assets/media/settings2.gif";
 import {BsFillEyeFill, BsFillEyeSlashFill} from 'react-icons/bs';
+import URL from "../URL";
 
 const Settings =(props)=>
 {
@@ -67,7 +68,7 @@ const Settings =(props)=>
             redirect: 'follow'
             };
 
-            fetch("https://notefyapi.servatom.com/api/users/reset_password/", requestOptions)
+            fetch(`${URL}/api/users/reset_password/`, requestOptions)
             .then(response => {
                 
                 setLoading(false)
@@ -116,7 +117,7 @@ const Settings =(props)=>
         redirect: 'follow'
         };
 
-        fetch("https://notefyapi.servatom.com/api/users/avatar_change/", requestOptions)
+        fetch(`${URL}/api/users/avatar_change/`, requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result)
