@@ -8,6 +8,7 @@ import logo from '../assets/media/logo.png';
 import URL from '../URL';
 import AuthContext from '../store/auth-context';
 import Settings from '../components/Settings';
+import Todo from '../components/Todo';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const Dashboard = (props) => {
@@ -197,6 +198,9 @@ const Dashboard = (props) => {
           </Route>
           <Route path={'/dashboard/settings'}>
             <Settings userInfo={userInfo} setUserInfo={setUserInfo} />
+          </Route>
+          <Route path={'/dashboard/todo'}>
+            <Todo />
           </Route>
         </Switch>
       </div>

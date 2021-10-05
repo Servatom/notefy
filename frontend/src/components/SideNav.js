@@ -1,7 +1,7 @@
 import '../assets/css/Sidenav.css';
 import MoonToggle from './MoonToggle';
 import logo from '../assets/media/logo.png';
-import { MdDashboard, MdSettings } from 'react-icons/md';
+import { MdDashboard, MdSettings, MdNote } from 'react-icons/md';
 import { IoLogOut } from 'react-icons/io5';
 import { AiFillDelete } from 'react-icons/ai';
 import { useContext, useState } from 'react';
@@ -72,6 +72,18 @@ const SideNav = (props) => {
         >
           <MdSettings className='icon' />
           Settings
+        </h4>
+      </Link>
+      <Link to={'/dashboard/todo'}>
+        <h4
+          onClick={() => {
+            props.setCurrentTab(3);
+            history.push('/dashboard/todo');
+          }}
+          className={props.currentTab === 3 ? 'active' : ''}
+        >
+          <MdNote className='icon' />
+          To-Dos
         </h4>
       </Link>
       <Link onClick={logoutHandler}>
