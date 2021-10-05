@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'sslserver',
     'dj_rest_auth',
-    
+
     # Local
     'notes',
     'users',
@@ -66,11 +66,11 @@ MIDDLEWARE = [
     'admin_ip_restrictor.middleware.AdminIPRestrictorMiddleware',
 ]
 
-RESTRICT_ADMIN=True
-ALLOWED_ADMIN_IPS=['127.0.0.1', '::1']
-ALLOWED_ADMIN_IP_RANGES=['10.0.0.0/24', '::/1']
-RESTRICTED_APP_NAMES=['admin']
-TRUST_PRIVATE_IP=True
+RESTRICT_ADMIN = True
+ALLOWED_ADMIN_IPS = ['127.0.0.1', '::1']
+ALLOWED_ADMIN_IP_RANGES = ['10.0.0.0/24', '::/1']
+RESTRICTED_APP_NAMES = ['admin']
+TRUST_PRIVATE_IP = True
 
 ROOT_URLCONF = 'config.urls'
 
@@ -157,23 +157,32 @@ REST_FRAMEWORK = {
 }
 
 #REST_AUTH_SERIALIZERS = {'LOGIN_SERIALIZER': 'users.serializers.LoginSerializer'}
-#REST_AUTH_REGISTER_SERIALIZERS = {
- #   "REGISTER_SERIALIZER": "users.serializers.CustomRegisterSerializer",
-#}
+# REST_AUTH_REGISTER_SERIALIZERS = {
+#   "REGISTER_SERIALIZER": "users.serializers.CustomRegisterSerializer",
+# }
 
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 AUTHENTICATION_BACKENDS = (
-   "django.contrib.auth.backends.ModelBackend",
+    "django.contrib.auth.backends.ModelBackend",
 )
 
 
-SITE_ID = 1 
+SITE_ID = 1
 
 # Time zone support
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Email smtp Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('EMAIL_ID')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

@@ -265,7 +265,7 @@ const Login = () => {
             value={pass2}
           />
           {created ? (
-            <span className="warning success">Account created!</span>
+            <span className="warning success">Account created! Please check your email and verify in order to login.</span>
           ) : error.status ? (
             <span className="warning error">{error.body}</span>
           ) : null}
