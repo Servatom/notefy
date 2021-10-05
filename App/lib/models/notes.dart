@@ -1,8 +1,16 @@
 // ignore_for_file: prefer_final_fields
 
+import 'package:flutter/cupertino.dart';
+
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'dart:convert';
+
+import 'auth.dart';
 import 'note.dart';
 
-class Notes {
+class Notes with ChangeNotifier {
+  // String key = Provider.of<Auth>(_,listen: false).getKey();
   List<Note> _notes = [
     Note(
       body:
@@ -25,21 +33,6 @@ class Notes {
       id: '4',
       title: 'Note4',
     ),
-    Note(
-      body: 'byeee',
-      id: '5',
-      title: 'Note5',
-    ),
-    Note(
-      body: 'cyaa ',
-      id: '6',
-      title: 'Note6',
-    ),
-    Note(
-      body: 'bruhhhhhhh ',
-      id: '7',
-      title: 'Note7',
-    ),
   ];
 
   List<Note> get notesList {
@@ -49,4 +42,21 @@ class Notes {
   void addNote(String title, String body) {
     _notes.add(Note(body: body, id: '10', title: title));
   }
+
+  // API calls
+  // Future getList() async {
+  //   try {
+  //     http.Response response = await http.get(
+  //       Uri.parse('https://notefyapi.servatom.com/api/users/detail/'),
+  //       headers: {'Authorization': 'Token $key'},
+  //     );
+
+  //     String d = response.body;
+  //     var data = jsonDecode(d);
+
+  //     print(response.body);
+  //     if (response.statusCode == 200) {
+  //     } else {}
+  //   } catch (e) {}
+  // }
 }

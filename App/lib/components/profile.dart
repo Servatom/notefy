@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     String name = Provider.of<Auth>(context).name;
@@ -26,20 +28,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Flexible(
                 child: CircleAvatar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: kyellow,
                   radius: 62,
-                  child: CircleAvatar(
-                    radius: 60,
-                    backgroundImage: NetworkImage(imageInfo),
-                  ),
+                  child: isLoading
+                      ? CircularProgressIndicator(
+                          backgroundColor: kbgcolor,
+                        )
+                      : CircleAvatar(
+                          backgroundColor: kyellow,
+                          radius: 60,
+                          backgroundImage: NetworkImage(imageInfo),
+                        ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
               GestureDetector(
-                onTap: () {
-                  Provider.of<Auth>(context, listen: false).changeAvatar();
+                onTap: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  await Provider.of<Auth>(context, listen: false)
+                      .changeAvatar();
+                  setState(() {
+                    isLoading = false;
+                  });
                 },
                 child: Text(
                   'Change Avatar',
