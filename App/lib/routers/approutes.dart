@@ -6,6 +6,7 @@ import 'package:app/screens/mainscreen.dart';
 import 'package:app/screens/notescreen.dart';
 import 'package:app/screens/registerscreen.dart';
 import 'package:app/screens/settingsreen.dart';
+import 'package:app/screens/splash.dart';
 import 'package:flutter/material.dart';
 
 import 'routenames.dart';
@@ -23,6 +24,8 @@ class AppRoutes {
         return MaterialPageRoute<dynamic>(builder: (_) => DashBoard());
       case RouteNames.sscreen:
         return MaterialPageRoute<dynamic>(builder: (_) => SettingsScreen());
+      case RouteNames.splash:
+        return MaterialPageRoute<dynamic>(builder: (_) => Splashscreen());
       case RouteNames.noterscreen:
         var notes = settings.arguments as Note;
         return MaterialPageRoute<dynamic>(
