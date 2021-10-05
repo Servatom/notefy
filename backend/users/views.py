@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from users.generateAvatar import *
 from .verify_email import send_verify_email
 from django.contrib.auth import get_user_model
+import os
 
 
 class UserCreate(APIView):
@@ -21,6 +22,7 @@ class UserCreate(APIView):
         form = UserRegisterForm(request.data)
         if form.is_valid():
             # Verification mail Content
+            from_mail = os.environ.get('EMAIL_ID')
             to_mail = form.cleaned_data['email']
             user_name = form.cleaned_data['name']
             verify_link = "link"
@@ -28,7 +30,7 @@ class UserCreate(APIView):
             form.save()
             # send verification email
             send_verify_email(
-                to_mail=to_mail, from_mail=user_name, verify_link=verify_link)
+                to_mail=to_mail, from_mail=from_mail, verify_link=verify_link)
             return Response({"detail": "User Registered. Please check your email"})
         return Response(form.errors, status=400)
 
