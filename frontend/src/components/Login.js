@@ -133,14 +133,14 @@ const Login = () => {
     };
 
     fetch(`${URL}/api/auth/login/`, requestOptions)
-      .then((response) => {
-        const data = response.json();
-
-        setLoading(false);
-        return data;
+       .then((response) => {
+        setLoading(false)
+        if (response.ok) { 
+          return response.json();
+        }
+        return Promise.reject(response); 
       })
       .then((result) => {
-        console.log(result);
         authCtx.login(result.key);
 
         if (result.key) history.replace("/dashboard");
@@ -158,7 +158,16 @@ const Login = () => {
             body: "Loggin successful",
           });
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        error.json().then((result)=>{
+          let firstkey = Object.keys(result)[0];
+
+          setWarning({
+            status: true,
+            body: result[firstkey],
+          });
+        });
+      })
   };
   var width = Math.max(window.screen.width);
   console.log("mq", width);
