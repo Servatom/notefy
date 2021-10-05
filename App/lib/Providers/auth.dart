@@ -7,6 +7,9 @@ import 'dart:convert';
 
 class Auth with ChangeNotifier {
   String key = '';
+  String name = '';
+  String email = '';
+  String avatar = '';
 
   Future<void> loginUser(email, password) async {
     try {
@@ -22,6 +25,7 @@ class Auth with ChangeNotifier {
       if (response.statusCode == 200) {
         print('login success');
         key = data["key"];
+        getUserdetail();
       } else {
         if (email == '') {
           throw 'Email field must not be blank';
@@ -76,5 +80,29 @@ class Auth with ChangeNotifier {
   void logoutUser(context) {
     Navigator.pushNamed(context, RouteNames.mainscreen);
     key = '';
+  }
+
+  Future getUserdetail() async {
+    try {
+      print(key);
+      http.Response response = await http.get(
+        Uri.parse('https://notefyapi.servatom.com/api/users/detail/'),
+        headers: {'Authorization': 'Token $key'},
+      );
+
+      String d = response.body;
+      print(response.body);
+      if (response.statusCode == 200) {
+        var data = jsonDecode(d);
+        name = data["name"];
+        email = data["email"];
+        avatar = data["avatar"];
+        print(data);
+      } else {
+        throw 'No Such user exists';
+      }
+    } catch (e) {
+      throw (e);
+    }
   }
 }

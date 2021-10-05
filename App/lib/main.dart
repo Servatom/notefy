@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
           onGenerateRoute: AppRoutes.onGenerateRoute,
-          initialRoute: RouteNames.mainscreen),
+          initialRoute: RouteNames.splash),
     );
   }
 }

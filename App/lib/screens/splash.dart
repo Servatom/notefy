@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:app/constants.dart';
-import 'package:app/screens/mainscreen.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -19,7 +19,7 @@ class _SplashscreenState extends State<Splashscreen> {
         milliseconds: 3000,
       ),
     );
-    Navigator.pushNamed(context, MainScreen.id);
+    Navigator.pushNamed(context, RouteNames.mainscreen);
   }
 
   @override

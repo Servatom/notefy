@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:app/Providers/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // ignore: use_key_in_widget_constructors
 class ProfileScreen extends StatefulWidget {
@@ -11,9 +13,10 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
-  
   Widget build(BuildContext context) {
-    // ignore: avoid_unnecessary_containers
+    String name = Provider.of<Auth>(context).name;
+    String email = Provider.of<Auth>(context).email;
+    String imageInfo = Provider.of<Auth>(context).avatar;
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -27,14 +30,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   radius: 62,
                   child: CircleAvatar(
                     radius: 60,
-                    backgroundImage: AssetImage('images/parrot.png'),
+                    backgroundImage: NetworkImage(imageInfo),
                   ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              // ignore: avoid_unnecessary_containers
               Container(
                 child: Text(
                   'Change Avatar',
@@ -42,19 +44,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               SizedBox(height: 50),
-              // ignore: avoid_unnecessary_containers
               Container(
                 child: Text(
-                  'Name',
+                  name,
                   style: TextStyle(
                       color: Colors.white, fontSize: 30, fontFamily: 'lobster'),
                 ),
               ),
               SizedBox(height: 20),
-              // ignore: avoid_unnecessary_containers
               Container(
                 child: Text(
-                  'Email',
+                  email,
                   style: TextStyle(
                       color: Colors.white, fontSize: 30, fontFamily: 'lobster'),
                 ),

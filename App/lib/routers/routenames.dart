@@ -6,4 +6,5 @@ class RouteNames {
   static const String dashboard = '/dashboard';
   static const String noterscreen = '/notesscreen';
   static const String sscreen = '/settings';
+  static const String splash = '/splash';
 }
