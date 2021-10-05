@@ -1,6 +1,7 @@
 import './App.css';
 import LandingPage from './pages/LandingPage';
 import Auth from './pages/Auth';
+import EmailVerify from './pages/EmailVerify';
 import {
   BrowserRouter as Router,
   Route,
@@ -36,6 +37,9 @@ function App() {
             <LandingPage />
           </Route>
         )}
+        <Route path='/email-verify/:token'>
+            <EmailVerify />
+        </Route>
 
         <Route path='*'>
           <Redirect to='/' />
