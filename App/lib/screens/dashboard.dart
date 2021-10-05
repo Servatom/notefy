@@ -52,6 +52,8 @@ class DashBoard extends StatelessWidget {
                 body: '',
                 title: '',
                 id: '',
+                createTime: '',
+                updateTime: '',
               ),
             );
           },

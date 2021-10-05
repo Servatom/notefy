@@ -2,7 +2,6 @@
 
 import 'package:app/constants.dart';
 import 'package:app/models/note.dart';
-import 'package:app/models/notes.dart';
 import 'package:flutter/material.dart';
 
 class NoteScreen extends StatefulWidget {
@@ -44,7 +43,7 @@ class _NoteScreenState extends State<NoteScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            Notes().addNote(title, body);
+            // Notes().addNote(title, body);
             Navigator.pop(context);
           },
           icon: Icon(

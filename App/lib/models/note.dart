@@ -1,11 +1,14 @@
 class Note {
-  String body;
   String id;
   String title;
-  // String dateTime
+  String body;
+  String createTime;
+  String updateTime;
   Note({
     required this.body,
     required this.id,
     required this.title,
+    required this.createTime,
+    required this.updateTime,
   });
 }
