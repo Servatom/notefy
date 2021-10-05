@@ -17,10 +17,18 @@ class Auth with ChangeNotifier {
 
       String d = response.body;
       var data = jsonDecode(d);
+
+      print(response.body);
       if (response.statusCode == 200) {
         print('login success');
         key = data["key"];
       } else {
+        if (email == '') {
+          throw 'Email field must not be blank';
+        }
+        if (password == '') {
+          throw 'Password field must not be blank';
+        }
         List error = data["non_field_errors"];
         print(error[0]);
         throw error[0];
@@ -43,10 +51,21 @@ class Auth with ChangeNotifier {
 
       String d = response.body;
       var data = jsonDecode(d);
+      print(response.body);
       if (response.statusCode == 200) {
         print('registration successful');
       } else {
+        if (email == '') {
+          throw 'Email field must not be blank';
+        }
+        if (name == '') {
+          throw 'Name must not be blank';
+        }
+        if (password == '') {
+          throw 'Password field must not be blank';
+        }
         List error = data["email"];
+        print(error[0]);
         throw error[0];
       }
     } catch (e) {

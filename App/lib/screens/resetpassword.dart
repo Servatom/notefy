@@ -17,6 +17,9 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
   String email = '';
   String name = '';
   String password = '';
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
+  final controller3 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +65,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                     InputField(
                         obscure: false,
                         hinttext: "Enter the Old Password",
+                        textcontroller: controller1,
                         onChanged: (value) {
                           email = value;
                         }),
@@ -71,6 +75,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                     InputField(
                         obscure: false,
                         hinttext: 'Enter the New Password',
+                        textcontroller: controller2,
                         onChanged: (value) {
                           name = value;
                         }),
@@ -80,6 +85,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                     InputField(
                         obscure: true,
                         hinttext: 'Confirm New Password',
+                        textcontroller: controller3,
                         onChanged: (value) {
                           password = value;
                         }),
@@ -88,7 +94,11 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                     ),
                     RoundedButton(
                       title: 'Confirm',
-                      onPressed: () async {},
+                      onPressed: () async {
+                        controller1.clear();
+                        controller2.clear();
+                        controller3.clear();
+                      },
                     ),
                   ],
                 ),

@@ -8,14 +8,17 @@ class InputField extends StatelessWidget {
     required this.hinttext,
     required this.onChanged,
     required this.obscure,
+    required this.textcontroller,
   });
   final bool obscure;
   final String hinttext;
   final Function onChanged;
+  final TextEditingController textcontroller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: textcontroller,
       textAlign: TextAlign.center,
       cursorColor: Colors.black,
       style: TextStyle(

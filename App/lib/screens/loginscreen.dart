@@ -18,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String email = '';
   String password = '';
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     InputField(
                         obscure: false,
                         hinttext: 'Email',
+                        textcontroller: controller1,
                         onChanged: (value) {
                           email = value;
                         }),
@@ -75,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     InputField(
                         obscure: true,
                         hinttext: 'Password',
+                        textcontroller: controller2,
                         onChanged: (value) {
                           password = value;
                         }),
@@ -93,6 +97,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) {
                                 return ErrorBox(
                                   errorText: e.toString(),
+                                  onpressed: () {
+                                    controller1.clear();
+                                    controller2.clear();
+                                    Navigator.pop(context);
+                                  },
                                 );
                               });
                         }
