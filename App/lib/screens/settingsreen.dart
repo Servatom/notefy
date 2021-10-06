@@ -1,6 +1,8 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables
+
 import 'package:app/constants.dart';
 import 'package:app/routers/routenames.dart';
-import 'package:app/screens/loginscreen.dart';
+
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -66,7 +68,6 @@ class SettingsScreen extends StatelessWidget {
 class Sizedboxop extends StatelessWidget {
   final String patanahi;
   Sizedboxop({required this.patanahi});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +86,6 @@ class Sizedboxop extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Text(
             patanahi,
-            
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Poppins',
