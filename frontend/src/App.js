@@ -38,13 +38,21 @@ function App() {
         {
           setIsError(false)
         }
+        console.log(response);
         return response;
       })
-      .then(result => result)
-      .catch(error => error);
+      .catch(error => {
+        console.log(!!error)
+        if(error)
+        {
+          setIsError(true)
+        }
+        else
+        {
+          setIsError(false)
+        }
+      });
   },[])
-
-  console.log(key);
 
   return (
     <Router>
@@ -57,7 +65,7 @@ function App() {
 
         {authCtx.isLoggedIn && (
           <Route path='/dashboard'>
-            <Dashboard />
+            <Dashboard isError={isError} setIsError={setIsError}/>
           </Route>
         )}
 
