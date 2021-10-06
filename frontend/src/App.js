@@ -30,7 +30,7 @@ function App() {
     
     fetch(`${URL}/`, requestOptions)
       .then(response => {
-        if(response.status!==404 || !response)
+        if(response.status!==404)
         {
           setIsError(true)
         }
@@ -41,7 +41,16 @@ function App() {
         console.log(response);
         return response;
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        if(error)
+        {
+          setIsError(true)
+        }
+        else
+        {
+          setIsError(false)
+        }
+      });
   },[])
 
   console.log(key);
