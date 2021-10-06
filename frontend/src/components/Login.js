@@ -169,7 +169,6 @@ const Login = () => {
       })
   };
   var width = Math.max(window.screen.width);
-  console.log("mq", width);
 
   return (
     <div className="form-wrapper">
