@@ -9,6 +9,7 @@ ENV PYTHONUNBUFFERED=1
 
 # Install pip requirements
 COPY requirements.txt .
+RUN pip install gunicorn[gevent]
 RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
@@ -20,4 +21,6 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 USER root
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["sh", "run.sh"]
+#CMD ["sh", "run.sh"]
+#CMD ["python", "manage.py", "runserver"]
+CMD gunicorn --certfile=origin.pem --keyfile=key.pem --worker-class gevent --bind 0.0.0.0:6969 config.wsgi:application
