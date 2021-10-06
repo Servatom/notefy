@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: Notes()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
           onGenerateRoute: AppRoutes.onGenerateRoute,
           initialRoute: RouteNames.splash),
     );

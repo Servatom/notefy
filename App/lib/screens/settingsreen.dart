@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables
 
 import 'package:app/constants.dart';
+import 'package:app/routers/routenames.dart';
+
 import 'package:flutter/material.dart';
 
-// ignore: use_key_in_widget_constructors
 class SettingsScreen extends StatelessWidget {
   static const String id = 'settings_screen';
   @override
@@ -11,6 +12,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kbgcolor,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Settings',
           style: TextStyle(color: Colors.black, fontSize: 20),
@@ -29,59 +31,69 @@ class SettingsScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-            right: 20.0, left: 20.0, top: 20.0, bottom: 370),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  print('xd');
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10), color: kyellow),
-                ),
-              ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, RouteNames.resetpasswordscreen);
+              },
+              child: Sizedboxop(patanahi: 'Reset Password'),
             ),
             SizedBox(height: 15),
-            Expanded(
-              child: GestureDetector(
+            GestureDetector(
                 onTap: () {
                   print('lmao');
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10), color: kyellow),
-                ),
-              ),
-            ),
+                child: Sizedboxop(patanahi: 'Theme')),
             SizedBox(height: 15),
-            Expanded(
-              child: GestureDetector(
-                // ignore: avoid_print
+            GestureDetector(
                 onTap: () {
                   print('hello');
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10), color: kyellow),
-                ),
-              ),
-            ),
+                child: Sizedboxop(patanahi: 'Delete all notes')),
             SizedBox(height: 15),
-            Expanded(
-              child: GestureDetector(
+            GestureDetector(
                 onTap: () {
-                  print('object');
+                  Navigator.pushNamed(context, RouteNames.mainscreen);
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10), color: kyellow),
-                ),
-              ),
-            ),
+                child: Sizedboxop(patanahi: 'Logout')),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class Sizedboxop extends StatelessWidget {
+  final String patanahi;
+  Sizedboxop({required this.patanahi});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 75,
+      width: 400,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            20,
+          ),
+        ),
+        color: kyellow,
+        elevation: 5,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            patanahi,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontSize: 25,
+            ),
+          ),
         ),
       ),
     );

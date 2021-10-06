@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_rethrow_when_possible
 
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/cupertino.dart';
