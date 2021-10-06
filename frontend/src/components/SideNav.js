@@ -70,7 +70,7 @@ const SideNav = (props) => {
             
 
             
-                <h4
+                {/* <h4
                     onClick={() => {
                         props.setCurrentTab(2);
                         props.closeNav();
@@ -80,7 +80,7 @@ const SideNav = (props) => {
                 >
                     <GoChecklist className="icon" />
                     To-Dos
-                </h4>
+                </h4> */}
             
 
             
