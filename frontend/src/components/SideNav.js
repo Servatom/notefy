@@ -8,6 +8,8 @@ import { useContext, useState } from "react";
 import swal from "sweetalert";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import AuthContext from "../store/auth-context";
+import { BsListTask } from "react-icons/bs";
+import { GoChecklist } from "react-icons/go";
 
 const SideNav = (props) => {
     const authCtx = useContext(AuthContext);
@@ -53,31 +55,47 @@ const SideNav = (props) => {
                 <img src={logo} className="navlogo" />
             </div>
 
-            <Link to="/dashboard">
+            
                 <h4
                     onClick={() => {
                         props.closeNav();
                         props.setCurrentTab(1);
+                        history.push("/dashboard");
                     }}
                     className={props.currentTab === 1 ? "active" : ""}
                 >
                     <MdDashboard className="icon" />
-                    Dashboard
+                    Notes
                 </h4>
-            </Link>
-            <Link to={"/dashboard/settings"}>
-                <h4
+            
+
+            
+                {/* <h4
                     onClick={() => {
                         props.setCurrentTab(2);
                         props.closeNav();
-                        history.push("/dashboard/settings");
+                        history.push("/dashboard/todo");
                     }}
                     className={props.currentTab === 2 ? "active" : ""}
+                >
+                    <GoChecklist className="icon" />
+                    To-Dos
+                </h4> */}
+            
+
+            
+                <h4
+                    onClick={() => {
+                        props.setCurrentTab(3);
+                        props.closeNav();
+                        history.push("/dashboard/settings");
+                    }}
+                    className={props.currentTab === 3 ? "active" : ""}
                 >
                     <MdSettings className="icon" />
                     Settings
                 </h4>
-            </Link>
+            
             <Link onClick={logoutHandler}>
                 <h4 className="">
                     <IoLogOut className="icon" />

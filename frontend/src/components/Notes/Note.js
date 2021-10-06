@@ -1,4 +1,4 @@
-import "../assets/css/Notes.css";
+import "../../assets/css/Notes.css";
 import { MdDeleteSweep, MdEdit } from 'react-icons/md';
 import swal from 'sweetalert';
 import { useState } from "react";

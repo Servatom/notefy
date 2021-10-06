@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {GoSearch} from 'react-icons/go';
-import "../assets/css/Searchbar.css";
+import "../../assets/css/Searchbar.css";
 const Searchbar =(props)=>
 {
     
