@@ -51,7 +51,7 @@ const Dashboard = (props) => {
         };
 
         fetch(
-            "https://notefyapi.servatom.com/api/users/detail/",
+            `${URL}/api/users/detail/`,
             requestOptions
         )
             .then((response) => response.json())
@@ -81,7 +81,7 @@ const Dashboard = (props) => {
         };
 
         fetch(
-            "https://notefyapi.servatom.com/api/notes/create/",
+            `${URL}/api/notes/create/`,
             requestOptions
         )
             .then((response) => response.text())
@@ -102,7 +102,7 @@ const Dashboard = (props) => {
             redirect: "follow",
         };
 
-        fetch("https://notefyapi.servatom.com/api/notes/", requestOptions)
+        fetch(`${URL}/api/notes/`, requestOptions)
             .then((response) => response.json())
             .then((result) => setNotes(result))
             .catch((error) => console.log("error", error));
@@ -122,7 +122,7 @@ const Dashboard = (props) => {
             redirect: "follow",
         };
 
-        fetch(`https://notefyapi.servatom.com/api/notes/${id}/`, requestOptions)
+        fetch(`${URL}/api/notes/${id}/`, requestOptions)
             .then((response) => {
                 // console.log(response.status);
                 getNotes();
@@ -152,7 +152,7 @@ const Dashboard = (props) => {
         };
 
         fetch(
-            `https://notefyapi.servatom.com/api/notes/${editedNote.id}/`,
+            `${URL}/api/notes/${editedNote.id}/`,
             requestOptions
         )
             .then((response) => {
