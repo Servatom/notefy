@@ -19,7 +19,7 @@ class Auth with ChangeNotifier {
       http.Response response = await http.post(
         Uri.parse('https://notefyapi.servatom.com/api/auth/login/'),
         body: {"email": email, "password": password},
-      );
+      ); 
 
       String d = response.body;
       final data = jsonDecode(d);
@@ -86,30 +86,23 @@ class Auth with ChangeNotifier {
   void setKey() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('key', key);
+    print('set key $key');
   }
 
-  void getKey() async {
+  Future<String> getKey() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    key = preferences.getString('key').toString();
+    print('get key $key');
+    return preferences.getString('key').toString();
   }
 
-  // void setCounter() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   preferences.setInt('counter', counter);
-  // }
+  void isLoggedIn(context) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    if (preferences.containsKey('key')) {
+     key = await getKey();
 
-  // void getCounter() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   var c = preferences.getInt('counter');
-  //   counter = c.toInt();
-  // }
+    }
 
-  void isLoggedIn(context) {
-    // if (counter != 1) {
-    getKey();
-    // }
-    // counter++;
-    // print(key);
+    print('isloggedin $key');
     if (key == '') {
       Navigator.pushNamed(context, RouteNames.mainscreen);
     } else {
