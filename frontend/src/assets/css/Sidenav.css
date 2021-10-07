@@ -35,8 +35,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 73%;
-    min-width: 250px;
 }
 .icon
 {
@@ -62,6 +60,8 @@
 .sidenav a{
     cursor: pointer;
     text-decoration: none;
+    width: 73%;
+    min-width: 250px;
 }
 
 .sidenavIcons

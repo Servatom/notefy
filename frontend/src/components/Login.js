@@ -3,6 +3,7 @@ import "../assets/css/Login.css";
 import "../assets/css/loader.css";
 import swal from "sweetalert";
 import typing from "../assets/media/typing.gif";
+import axios from "axios";
 import URL from "../URL";
 import { useHistory } from "react-router";
 import AuthContext from "../store/auth-context";
@@ -132,14 +133,14 @@ const Login = () => {
     };
 
     fetch(`${URL}/api/auth/login/`, requestOptions)
-       .then((response) => {
-        setLoading(false)
-        if (response.ok) { 
-          return response.json();
-        }
-        return Promise.reject(response); 
+      .then((response) => {
+        const data = response.json();
+
+        setLoading(false);
+        return data;
       })
       .then((result) => {
+        console.log(result);
         authCtx.login(result.key);
 
         if (result.key) history.replace("/dashboard");
@@ -157,18 +158,10 @@ const Login = () => {
             body: "Loggin successful",
           });
       })
-      .catch((error) => {
-        error.json().then((result)=>{
-          let firstkey = Object.keys(result)[0];
-
-          setWarning({
-            status: true,
-            body: result[firstkey],
-          });
-        });
-      })
+      .catch((error) => console.log("error", error));
   };
   var width = Math.max(window.screen.width);
+  console.log("mq", width);
 
   return (
     <div className="form-wrapper">

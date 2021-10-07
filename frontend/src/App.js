@@ -12,60 +12,23 @@ import {
 import Dashboard from './pages/Dashboard';
 import { useContext, useEffect, useState } from 'react';
 import AuthContext from './store/auth-context';
-import Modal from './components/Alert';
-import URL from './URL';
-
 
 function App() {
   const authCtx = useContext(AuthContext);
   const [key, setKey] = useState();
-  const [isError, setIsError] = useState(false)
 
-  useEffect(()=>{
-
-    var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    fetch(`${URL}/`, requestOptions)
-      .then(response => {
-        if(response.status!==404)
-        {
-          setIsError(true)
-        }
-        else
-        {
-          setIsError(false)
-        }
-        console.log(response);
-        return response;
-      })
-      .catch(error => {
-        console.log(!!error)
-        if(error)
-        {
-          setIsError(true)
-        }
-        else
-        {
-          setIsError(false)
-        }
-      });
-  },[])
+  console.log(key);
 
   return (
     <Router>
       <Switch>
-
         <Route exact path='/'>
-          {authCtx.isLoggedIn ? <Redirect to='/dashboard' /> :<LandingPage isError={isError} setIsError={setIsError} />
-          }
+          {authCtx.isLoggedIn ? <Redirect to='/dashboard' /> : <LandingPage />}
         </Route>
 
         {authCtx.isLoggedIn && (
           <Route path='/dashboard'>
-            <Dashboard isError={isError} setIsError={setIsError}/>
+            <Dashboard />
           </Route>
         )}
 
