@@ -1,0 +1,1 @@
+python3 manage.py runsslserver --certificate /app/origin.pem --key /app/key.pem 0.0.0.0:6969
