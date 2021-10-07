@@ -89,16 +89,12 @@ class Auth with ChangeNotifier {
     print('set key $key');
   }
 
-  Future<String> getKey() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    print('get key $key');
-    return preferences.getString('key').toString();
-  }
+  
 
   void isLoggedIn(context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (preferences.containsKey('key')) {
-     key = await getKey();
+     key =  preferences.getString('key').toString();
 
     }
 
