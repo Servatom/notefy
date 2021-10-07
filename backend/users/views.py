@@ -5,7 +5,7 @@ from users import models
 from users.forms import UserRegisterForm
 from rest_framework.permissions import IsAuthenticated
 from users.generateAvatar import *
-from .verify_email import send_verify_email
+from .verify_email import send_verify_email, send_reset_email
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
@@ -100,3 +100,30 @@ class AvatarChange(APIView):
         user.avatar = new_avatar
         user.save()
         return Response({"detail": "avatar changed", "new_avatar": new_avatar})
+
+
+class ForgotPasswordView(APIView):
+    def post(self, request):
+        email = request.data['email']
+        if email is None:
+            return Response({"detail": "email not provided"}, status=400) 
+        if get_user_model().objects.filter(email=email).exists():
+            from_mail = settings.EMAIL_HOST_USER
+            to_mail = email
+
+            send_reset_email(
+                to_mail=to_mail, from_mail=from_mail)
+            return Response({"detail": "Email sent"})
+        else:
+            return Response({"error": "Email not found"}, status=400)
+
+
+class NewPasswordView(APIView):
+    def post(self, request, token):
+        if get_user_model().objects.filter(reset_password_hash=token).exists():
+            user = get_user_model().objects.get(reset_password_hash=token)
+            user.set_password(request.data['new_password'])
+            user.save()
+            return Response({"detail": "Password changed"})
+        else:
+            return Response({"error": "Invalid request"}, status=400)
