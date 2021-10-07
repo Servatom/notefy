@@ -18,7 +18,7 @@ class User with ChangeNotifier {
         headers: {'Authorization': 'Token $key'},
       );
 
-      String d = response.body;
+      final  d = response.body;
       print(response.body);
       if (response.statusCode == 200) {
         final data = jsonDecode(d);

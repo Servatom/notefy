@@ -111,16 +111,15 @@ class Notes with ChangeNotifier {
         headers: {'Authorization': 'Token $key'},
         body: {"title": title, "body": body},
       );
-
-      String d = response.body;
-      final data = jsonDecode(d);
-
+      final responseData = jsonDecode(response.body);
+       int index = _notes.indexWhere((element) => element.id == noteID);
+     
       print(response.body);
       if (response.statusCode == 200) {
-        Note note = _notes.firstWhere((element) => element.id == noteID);
-        note.body = data["body"];
-        note.title = data["title"];
-        note.updateTime = data["updated_at"];
+      _notes[index].body = responseData["body"];
+      _notes[index].title = responseData["title"];
+      _notes[index].updateTime = responseData["updated_at"];
+      
         notifyListeners();
       } else {
         throw 'Error';
@@ -137,8 +136,8 @@ class Notes with ChangeNotifier {
         headers: {'Authorization': 'Token $key'},
       );
       if (response.statusCode == 204) {
-        Note note = _notes.firstWhere((element) => element.id == noteID);
-        _notes.remove(note);
+        int index = _notes.indexWhere((element) => element.id == noteID);
+        _notes.remove(_notes[index]);
         notifyListeners();
         return 'success';
       } else {
