@@ -60,7 +60,7 @@ class NoteTile extends StatelessWidget {
                     maxLines: 1,
                   ),
                   Text(
-                    'time',
+                    note.updateTime,
                     style: TextStyle(
                       color: kNotetime,
                     ),

@@ -2,6 +2,7 @@
 
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
+import 'package:app/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,9 +17,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    String name = Provider.of<Auth>(context).name;
-    String email = Provider.of<Auth>(context).email;
-    String imageInfo = Provider.of<Auth>(context).avatar;
+    String name = Provider.of<User>(context).name;
+    String email = Provider.of<User>(context).email;
+    String imageInfo = Provider.of<User>(context).avatar;
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -49,8 +50,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   setState(() {
                     isLoading = true;
                   });
-                  await Provider.of<Auth>(context, listen: false)
-                      .changeAvatar();
+                  String key = Provider.of<Auth>(context, listen: false).key;
+                  await Provider.of<User>(context, listen: false)
+                      .changeAvatar(key);
                   setState(() {
                     isLoading = false;
                   });
