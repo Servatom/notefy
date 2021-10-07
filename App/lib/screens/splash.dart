@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:app/constants.dart';
+import 'package:app/models/auth.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class Splashscreen extends StatefulWidget {
   static const String id = 'splash_screen';
@@ -14,19 +16,16 @@ class Splashscreen extends StatefulWidget {
 }
 
 class _SplashscreenState extends State<Splashscreen> {
-  late bool serverUP;
-  void navigateToNextScreen() async {
+  void serverDownpage() async {
     await Future.delayed(
       Duration(
         milliseconds: 1500,
       ),
     );
-    serverUP
-        ? Navigator.pushNamed(context, RouteNames.mainscreen)
-        : Navigator.pushNamed(context, RouteNames.serverdownpage);
+    Navigator.pushNamed(context, RouteNames.serverdownpage);
   }
 
-  void underMaintenance() async {
+  void underMaintenance(context) async {
     try {
       http.Response response = await http.get(
         Uri.parse('https://notefyapi.servatom.com/'),
@@ -34,11 +33,10 @@ class _SplashscreenState extends State<Splashscreen> {
 
       print('response code = ${response.statusCode}');
       if (response.statusCode == 404) {
-        serverUP = true;
-        navigateToNextScreen();
+        Provider.of<Auth>(context, listen: false).setKey();
+        Provider.of<Auth>(context, listen: false).isLoggedIn(context);
       } else if (response.statusCode == 523) {
-        serverUP = false;
-        navigateToNextScreen();
+        serverDownpage();
       } else {
         throw 'error';
       }
@@ -49,12 +47,13 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   void initState() {
-    underMaintenance();
+    // underMaintenance();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    underMaintenance(context);
     return Scaffold(
         backgroundColor: kbgcolor,
         body: Center(

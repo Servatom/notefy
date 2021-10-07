@@ -1,15 +1,18 @@
 // ignore_for_file: avoid_print, use_rethrow_when_possible
 
+import 'package:app/models/notes.dart';
+import 'package:app/models/user.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Auth with ChangeNotifier {
   String key = '';
-  String name = '';
-  String email = '';
-  String avatar = '';
+  // int counter = 1;
 
   Future<void> loginUser(email, password) async {
     try {
@@ -25,7 +28,8 @@ class Auth with ChangeNotifier {
       if (response.statusCode == 200) {
         print('login success');
         key = data["key"];
-        getUserdetail();
+        print('set key = $key');
+        setKey();
       } else {
         if (email == '') {
           throw 'Email field must not be blank';
@@ -40,10 +44,6 @@ class Auth with ChangeNotifier {
     } catch (e) {
       throw (e);
     }
-  }
-
-  String getKey() {
-    return key;
   }
 
   Future<void> registerUser(email, name, password) async {
@@ -78,53 +78,44 @@ class Auth with ChangeNotifier {
   }
 
   void logoutUser(context) {
-    Navigator.pushNamed(context, RouteNames.mainscreen);
     key = '';
+    setKey();
+    Navigator.pushNamed(context, RouteNames.mainscreen);
   }
 
-  Future getUserdetail() async {
-    try {
-      print(key);
-      http.Response response = await http.get(
-        Uri.parse('https://notefyapi.servatom.com/api/users/detail/'),
-        headers: {'Authorization': 'Token $key'},
-      );
-
-      String d = response.body;
-      print(response.body);
-      if (response.statusCode == 200) {
-        final data = jsonDecode(d);
-        name = data["name"];
-        email = data["email"];
-        avatar = data["avatar"];
-        print(data);
-      } else {
-        throw 'No Such user exists';
-      }
-    } catch (e) {
-      throw (e);
-    }
+  void setKey() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('key', key);
   }
 
-  Future changeAvatar() async {
-    try {
-      http.Response response = await http.put(
-        Uri.parse('https://notefyapi.servatom.com/api/users/avatar_change/'),
-        headers: {'Authorization': 'Token $key'},
-      );
+  void getKey() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    key = preferences.getString('key').toString();
+  }
 
-      String d = response.body;
-      print(response.body);
-      if (response.statusCode == 200) {
-        final data = jsonDecode(d);
-        avatar = data["new_avatar"];
-        print(data);
-        notifyListeners();
-      } else {
-        throw 'No Such user exists';
-      }
-    } catch (e) {
-      throw (e);
+  // void setCounter() async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   preferences.setInt('counter', counter);
+  // }
+
+  // void getCounter() async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   var c = preferences.getInt('counter');
+  //   counter = c.toInt();
+  // }
+
+  void isLoggedIn(context) {
+    // if (counter != 1) {
+    getKey();
+    // }
+    // counter++;
+    // print(key);
+    if (key == '') {
+      Navigator.pushNamed(context, RouteNames.mainscreen);
+    } else {
+      Provider.of<User>(context, listen: false).getUserdetail(key);
+      Provider.of<Notes>(context, listen: false).getList(key);
+      Navigator.pushNamed(context, RouteNames.dashboard);
     }
   }
 }

@@ -1,9 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables
 
 import 'package:app/constants.dart';
+import 'package:app/models/auth.dart';
 import 'package:app/routers/routenames.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String id = 'settings_screen';
@@ -55,7 +57,7 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(height: 15),
             GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, RouteNames.mainscreen);
+                  Provider.of<Auth>(context, listen: false).logoutUser(context);
                 },
                 child: Sizedboxop(patanahi: 'Logout')),
           ],

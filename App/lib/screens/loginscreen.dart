@@ -4,6 +4,8 @@ import 'package:app/models/auth.dart';
 import 'package:app/components/error_box.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
+import 'package:app/models/notes.dart';
+import 'package:app/models/user.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/roundedbutton.dart';
@@ -90,6 +92,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         try {
                           await Provider.of<Auth>(context, listen: false)
                               .loginUser(email, password);
+
+                          String key =
+                              Provider.of<Auth>(context, listen: false).key;
+                          Provider.of<User>(context, listen: false)
+                              .getUserdetail(key);
+
+                          Provider.of<Notes>(context, listen: false)
+                              .getList(key);
                           Navigator.pushNamed(context, RouteNames.dashboard);
                         } catch (e) {
                           showDialog(

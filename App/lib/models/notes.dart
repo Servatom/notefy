@@ -31,14 +31,18 @@ class Notes with ChangeNotifier {
       if (response.statusCode == 200) {
         List tempNote = data;
         for (int i = 0; i < tempNote.length; i++) {
-          _notes[i] = Note(
-            body: tempNote[i]["body"],
-            title: tempNote[i]["title"],
-            id: tempNote[i]["id"],
-            createTime: tempNote[i]["created_at"],
-            updateTime: tempNote[i]["updated_at"],
+          _notes.add(
+            Note(
+              body: tempNote[i]["body"],
+              title: tempNote[i]["title"],
+              id: tempNote[i]["id"].toString(),
+              createTime: tempNote[i]["created_at"],
+              updateTime: tempNote[i]["updated_at"],
+            ),
           );
         }
+        print(_notes);
+        notifyListeners();
       } else {
         throw 'Error';
       }
@@ -81,12 +85,14 @@ class Notes with ChangeNotifier {
 
       print(response.body);
       if (response.statusCode == 200) {
-        _notes[_notes.length + 1] = Note(
-          body: data["body"],
-          title: data["title"],
-          id: data["id"],
-          createTime: data["created_at"],
-          updateTime: data["updated_at"],
+        _notes.add(
+          Note(
+            body: data["body"],
+            title: data["title"],
+            id: data["id"],
+            createTime: data["created_at"],
+            updateTime: data["updated_at"],
+          ),
         );
         notifyListeners();
       } else {
@@ -131,6 +137,8 @@ class Notes with ChangeNotifier {
         headers: {'Authorization': 'Token $key'},
       );
       if (response.statusCode == 204) {
+        Note note = _notes.firstWhere((element) => element.id == noteID);
+        _notes.remove(note);
         notifyListeners();
         return 'success';
       } else {
