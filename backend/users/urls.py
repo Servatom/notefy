@@ -6,10 +6,13 @@ from . import views
 
 urlpatterns = [
     path('register/', views.UserCreate.as_view(), name='register'),
-    path('email-verify/<str:token>',
+    path('email-verify/<str:token>/',
          views.EMailVerifyView.as_view(), name='email_verify'),
     path('detail/', views.UserDetailView.as_view(), name='login'),
     path('reset_password/', views.ResetPasswordView.as_view(), name='reset_password'),
     path('change_name/', views.ChangeName.as_view(), name='change_name'),
     path('avatar_change/', views.AvatarChange.as_view(), name='avatar_change'),
+
+    path('forgot_password/', views.ForgotPasswordView.as_view(), name='fogot_password'),
+    path('new_password/<str:token>/', views.NewPasswordView.as_view(), name='new_password'),
 ]

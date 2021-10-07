@@ -24,3 +24,22 @@ def send_verify_email(to_mail, from_mail, verify_link):
         "Email Verification", text_content, from_mail, [to_mail])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+
+
+def send_reset_email(to_mail, from_mail):
+    FRONTEND_URL = os.getenv('FRONTEND_URL')
+    token = get_random_string(length=32)
+    reset_link = FRONTEND_URL + 'reset-password/' + token
+    html_content = render_to_string(
+        'users/reset_mail_template.html', {'FRONTEND_URL': FRONTEND_URL, 'link': reset_link})
+
+    text_content = strip_tags(html_content)
+
+    user = get_user_model().objects.get(email=to_mail)
+    user.reset_password_hash = token
+    user.save()
+
+    msg = EmailMultiAlternatives(
+        "Reset Password", text_content, from_mail, [to_mail])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()

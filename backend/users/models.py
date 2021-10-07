@@ -18,6 +18,8 @@ class User(AbstractBaseUser):
     name = models.CharField("Name", max_length=20)
     email_verified_hash = models.CharField(
         "Verify Token", max_length=32, default='000000')
+    reset_password_hash = models.CharField(
+        "Reset Password Token", max_length=32, default='000000')
 
     is_staff = models.BooleanField(default=False, null=True)
     is_admin = models.BooleanField(default=False, null=True)
