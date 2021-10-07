@@ -19,7 +19,7 @@ class Auth with ChangeNotifier {
       );
 
       String d = response.body;
-      var data = jsonDecode(d);
+      final data = jsonDecode(d);
 
       print(response.body);
       if (response.statusCode == 200) {
@@ -54,7 +54,7 @@ class Auth with ChangeNotifier {
       );
 
       String d = response.body;
-      var data = jsonDecode(d);
+      final data = jsonDecode(d);
       print(response.body);
       if (response.statusCode == 200) {
         print('registration successful');
@@ -93,7 +93,7 @@ class Auth with ChangeNotifier {
       String d = response.body;
       print(response.body);
       if (response.statusCode == 200) {
-        var data = jsonDecode(d);
+        final data = jsonDecode(d);
         name = data["name"];
         email = data["email"];
         avatar = data["avatar"];
@@ -116,7 +116,7 @@ class Auth with ChangeNotifier {
       String d = response.body;
       print(response.body);
       if (response.statusCode == 200) {
-        var data = jsonDecode(d);
+        final data = jsonDecode(d);
         avatar = data["new_avatar"];
         print(data);
         notifyListeners();

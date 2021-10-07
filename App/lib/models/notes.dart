@@ -25,7 +25,7 @@ class Notes with ChangeNotifier {
       );
 
       String d = response.body;
-      var data = jsonDecode(d);
+      final data = jsonDecode(d);
 
       print(response.body);
       if (response.statusCode == 200) {
@@ -55,7 +55,7 @@ class Notes with ChangeNotifier {
       );
 
       String d = response.body;
-      var data = jsonDecode(d);
+      final data = jsonDecode(d);
 
       print(response.body);
       if (response.statusCode == 200) {
@@ -77,7 +77,7 @@ class Notes with ChangeNotifier {
       );
 
       String d = response.body;
-      var data = jsonDecode(d);
+      final data = jsonDecode(d);
 
       print(response.body);
       if (response.statusCode == 200) {
@@ -107,7 +107,7 @@ class Notes with ChangeNotifier {
       );
 
       String d = response.body;
-      var data = jsonDecode(d);
+      final data = jsonDecode(d);
 
       print(response.body);
       if (response.statusCode == 200) {
