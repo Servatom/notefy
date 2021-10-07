@@ -4,6 +4,7 @@ import 'package:app/constants.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:http/http.dart' as http;
 
 class Splashscreen extends StatefulWidget {
   static const String id = 'splash_screen';
@@ -13,18 +14,42 @@ class Splashscreen extends StatefulWidget {
 }
 
 class _SplashscreenState extends State<Splashscreen> {
+  late bool serverUP;
   void navigateToNextScreen() async {
     await Future.delayed(
       Duration(
-        milliseconds: 3000,
+        milliseconds: 1500,
       ),
     );
-    Navigator.pushNamed(context, RouteNames.mainscreen);
+    serverUP
+        ? Navigator.pushNamed(context, RouteNames.mainscreen)
+        : Navigator.pushNamed(context, RouteNames.serverdownpage);
+  }
+
+  void underMaintenance() async {
+    try {
+      http.Response response = await http.get(
+        Uri.parse('https://notefyapi.servatom.com/'),
+      );
+
+      print('response code = ${response.statusCode}');
+      if (response.statusCode == 404) {
+        serverUP = true;
+        navigateToNextScreen();
+      } else if (response.statusCode == 523) {
+        serverUP = false;
+        navigateToNextScreen();
+      } else {
+        throw 'error';
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   void initState() {
-    navigateToNextScreen();
+    underMaintenance();
     super.initState();
   }
 

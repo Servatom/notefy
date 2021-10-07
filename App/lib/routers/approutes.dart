@@ -6,6 +6,7 @@ import 'package:app/screens/mainscreen.dart';
 import 'package:app/screens/notescreen.dart';
 import 'package:app/screens/registerscreen.dart';
 import 'package:app/screens/resetpassword.dart';
+import 'package:app/screens/server_down.dart';
 import 'package:app/screens/settingsreen.dart';
 import 'package:app/screens/splash.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,10 @@ class AppRoutes {
         return MaterialPageRoute<dynamic>(builder: (_) => SettingsScreen());
       case RouteNames.splash:
         return MaterialPageRoute<dynamic>(builder: (_) => Splashscreen());
-         case RouteNames.resetpasswordscreen:
+      case RouteNames.resetpasswordscreen:
         return MaterialPageRoute<dynamic>(builder: (_) => ResetPassScreen());
+      case RouteNames.serverdownpage:
+        return MaterialPageRoute<dynamic>(builder: (_) => ServerDown());
       case RouteNames.noterscreen:
         var notes = settings.arguments as Note;
         return MaterialPageRoute<dynamic>(
