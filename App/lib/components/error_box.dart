@@ -4,8 +4,9 @@ import 'package:app/constants.dart';
 import 'package:flutter/material.dart';
 
 class ErrorBox extends StatelessWidget {
+  final Function onpressed;
   final String errorText;
-  ErrorBox({required this.errorText});
+  ErrorBox({required this.errorText, required this.onpressed});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class ErrorBox extends StatelessWidget {
           elevation: 10,
           color: kyellow,
           onPressed: () {
-            Navigator.pop(context);
+            onpressed();
           },
           child: Padding(
             padding: EdgeInsets.all(10.0),

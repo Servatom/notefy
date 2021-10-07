@@ -1,52 +1,151 @@
-// ignore_for_file: prefer_final_fields
+// ignore_for_file: prefer_final_fields, avoid_print, unused_import
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'dart:convert';
+import 'auth.dart';
 import 'note.dart';
 
-class Notes {
-  List<Note> _notes = [
-    Note(
-      body:
-          'Hello thereHello thereHello thereHello thereHello thereHello thereHello thereHello thereHello there',
-      id: '1',
-      title: 'Note1',
-    ),
-    Note(
-      body: 'Hello world',
-      id: '2',
-      title: 'Note2',
-    ),
-    Note(
-      body: 'Hello',
-      id: '3',
-      title: 'Note3',
-    ),
-    Note(
-      body: 'Hello matar',
-      id: '4',
-      title: 'Note4',
-    ),
-    Note(
-      body: 'byeee',
-      id: '5',
-      title: 'Note5',
-    ),
-    Note(
-      body: 'cyaa ',
-      id: '6',
-      title: 'Note6',
-    ),
-    Note(
-      body: 'bruhhhhhhh ',
-      id: '7',
-      title: 'Note7',
-    ),
-  ];
+class Notes with ChangeNotifier {
+  List<Note> _notes = [];
 
   List<Note> get notesList {
     return [..._notes];
   }
 
-  void addNote(String title, String body) {
-    _notes.add(Note(body: body, id: '10', title: title));
+  // API calls
+  Future getList(String key) async {
+    try {
+      http.Response response = await http.get(
+        Uri.parse('https://notefyapi.servatom.com/api/notes/'),
+        headers: {'Authorization': 'Token $key'},
+      );
+
+      String d = response.body;
+      final data = jsonDecode(d);
+
+      print(response.body);
+      if (response.statusCode == 200) {
+        List tempNote = data;
+        for (int i = 0; i < tempNote.length; i++) {
+          _notes.add(
+            Note(
+              body: tempNote[i]["body"],
+              title: tempNote[i]["title"],
+              id: tempNote[i]["id"].toString(),
+              createTime: tempNote[i]["created_at"],
+              updateTime: tempNote[i]["updated_at"],
+            ),
+          );
+        }
+        print(_notes);
+        notifyListeners();
+      } else {
+        throw 'Error';
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future getNoteDetail(String key, String noteID) async {
+    try {
+      http.Response response = await http.get(
+        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        headers: {'Authorization': 'Token $key'},
+      );
+
+      String d = response.body;
+      final data = jsonDecode(d);
+
+      print(response.body);
+      if (response.statusCode == 200) {
+        return data;
+      } else {
+        throw 'Error';
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future createNote(String key, String title, String body) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse('https://notefyapi.servatom.com/api/notes/create/'),
+        headers: {'Authorization': 'Token $key'},
+        body: {"title": title, "body": body},
+      );
+
+      String d = response.body;
+      final data = jsonDecode(d);
+
+      print(response.body);
+      if (response.statusCode == 200) {
+        _notes.add(
+          Note(
+            body: data["body"],
+            title: data["title"],
+            id: data["id"],
+            createTime: data["created_at"],
+            updateTime: data["updated_at"],
+          ),
+        );
+        notifyListeners();
+      } else {
+        throw 'Error';
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future updateNote(
+      String key, String title, String body, String noteID) async {
+    try {
+      http.Response response = await http.put(
+        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        headers: {'Authorization': 'Token $key'},
+        body: {"title": title, "body": body},
+      );
+
+      String d = response.body;
+      final data = jsonDecode(d);
+
+      print(response.body);
+      if (response.statusCode == 200) {
+        Note note = _notes.firstWhere((element) => element.id == noteID);
+        note.body = data["body"];
+        note.title = data["title"];
+        note.updateTime = data["updated_at"];
+        notifyListeners();
+      } else {
+        throw 'Error';
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future deleteNote(String key, String noteID) async {
+    try {
+      http.Response response = await http.delete(
+        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        headers: {'Authorization': 'Token $key'},
+      );
+      if (response.statusCode == 204) {
+        Note note = _notes.firstWhere((element) => element.id == noteID);
+        _notes.remove(note);
+        notifyListeners();
+        return 'success';
+      } else {
+        throw 'Error';
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }

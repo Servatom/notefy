@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unused_import
 
 import 'package:app/components/Roundedbutton.dart';
 import 'package:app/components/inputfield.dart';
@@ -14,9 +14,12 @@ class ResetPassScreen extends StatefulWidget {
 }
 
 class _ResetPassScreenState extends State<ResetPassScreen> {
-  String email = '';
-  String name = '';
-  String password = '';
+  String oldpassword1 = '';
+  String newpassword = '';
+  String confirmpassword = '';
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
+  final controller3 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +37,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 5),
                   child: IconButton(
                     icon: Icon(
                       Icons.keyboard_arrow_left,
@@ -42,7 +45,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                       size: 40,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, MainScreen.id);
+                      Navigator.pop(context);
                     },
                   ),
                 ),
@@ -62,17 +65,20 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                     InputField(
                         obscure: false,
                         hinttext: "Enter the Old Password",
+                        
+                        textcontroller: controller1,
                         onChanged: (value) {
-                          email = value;
+                          oldpassword1 = value;
                         }),
                     SizedBox(
                       height: 20,
                     ),
                     InputField(
-                        obscure: false,
+                        obscure: true,
                         hinttext: 'Enter the New Password',
+                        textcontroller: controller2,
                         onChanged: (value) {
-                          name = value;
+                          newpassword = value;
                         }),
                     SizedBox(
                       height: 20,
@@ -80,15 +86,21 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                     InputField(
                         obscure: true,
                         hinttext: 'Confirm New Password',
+                        textcontroller: controller3,
                         onChanged: (value) {
-                          password = value;
+                        confirmpassword = value;
                         }),
                     SizedBox(
                       height: 20,
                     ),
                     RoundedButton(
-                      title: 'Confirm',
-                      onPressed: () async {},
+                      title: 'Reset Password',
+                      
+                      onPressed: () async {
+                        controller1.clear();
+                        controller2.clear();
+                        controller3.clear();
+                      },
                     ),
                   ],
                 ),

@@ -1,6 +1,6 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, avoid_print
 
-import 'package:app/Providers/auth.dart';
+import 'package:app/models/auth.dart';
 import 'package:app/components/drawer.dart';
 import 'package:app/components/note_tile.dart';
 import 'package:app/constants.dart';
@@ -11,11 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DashBoard extends StatelessWidget {
-  static const String id = 'dashboard';
-
   @override
   Widget build(BuildContext context) {
-    final notesList = Notes().notesList;
+    List notesList = Provider.of<Notes>(context).notesList;
     return Scaffold(
         backgroundColor: kbgcolor,
         drawer: DashboardDrawer(),
@@ -33,7 +31,6 @@ class DashBoard extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                print(Provider.of<Auth>(context, listen: false).getKey());
                 print('hello');
               },
               icon: Icon(
@@ -52,6 +49,8 @@ class DashBoard extends StatelessWidget {
                 body: '',
                 title: '',
                 id: '',
+                createTime: '',
+                updateTime: '',
               ),
             );
           },

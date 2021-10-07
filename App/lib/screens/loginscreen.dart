@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
-import 'package:app/Providers/auth.dart';
+import 'package:app/models/auth.dart';
 import 'package:app/components/error_box.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
+import 'package:app/models/notes.dart';
+import 'package:app/models/user.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:app/components/roundedbutton.dart';
@@ -18,6 +20,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String email = '';
   String password = '';
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     InputField(
                         obscure: false,
                         hinttext: 'Email',
+                        textcontroller: controller1,
                         onChanged: (value) {
                           email = value;
                         }),
@@ -75,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     InputField(
                         obscure: true,
                         hinttext: 'Password',
+                        textcontroller: controller2,
                         onChanged: (value) {
                           password = value;
                         }),
@@ -86,6 +92,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         try {
                           await Provider.of<Auth>(context, listen: false)
                               .loginUser(email, password);
+
+                          String key =
+                              Provider.of<Auth>(context, listen: false).key;
+                          Provider.of<User>(context, listen: false)
+                              .getUserdetail(key);
+
+                          Provider.of<Notes>(context, listen: false)
+                              .getList(key);
                           Navigator.pushNamed(context, RouteNames.dashboard);
                         } catch (e) {
                           showDialog(
@@ -93,6 +107,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) {
                                 return ErrorBox(
                                   errorText: e.toString(),
+                                  onpressed: () {
+                                    controller1.clear();
+                                    controller2.clear();
+                                    Navigator.pop(context);
+                                  },
                                 );
                               });
                         }

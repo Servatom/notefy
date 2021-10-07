@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors, avoid_print
 
 import 'package:app/constants.dart';
 import 'package:app/models/note.dart';
@@ -60,7 +60,7 @@ class NoteTile extends StatelessWidget {
                     maxLines: 1,
                   ),
                   Text(
-                    'time',
+                    note.updateTime,
                     style: TextStyle(
                       color: kNotetime,
                     ),
