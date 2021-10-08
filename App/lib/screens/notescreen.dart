@@ -69,7 +69,7 @@ class _NoteScreenState extends State<NoteScreen> {
         child: Column(
           children: [
             TextFormField(
-              initialValue: title,
+              initialValue: title == 'k' ? body.split(' ').first : title,
               onChanged: (value) {
                 title = value;
               },
