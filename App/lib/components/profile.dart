@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               GestureDetector(
                 onTap: () async {
@@ -59,7 +59,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
                 child: Text(
                   'Change Avatar',
-                  style: TextStyle(color: Colors.white, fontFamily: 'roboto'),
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 18, fontFamily: 'roboto'),
                 ),
               ),
               SizedBox(height: 50),
@@ -67,7 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   name,
                   style: TextStyle(
-                      color: Colors.white, fontSize: 30, fontFamily: 'lobster'),
+                      color: Colors.white, fontSize: 30, fontFamily: 'Lobster'),
                 ),
               ),
               SizedBox(height: 20),
@@ -75,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   email,
                   style: TextStyle(
-                      color: Colors.white, fontSize: 30, fontFamily: 'lobster'),
+                      color: Colors.white, fontSize: 20, fontFamily: 'roboto'),
                 ),
               ),
             ],

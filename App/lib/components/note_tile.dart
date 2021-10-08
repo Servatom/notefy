@@ -34,17 +34,21 @@ class NoteTile extends StatelessWidget {
                 20,
               ),
             ),
-            color: kyellow,
+            // color: Color(0xFFf8bbd0),
+            // color: Color.fromRGBO(254, 216, 238, 1),
+            color: kgreyblack,
             elevation: 5,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    note.title,
+                    note.title == 'k' ? note.body.split(' ').first : note.title,
                     textAlign: TextAlign.left,
+                    maxLines: 1,
                     style: TextStyle(
                       color: kNoteTitle,
                       fontSize: 25,

@@ -24,7 +24,7 @@ class DashBoard extends StatelessWidget {
             'Notefy',
             style: TextStyle(
               color: kbgcolor,
-              fontFamily: 'Roboto',
+              fontFamily: 'roboto',
             ),
           ),
           centerTitle: true,

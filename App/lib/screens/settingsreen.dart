@@ -82,7 +82,7 @@ class Sizedboxop extends StatelessWidget {
             20,
           ),
         ),
-        color: kyellow,
+        color: kgreyblack,
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -92,7 +92,7 @@ class Sizedboxop extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 25,
             ),
           ),
