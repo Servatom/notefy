@@ -19,7 +19,7 @@ class Auth with ChangeNotifier {
       http.Response response = await http.post(
         Uri.parse('https://notefyapi.servatom.com/api/auth/login/'),
         body: {"email": email, "password": password},
-      ); 
+      );
 
       String d = response.body;
       final data = jsonDecode(d);
@@ -80,6 +80,7 @@ class Auth with ChangeNotifier {
   void logoutUser(context) {
     key = '';
     setKey();
+    Provider.of<Notes>(context, listen: false).clearList();
     Navigator.pushNamed(context, RouteNames.mainscreen);
   }
 
@@ -89,13 +90,10 @@ class Auth with ChangeNotifier {
     print('set key $key');
   }
 
-  
-
   void isLoggedIn(context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (preferences.containsKey('key')) {
-     key =  preferences.getString('key').toString();
-
+      key = preferences.getString('key').toString();
     }
 
     print('isloggedin $key');

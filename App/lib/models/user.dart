@@ -18,7 +18,7 @@ class User with ChangeNotifier {
         headers: {'Authorization': 'Token $key'},
       );
 
-      final  d = response.body;
+      final d = response.body;
       print(response.body);
       if (response.statusCode == 200) {
         final data = jsonDecode(d);
@@ -55,4 +55,6 @@ class User with ChangeNotifier {
       throw (e);
     }
   }
+
+  // TODO: implement and add reset password api call
 }
