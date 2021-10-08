@@ -16,6 +16,10 @@ class Notes with ChangeNotifier {
     return [..._notes];
   }
 
+  void clearList() {
+    _notes.clear();
+  }
+
   // API calls
   Future getList(String key) async {
     try {
@@ -51,6 +55,7 @@ class Notes with ChangeNotifier {
     }
   }
 
+// TODO: connect this to UI
   Future getNoteDetail(String key, String noteID) async {
     try {
       http.Response response = await http.get(
@@ -72,6 +77,7 @@ class Notes with ChangeNotifier {
     }
   }
 
+// TODO: connect this to UI
   Future createNote(String key, String title, String body) async {
     try {
       http.Response response = await http.post(
@@ -103,6 +109,7 @@ class Notes with ChangeNotifier {
     }
   }
 
+// TODO: connect this to UI
   Future updateNote(
       String key, String title, String body, String noteID) async {
     try {
@@ -112,14 +119,14 @@ class Notes with ChangeNotifier {
         body: {"title": title, "body": body},
       );
       final responseData = jsonDecode(response.body);
-       int index = _notes.indexWhere((element) => element.id == noteID);
-     
+      int index = _notes.indexWhere((element) => element.id == noteID);
+
       print(response.body);
       if (response.statusCode == 200) {
-      _notes[index].body = responseData["body"];
-      _notes[index].title = responseData["title"];
-      _notes[index].updateTime = responseData["updated_at"];
-      
+        _notes[index].body = responseData["body"];
+        _notes[index].title = responseData["title"];
+        _notes[index].updateTime = responseData["updated_at"];
+
         notifyListeners();
       } else {
         throw 'Error';
@@ -129,6 +136,7 @@ class Notes with ChangeNotifier {
     }
   }
 
+// TODO: connect this to UI
   Future deleteNote(String key, String noteID) async {
     try {
       http.Response response = await http.delete(
