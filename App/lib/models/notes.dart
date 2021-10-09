@@ -11,7 +11,7 @@ import 'note.dart';
 
 class Notes with ChangeNotifier {
   List<Note> _notes = [];
-
+  List<String> ids = [];
   List<Note> get notesList {
     return [..._notes];
   }
@@ -44,6 +44,7 @@ class Notes with ChangeNotifier {
               updateTime: tempNote[i]["updated_at"],
             ),
           );
+          ids.add(tempNote[i]["id"].toString());
         }
         print(_notes);
         notifyListeners();
@@ -101,6 +102,7 @@ class Notes with ChangeNotifier {
             updateTime: data["updated_at"],
           ),
         );
+        ids.add(data["id"].toString());
         notifyListeners();
       } else {
         throw 'Error in create note';
@@ -155,5 +157,12 @@ class Notes with ChangeNotifier {
     } catch (e) {
       print(e);
     }
+  }
+
+  void deleteAllNotes(String key) {
+    for (int i = 0; i < ids.length; i++) {
+      deleteNote(key, ids[i]);
+    }
+    print('deleted all tasks');
   }
 }
