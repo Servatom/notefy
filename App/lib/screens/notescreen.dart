@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors, avoid_print, unnecessary_null_comparison
 
+import 'package:app/components/error_box.dart';
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
 import 'package:app/models/note.dart';
@@ -50,8 +51,32 @@ class _NoteScreenState extends State<NoteScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            // Notes().addNote(title, body);
-            Navigator.pop(context);
+            if (title == '') {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return ErrorBox(
+                        errorText: 'Title cannot be empty',
+                        onpressed: () {
+                          Navigator.pop(context);
+                        });
+                  });
+            } else if (body == '') {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return ErrorBox(
+                        errorText: 'Body cannot be empty',
+                        onpressed: () {
+                          Navigator.pop(context);
+                        });
+                  });
+            } else {
+              String key = Provider.of<Auth>(context, listen: false).key;
+              Provider.of<Notes>(context, listen: false)
+                  .createNote(key, title, body);
+              Navigator.pop(context);
+            }
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
@@ -103,7 +128,6 @@ class _NoteScreenState extends State<NoteScreen> {
               ),
               onFieldSubmitted: (value) {},
             ),
-            // Divider(height: 2,color: Colors.grey,)
             Expanded(
                 child: TextFormField(
               initialValue: body,

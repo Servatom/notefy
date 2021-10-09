@@ -77,7 +77,6 @@ class Notes with ChangeNotifier {
     }
   }
 
-// TODO: connect this to UI
   Future createNote(String key, String title, String body) async {
     try {
       http.Response response = await http.post(
@@ -90,19 +89,20 @@ class Notes with ChangeNotifier {
       final data = jsonDecode(d);
 
       print(response.body);
-      if (response.statusCode == 200) {
+      print(response.statusCode);
+      if (response.statusCode == 201) {
         _notes.add(
           Note(
             body: data["body"],
             title: data["title"],
-            id: data["id"],
+            id: data["id"].toString(),
             createTime: data["created_at"],
             updateTime: data["updated_at"],
           ),
         );
         notifyListeners();
       } else {
-        throw 'Error';
+        throw 'Error in create note';
       }
     } catch (e) {
       print(e);
@@ -136,7 +136,6 @@ class Notes with ChangeNotifier {
     }
   }
 
-// TODO: connect this to UI
   Future deleteNote(String key, String noteID) async {
     try {
       http.Response response = await http.delete(

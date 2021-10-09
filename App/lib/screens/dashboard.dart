@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 class DashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List notesList = Provider.of<Notes>(context).notesList;
+    List notesList = Provider.of<Notes>(context, listen: true).notesList;
     return Scaffold(
         backgroundColor: kbgcolor,
         drawer: DashboardDrawer(),
