@@ -1,3 +1,6 @@
+import requests
+import random
+
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.utils.crypto import get_random_string
 from django.template.loader import render_to_string
@@ -7,6 +10,27 @@ from django.conf import settings
 
 FRONTEND_URL = settings.FRONTEND_URL
 
+# Generate avatar
+def getImages():
+    url = "https://assets.servatom.com/notefy/avatars"
+    response = requests.request("GET", url)
+    
+    images = []
+    for i in response.json():
+        if i['isFolder'] == False:
+            images.append(i['url'])
+    return images
+
+def selectImage():
+    images = getImages()
+    if len(getImages()) > 0:
+        choice = random.choice(images)
+        print(choice)
+        return choice
+    return 0
+
+
+# Send email to user
 def send_verify_email(to_mail, from_mail, verify_link):
     token = get_random_string(length=32)
     verify_link = FRONTEND_URL + '/email-verify/' + token

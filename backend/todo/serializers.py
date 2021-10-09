@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from .models import ToDoItem, ToDoCategory
-from todo.getDateTime import *
+
+def giveMeDateTime(date_time):
+    split_date = date_time.split("T")
+
+    return (split_date[0] + " " + split_date[1].split(":")[0] + ":" + split_date[1].split(":")[1])
 
 class ToDoItemSerializer(serializers.ModelSerializer):
     class Meta:

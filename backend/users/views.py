@@ -1,14 +1,14 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from users import serializers
-from users import models
-from users.forms import UserRegisterForm
-from rest_framework.permissions import IsAuthenticated
-from users.generateAvatar import *
-from .verify_email import send_verify_email, send_reset_email
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
+from users import serializers
+from users import models
+from users.forms import UserRegisterForm
+from users.utils import *
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 class UserCreate(APIView):
     """

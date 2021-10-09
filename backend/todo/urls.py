@@ -1,6 +1,5 @@
 from django.urls import path
 
-from todo.models import ToDoItem
 from .views import ToDoCategoryView, ToDoItemView, ToDoItemByCategory
 
 urlpatterns = [

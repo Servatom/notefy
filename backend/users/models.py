@@ -1,10 +1,9 @@
-# user model
 import uuid
 from django.contrib.auth.models import AbstractBaseUser
 from users.managers import UserManager
 from django.db import models
 from django.contrib.auth.models import BaseUserManager
-from users.generateAvatar import *
+from users.utils import *
 
 
 class User(AbstractBaseUser):
