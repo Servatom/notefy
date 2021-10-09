@@ -10,15 +10,16 @@ class User(AbstractBaseUser):
     """
     Custom User model
     """
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email = models.EmailField(
-        max_length=255, unique=True, verbose_name="email address"
-    )
+    email = models.EmailField(max_length=255, unique=True, verbose_name="email address")
     name = models.CharField("Name", max_length=20)
     email_verified_hash = models.CharField(
-        "Verify Token", max_length=32, default='000000')
+        "Verify Token", max_length=32, default="000000"
+    )
     reset_password_hash = models.CharField(
-        "Reset Password Token", max_length=32, default='000000')
+        "Reset Password Token", max_length=32, default="000000"
+    )
 
     is_staff = models.BooleanField(default=False, null=True)
     is_admin = models.BooleanField(default=False, null=True)
@@ -29,7 +30,9 @@ class User(AbstractBaseUser):
     avatar = models.CharField("avatar", max_length=400, default=selectImage())
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["name", ]
+    REQUIRED_FIELDS = [
+        "name",
+    ]
 
     objects = UserManager()
 
