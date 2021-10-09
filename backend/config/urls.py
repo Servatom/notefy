@@ -18,9 +18,9 @@ from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/notes/', include('notes.urls')),
-    path('api/users/', include('users.urls')),
-    path('api/todo/', include('todo.urls')),
-    path('api/auth/', include('dj_rest_auth.urls'))
+    path("admin/", admin.site.urls),
+    path("api/notes/", include("notes.urls")),
+    path("api/users/", include("users.urls")),
+    path("api/todo/", include("todo.urls")),
+    path("api/auth/", include("dj_rest_auth.urls")),
 ]

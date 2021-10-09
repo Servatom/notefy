@@ -1,17 +1,44 @@
-import os
+import requests
+import random
+
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.utils.crypto import get_random_string
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.contrib.auth import get_user_model
+from django.conf import settings
+
+FRONTEND_URL = settings.FRONTEND_URL
+
+# Generate avatar
+def getImages():
+    url = "https://assets.servatom.com/notefy/avatars"
+    response = requests.request("GET", url)
+
+    images = []
+    for i in response.json():
+        if i["isFolder"] == False:
+            images.append(i["url"])
+    return images
 
 
+def selectImage():
+    images = getImages()
+    if len(getImages()) > 0:
+        choice = random.choice(images)
+        print(choice)
+        return choice
+    return 0
+
+
+# Send email to user
 def send_verify_email(to_mail, from_mail, verify_link):
-    FRONTEND_URL = os.getenv('FRONTEND_URL')
     token = get_random_string(length=32)
-    verify_link = FRONTEND_URL + 'email-verify/' + token
+    verify_link = FRONTEND_URL + "/email-verify/" + token
     html_content = render_to_string(
-        'users/verify_mail_template.html', {'FRONTEND_URL': FRONTEND_URL, 'link': verify_link})  # render with dynamic value
+        "users/verify_mail_template.html",
+        {"FRONTEND_URL": FRONTEND_URL, "link": verify_link},
+    )  # render with dynamic value
     # Strip the html tag. So people can see the pure text at least.
     text_content = strip_tags(html_content)
 
@@ -21,17 +48,19 @@ def send_verify_email(to_mail, from_mail, verify_link):
 
     # create the email, and attach the HTML version as well.
     msg = EmailMultiAlternatives(
-        "Email Verification", text_content, from_mail, [to_mail])
+        "Email Verification", text_content, from_mail, [to_mail]
+    )
     msg.attach_alternative(html_content, "text/html")
     msg.send()
 
 
 def send_reset_email(to_mail, from_mail):
-    FRONTEND_URL = os.getenv('FRONTEND_URL')
     token = get_random_string(length=32)
-    reset_link = FRONTEND_URL + 'reset-password/' + token
+    reset_link = FRONTEND_URL + "/reset-password/" + token
     html_content = render_to_string(
-        'users/reset_mail_template.html', {'FRONTEND_URL': FRONTEND_URL, 'link': reset_link})
+        "users/reset_mail_template.html",
+        {"FRONTEND_URL": FRONTEND_URL, "link": reset_link},
+    )
 
     text_content = strip_tags(html_content)
 
@@ -39,7 +68,6 @@ def send_reset_email(to_mail, from_mail):
     user.reset_password_hash = token
     user.save()
 
-    msg = EmailMultiAlternatives(
-        "Reset Password", text_content, from_mail, [to_mail])
+    msg = EmailMultiAlternatives("Reset Password", text_content, from_mail, [to_mail])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
