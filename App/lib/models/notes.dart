@@ -110,7 +110,6 @@ class Notes with ChangeNotifier {
     }
   }
 
-// TODO: connect this to UI
   Future updateNote(
       String key, String title, String body, String noteID) async {
     print('updating note');
