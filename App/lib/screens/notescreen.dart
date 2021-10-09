@@ -1,8 +1,12 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors, avoid_print, unnecessary_null_comparison
 
 import 'package:app/constants.dart';
+import 'package:app/models/auth.dart';
 import 'package:app/models/note.dart';
+import 'package:app/models/notes.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NoteScreen extends StatefulWidget {
   static const String id = 'notescreen';
@@ -15,15 +19,18 @@ class NoteScreen extends StatefulWidget {
 class _NoteScreenState extends State<NoteScreen> {
   late String title;
   late String body;
+  late String noteID;
   void setVariable() {
     print(widget.note);
     if (widget.note != null) {
       print(widget.note.title);
       title = widget.note.title;
       body = widget.note.body;
+      noteID = widget.note.id;
     } else {
       title = '';
       body = '';
+      noteID = '';
     }
   }
 
@@ -55,7 +62,12 @@ class _NoteScreenState extends State<NoteScreen> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              String key = Provider.of<Auth>(context, listen: false).key;
+              Provider.of<Notes>(context, listen: false)
+                  .deleteNote(key, noteID);
+              Navigator.pushNamed(context, RouteNames.dashboard);
+            },
             icon: Icon(Icons.delete, color: Colors.red),
           ),
         ],

@@ -20,12 +20,21 @@ class DashBoard extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: kyellow,
           iconTheme: IconThemeData(color: kbgcolor),
-          title: Text(
-            'Notefy',
-            style: TextStyle(
-              color: kbgcolor,
-              fontFamily: 'roboto',
-            ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Notefy',
+                style: TextStyle(
+                  color: kbgcolor,
+                  fontFamily: 'roboto',
+                ),
+              ),
+              Image.asset(
+                'images/logo.png',
+                scale: 10,
+              ),
+            ],
           ),
           centerTitle: true,
           actions: [

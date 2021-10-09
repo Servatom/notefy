@@ -59,7 +59,7 @@ class Notes with ChangeNotifier {
   Future getNoteDetail(String key, String noteID) async {
     try {
       http.Response response = await http.get(
-        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        Uri.parse('https://notefyapi.servatom.com/api/notes/$noteID/'),
         headers: {'Authorization': 'Token $key'},
       );
 
@@ -114,7 +114,7 @@ class Notes with ChangeNotifier {
       String key, String title, String body, String noteID) async {
     try {
       http.Response response = await http.put(
-        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        Uri.parse('https://notefyapi.servatom.com/api/notes/$noteID/'),
         headers: {'Authorization': 'Token $key'},
         body: {"title": title, "body": body},
       );
@@ -140,10 +140,11 @@ class Notes with ChangeNotifier {
   Future deleteNote(String key, String noteID) async {
     try {
       http.Response response = await http.delete(
-        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        Uri.parse('https://notefyapi.servatom.com/api/notes/$noteID/'),
         headers: {'Authorization': 'Token $key'},
       );
       if (response.statusCode == 204) {
+        print('delete succesful');
         int index = _notes.indexWhere((element) => element.id == noteID);
         _notes.remove(_notes[index]);
         notifyListeners();
