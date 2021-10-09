@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:app/models/notes.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/models/user.dart';
 import 'package:app/routers/approutes.dart';
 import 'package:app/routers/routenames.dart';
@@ -21,11 +22,22 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: Auth()),
         ChangeNotifierProvider.value(value: Notes()),
         ChangeNotifierProvider.value(value: User()),
+        ChangeNotifierProvider.value(value: CustomTheme()),
       ],
-      child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: AppRoutes.onGenerateRoute,
-          initialRoute: RouteNames.splash),
+      child: Homew(),
     );
+  }
+}
+
+class Homew extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: Provider.of<CustomTheme>(context).isTheme
+            ? CustomTheme.darkTheme
+            : CustomTheme.lightTheme,
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: AppRoutes.onGenerateRoute,
+        initialRoute: RouteNames.splash);
   }
 }

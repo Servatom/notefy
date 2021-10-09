@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, use_rethrow_when_possible
 
 import 'package:app/models/notes.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/models/user.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/cupertino.dart';
@@ -101,6 +102,9 @@ class Auth with ChangeNotifier {
       Navigator.pushNamed(context, RouteNames.mainscreen);
     } else {
       Provider.of<User>(context, listen: false).getUserdetail(key);
+
+      Provider.of<CustomTheme>(context, listen: false).getIsTheme();
+      Provider.of<Notes>(context, listen: false).clearList();
       Provider.of<Notes>(context, listen: false).getList(key);
       Navigator.pushNamed(context, RouteNames.dashboard);
     }

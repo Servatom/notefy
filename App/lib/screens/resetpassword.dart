@@ -5,6 +5,7 @@ import 'package:app/components/error_box.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/models/user.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,8 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kbgcolor,
+      backgroundColor:
+          Provider.of<CustomTheme>(context).isTheme ? kbgcolor : klightpink,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(
@@ -47,7 +49,9 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                   child: IconButton(
                     icon: Icon(
                       Icons.keyboard_arrow_left,
-                      color: Colors.white,
+                      color: Provider.of<CustomTheme>(context).isTheme
+                          ? Colors.white
+                          : Colors.black,
                       size: 40,
                     ),
                     onPressed: () {
@@ -119,7 +123,11 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                                       ? 'Show password'
                                       : 'Hide password',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Provider.of<CustomTheme>(context)
+                                            .isTheme
+                                        ? Colors.white
+                                        : kbgcolor,
+                                    fontSize: 18,
                                   ),
                                 ),
                                 SizedBox(
@@ -128,11 +136,17 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                                 hidePassword
                                     ? Icon(
                                         Icons.visibility,
-                                        color: Colors.white,
+                                        color: Provider.of<CustomTheme>(context)
+                                                .isTheme
+                                            ? Colors.white
+                                            : kbgcolor,
                                       )
                                     : Icon(
                                         Icons.visibility_off,
-                                        color: Colors.white,
+                                        color: Provider.of<CustomTheme>(context)
+                                                .isTheme
+                                            ? Colors.white
+                                            : kbgcolor,
                                       ),
                               ],
                             ),

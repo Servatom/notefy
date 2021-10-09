@@ -2,6 +2,7 @@
 
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/routers/routenames.dart';
 
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kbgcolor,
       appBar: AppBar(
         centerTitle: true,
         title: Row(
@@ -29,7 +29,6 @@ class SettingsScreen extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: kyellow,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -55,7 +54,9 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(height: 15),
             GestureDetector(
                 onTap: () {
-                  print('lmao');
+                  Provider.of<CustomTheme>(context, listen: false)
+                      .toggleTheme();
+                  Navigator.pushNamed(context, RouteNames.sscreen);
                 },
                 child: Sizedboxop(patanahi: 'Theme')),
             SizedBox(height: 15),
@@ -92,7 +93,7 @@ class Sizedboxop extends StatelessWidget {
             20,
           ),
         ),
-        color: kgreyblack,
+        color: Provider.of<CustomTheme>(context).isTheme ? kgreyblack : kpink,
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -102,7 +103,9 @@ class Sizedboxop extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Provider.of<CustomTheme>(context).isTheme
+                  ? Colors.white
+                  : Colors.black,
               fontSize: 25,
             ),
           ),

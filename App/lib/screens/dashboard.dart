@@ -15,10 +15,10 @@ class DashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     List notesList = Provider.of<Notes>(context, listen: true).notesList;
     return Scaffold(
-        backgroundColor: kbgcolor,
+        // backgroundColor: kbgcolor,
         drawer: DashboardDrawer(),
         appBar: AppBar(
-          backgroundColor: kyellow,
+          // backgroundColor: kyellow,
           iconTheme: IconThemeData(color: kbgcolor),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +49,7 @@ class DashBoard extends StatelessWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: kyellow,
+          // backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
             Navigator.pushNamed(
               context,
