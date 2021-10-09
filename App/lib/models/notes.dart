@@ -79,6 +79,7 @@ class Notes with ChangeNotifier {
 
   Future createNote(String key, String title, String body) async {
     try {
+      print('creating new note');
       http.Response response = await http.post(
         Uri.parse('https://notefyapi.servatom.com/api/notes/create/'),
         headers: {'Authorization': 'Token $key'},
@@ -112,6 +113,7 @@ class Notes with ChangeNotifier {
 // TODO: connect this to UI
   Future updateNote(
       String key, String title, String body, String noteID) async {
+    print('updating note');
     try {
       http.Response response = await http.put(
         Uri.parse('https://notefyapi.servatom.com/api/notes/$noteID/'),
@@ -129,7 +131,7 @@ class Notes with ChangeNotifier {
 
         notifyListeners();
       } else {
-        throw 'Error';
+        throw 'Error in update note';
       }
     } catch (e) {
       print(e);

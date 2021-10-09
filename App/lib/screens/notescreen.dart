@@ -71,10 +71,15 @@ class _NoteScreenState extends State<NoteScreen> {
                           Navigator.pop(context);
                         });
                   });
-            } else {
+            } else if (noteID == '') {
               String key = Provider.of<Auth>(context, listen: false).key;
               Provider.of<Notes>(context, listen: false)
                   .createNote(key, title, body);
+              Navigator.pop(context);
+            } else if (noteID != '') {
+              String key = Provider.of<Auth>(context, listen: false).key;
+              Provider.of<Notes>(context, listen: false)
+                  .updateNote(key, title, body, noteID);
               Navigator.pop(context);
             }
           },
