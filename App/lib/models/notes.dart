@@ -59,7 +59,7 @@ class Notes with ChangeNotifier {
   Future getNoteDetail(String key, String noteID) async {
     try {
       http.Response response = await http.get(
-        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        Uri.parse('https://notefyapi.servatom.com/api/notes/$noteID/'),
         headers: {'Authorization': 'Token $key'},
       );
 
@@ -77,9 +77,9 @@ class Notes with ChangeNotifier {
     }
   }
 
-// TODO: connect this to UI
   Future createNote(String key, String title, String body) async {
     try {
+      print('creating new note');
       http.Response response = await http.post(
         Uri.parse('https://notefyapi.servatom.com/api/notes/create/'),
         headers: {'Authorization': 'Token $key'},
@@ -90,31 +90,32 @@ class Notes with ChangeNotifier {
       final data = jsonDecode(d);
 
       print(response.body);
-      if (response.statusCode == 200) {
+      print(response.statusCode);
+      if (response.statusCode == 201) {
         _notes.add(
           Note(
             body: data["body"],
             title: data["title"],
-            id: data["id"],
+            id: data["id"].toString(),
             createTime: data["created_at"],
             updateTime: data["updated_at"],
           ),
         );
         notifyListeners();
       } else {
-        throw 'Error';
+        throw 'Error in create note';
       }
     } catch (e) {
       print(e);
     }
   }
 
-// TODO: connect this to UI
   Future updateNote(
       String key, String title, String body, String noteID) async {
+    print('updating note');
     try {
       http.Response response = await http.put(
-        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        Uri.parse('https://notefyapi.servatom.com/api/notes/$noteID/'),
         headers: {'Authorization': 'Token $key'},
         body: {"title": title, "body": body},
       );
@@ -129,21 +130,21 @@ class Notes with ChangeNotifier {
 
         notifyListeners();
       } else {
-        throw 'Error';
+        throw 'Error in update note';
       }
     } catch (e) {
       print(e);
     }
   }
 
-// TODO: connect this to UI
   Future deleteNote(String key, String noteID) async {
     try {
       http.Response response = await http.delete(
-        Uri.parse('https://notefyapi.servatom.com/api/notes/{$noteID}/'),
+        Uri.parse('https://notefyapi.servatom.com/api/notes/$noteID/'),
         headers: {'Authorization': 'Token $key'},
       );
       if (response.statusCode == 204) {
+        print('delete succesful');
         int index = _notes.indexWhere((element) => element.id == noteID);
         _notes.remove(_notes[index]);
         notifyListeners();

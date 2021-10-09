@@ -13,19 +13,28 @@ import 'package:provider/provider.dart';
 class DashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List notesList = Provider.of<Notes>(context).notesList;
+    List notesList = Provider.of<Notes>(context, listen: true).notesList;
     return Scaffold(
         backgroundColor: kbgcolor,
         drawer: DashboardDrawer(),
         appBar: AppBar(
           backgroundColor: kyellow,
           iconTheme: IconThemeData(color: kbgcolor),
-          title: Text(
-            'Notefy',
-            style: TextStyle(
-              color: kbgcolor,
-              fontFamily: 'roboto',
-            ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Notefy',
+                style: TextStyle(
+                  color: kbgcolor,
+                  fontFamily: 'roboto',
+                ),
+              ),
+              Image.asset(
+                'images/logo.png',
+                scale: 10,
+              ),
+            ],
           ),
           centerTitle: true,
           actions: [

@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
 
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
@@ -15,9 +15,19 @@ class SettingsScreen extends StatelessWidget {
       backgroundColor: kbgcolor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'Settings',
-          style: TextStyle(color: Colors.black, fontSize: 20),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Settings',
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            ),
+            Icon(
+              Icons.settings,
+              color: kbgcolor,
+            ),
+          ],
         ),
         backgroundColor: kyellow,
         leading: IconButton(
