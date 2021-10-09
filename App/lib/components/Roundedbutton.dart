@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, file_names
 
+import 'package:app/constants.dart';
+import 'package:app/models/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RoundedButton extends StatelessWidget {
   RoundedButton({required this.title, required this.onPressed});
@@ -12,7 +15,9 @@ class RoundedButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         elevation: 5.0,
-        color: Color(0xFFF2E88B),
+        color: Provider.of<CustomTheme>(context).isTheme
+            ? kpink
+            : Color(0xFF8CD4CB),
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
           onPressed: () => onPressed(),
@@ -21,7 +26,7 @@ class RoundedButton extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              fontSize: 27,
+              fontSize: 21,
               color: Colors.black,
               fontFamily: 'Roboto',
             ),
