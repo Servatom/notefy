@@ -56,5 +56,24 @@ class User with ChangeNotifier {
     }
   }
 
-  // TODO: implement and add reset password api call
+  Future resetPassword(
+      String key, String oldpassword, String newPassword) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse('https://notefyapi.servatom.com/api/users/reset_password/'),
+        body: {"old_password": oldpassword, "new_password": newPassword},
+        headers: {'Authorization': 'Token $key'},
+      );
+
+      final data = jsonDecode(response.body);
+      print(data);
+      if (response.statusCode == 200) {
+        print(data["detail"].toString());
+      } else {
+        throw data["detail"].toString();
+      }
+    } catch (e) {
+      throw (e);
+    }
+  }
 }
