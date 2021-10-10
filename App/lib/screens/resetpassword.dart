@@ -1,10 +1,15 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unused_import
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unused_import, prefer_const_literals_to_create_immutables
 
 import 'package:app/components/Roundedbutton.dart';
+import 'package:app/components/error_box.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
+import 'package:app/models/auth.dart';
+import 'package:app/models/theme.dart';
+import 'package:app/models/user.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ResetPassScreen extends StatefulWidget {
   static const String id = 'resetpass_screen';
@@ -14,7 +19,9 @@ class ResetPassScreen extends StatefulWidget {
 }
 
 class _ResetPassScreenState extends State<ResetPassScreen> {
-  String oldpassword1 = '';
+  bool hidePassword = true;
+  bool spinner = false;
+  String oldpassword = '';
   String newpassword = '';
   String confirmpassword = '';
   final controller1 = TextEditingController();
@@ -23,7 +30,8 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kbgcolor,
+      backgroundColor:
+          Provider.of<CustomTheme>(context).isTheme ? kbgcolor : klightpink,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(
@@ -41,7 +49,9 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                   child: IconButton(
                     icon: Icon(
                       Icons.keyboard_arrow_left,
-                      color: Colors.white,
+                      color: Provider.of<CustomTheme>(context).isTheme
+                          ? Colors.white
+                          : Colors.black,
                       size: 40,
                     ),
                     onPressed: () {
@@ -49,61 +59,171 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                     },
                   ),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Flexible(
-                      child: Image.asset(
-                        'images/logo.png',
-                        alignment: Alignment.center,
-                        scale: 1.2,
+                spinner
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: kyellow,
+                        ),
+                      )
+                    : Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Flexible(
+                            child: Image.asset(
+                              'images/logo.png',
+                              alignment: Alignment.center,
+                              scale: 1.2,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 50,
+                          ),
+                          InputField(
+                              obscure: hidePassword,
+                              hinttext: "Enter the Old Password",
+                              textcontroller: controller1,
+                              onChanged: (value) {
+                                oldpassword = value;
+                              }),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          InputField(
+                              obscure: hidePassword,
+                              hinttext: 'Enter the New Password',
+                              textcontroller: controller2,
+                              onChanged: (value) {
+                                newpassword = value;
+                              }),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          InputField(
+                              obscure: hidePassword,
+                              hinttext: 'Confirm New Password',
+                              textcontroller: controller3,
+                              onChanged: (value) {
+                                confirmpassword = value;
+                              }),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                hidePassword = !hidePassword;
+                              });
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  hidePassword
+                                      ? 'Show password'
+                                      : 'Hide password',
+                                  style: TextStyle(
+                                    color: Provider.of<CustomTheme>(context)
+                                            .isTheme
+                                        ? Colors.white
+                                        : kbgcolor,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                hidePassword
+                                    ? Icon(
+                                        Icons.visibility,
+                                        color: Provider.of<CustomTheme>(context)
+                                                .isTheme
+                                            ? Colors.white
+                                            : kbgcolor,
+                                      )
+                                    : Icon(
+                                        Icons.visibility_off,
+                                        color: Provider.of<CustomTheme>(context)
+                                                .isTheme
+                                            ? Colors.white
+                                            : kbgcolor,
+                                      ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          RoundedButton(
+                            title: 'Reset Password',
+                            onPressed: () async {
+                              try {
+                                if (oldpassword == '') {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return ErrorBox(
+                                            errorText:
+                                                'Enter your old password',
+                                            onpressed: () {
+                                              Navigator.pop(context);
+                                            });
+                                      });
+                                } else if (newpassword == confirmpassword) {
+                                  setState(() {
+                                    spinner = true;
+                                  });
+                                  String key =
+                                      Provider.of<Auth>(context, listen: false)
+                                          .key;
+                                  await Provider.of<User>(context,
+                                          listen: false)
+                                      .resetPassword(
+                                          key, oldpassword, newpassword);
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return ErrorBox(
+                                            errorText: 'Password changed',
+                                            onpressed: () {
+                                              Navigator.pop(context);
+                                            });
+                                      });
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return ErrorBox(
+                                            errorText:
+                                                'New and confirm passwords does not match',
+                                            onpressed: () {
+                                              Navigator.pop(context);
+                                            });
+                                      });
+                                }
+                              } catch (e) {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return ErrorBox(
+                                          errorText: e.toString(),
+                                          onpressed: () {
+                                            Navigator.pop(context);
+                                          });
+                                    });
+                              } finally {
+                                setState(() {
+                                  spinner = false;
+                                });
+                              }
+
+                              controller1.clear();
+                              controller2.clear();
+                              controller3.clear();
+                            },
+                          ),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    InputField(
-                        obscure: false,
-                        hinttext: "Enter the Old Password",
-                        
-                        textcontroller: controller1,
-                        onChanged: (value) {
-                          oldpassword1 = value;
-                        }),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InputField(
-                        obscure: true,
-                        hinttext: 'Enter the New Password',
-                        textcontroller: controller2,
-                        onChanged: (value) {
-                          newpassword = value;
-                        }),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InputField(
-                        obscure: true,
-                        hinttext: 'Confirm New Password',
-                        textcontroller: controller3,
-                        onChanged: (value) {
-                        confirmpassword = value;
-                        }),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    RoundedButton(
-                      title: 'Reset Password',
-                      
-                      onPressed: () async {
-                        controller1.clear();
-                        controller2.clear();
-                        controller3.clear();
-                      },
-                    ),
-                  ],
-                ),
               ]),
         ),
       ),

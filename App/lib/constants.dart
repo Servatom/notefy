@@ -2,9 +2,20 @@ import 'package:flutter/material.dart';
 
 // main colour
 const kbgcolor = Color(0xFF1A1A1A);
+
 const kyellow = Color(0xFFF2E88B);
+const kpink = Color(0xFFFFD9DF);
+
+const kmelon = Color(0xFFF7B2AD);
+const kcambridgeblue = Color(0xFF9ABCA7);
+const ksilverpink = Color(0xFFCEB7B3);
+const ksteelteal = Color(0xFF62929E);
+const kgreenyellow = Color(0xFFDDF45B);
+const klightpink = Color(0xFFfce4ec);
+
+const kgreyblack = Color(0xFF424242);
 
 // note tile
-const kNoteTitle = Colors.black;
-const kNoteBody = Colors.black54;
-const kNotetime = Colors.black38;
+const kNoteTitle = Colors.white;
+const kNoteBody = Colors.grey;
+const kNotetime = Colors.grey;

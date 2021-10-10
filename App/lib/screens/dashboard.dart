@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, avoid_print
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, avoid_print, unused_import
 
 import 'package:app/models/auth.dart';
 import 'package:app/components/drawer.dart';
@@ -13,19 +13,28 @@ import 'package:provider/provider.dart';
 class DashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List notesList = Provider.of<Notes>(context).notesList;
+    List notesList = Provider.of<Notes>(context, listen: true).notesList;
     return Scaffold(
-        backgroundColor: kbgcolor,
+        // backgroundColor: kbgcolor,
         drawer: DashboardDrawer(),
         appBar: AppBar(
-          backgroundColor: kyellow,
+          // backgroundColor: kyellow,
           iconTheme: IconThemeData(color: kbgcolor),
-          title: Text(
-            'Notefy',
-            style: TextStyle(
-              color: kbgcolor,
-              fontFamily: 'Roboto',
-            ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Notefy',
+                style: TextStyle(
+                  color: kbgcolor,
+                  fontFamily: 'roboto',
+                ),
+              ),
+              Image.asset(
+                'images/logo.png',
+                scale: 10,
+              ),
+            ],
           ),
           centerTitle: true,
           actions: [
@@ -40,7 +49,7 @@ class DashBoard extends StatelessWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: kyellow,
+          // backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
             Navigator.pushNamed(
               context,

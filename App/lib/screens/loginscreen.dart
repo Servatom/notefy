@@ -99,6 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               .getUserdetail(key);
 
                           Provider.of<Notes>(context, listen: false)
+                              .clearList();
+                          Provider.of<Notes>(context, listen: false)
                               .getList(key);
                           Navigator.pushNamed(context, RouteNames.dashboard);
                         } catch (e) {
@@ -128,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, RouteNames.dashboard);
+                        Navigator.pushNamed(context, RouteNames.register);
                       },
                     ),
                   ],

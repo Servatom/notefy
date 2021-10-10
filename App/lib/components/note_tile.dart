@@ -2,8 +2,10 @@
 
 import 'package:app/constants.dart';
 import 'package:app/models/note.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NoteTile extends StatelessWidget {
   final Note note;
@@ -34,19 +36,27 @@ class NoteTile extends StatelessWidget {
                 20,
               ),
             ),
-            color: kyellow,
+            // color: Color(0xFFf8bbd0),
+            // color: Color.fromRGBO(254, 216, 238, 1),
+            color: Provider.of<CustomTheme>(context).isTheme
+                ? kgreyblack
+                : klightpink,
             elevation: 5,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    note.title,
+                    note.title == 'k' ? note.body.split(' ').first : note.title,
                     textAlign: TextAlign.left,
+                    maxLines: 1,
                     style: TextStyle(
-                      color: kNoteTitle,
+                      color: Provider.of<CustomTheme>(context).isTheme
+                          ? kNoteTitle
+                          : Colors.black,
                       fontSize: 25,
                     ),
                   ),
@@ -54,7 +64,9 @@ class NoteTile extends StatelessWidget {
                     note.body,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: kNoteBody,
+                      color: Provider.of<CustomTheme>(context).isTheme
+                          ? kNoteBody
+                          : Colors.black54,
                       fontSize: 15,
                     ),
                     maxLines: 1,
@@ -62,7 +74,9 @@ class NoteTile extends StatelessWidget {
                   Text(
                     note.updateTime,
                     style: TextStyle(
-                      color: kNotetime,
+                      color: Provider.of<CustomTheme>(context).isTheme
+                          ? kNotetime
+                          : Colors.black38,
                     ),
                   )
                 ],

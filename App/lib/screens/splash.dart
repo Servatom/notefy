@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, avoid_print
 
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -33,7 +34,6 @@ class _SplashscreenState extends State<Splashscreen> {
 
       print('response code = ${response.statusCode}');
       if (response.statusCode == 404) {
-        Provider.of<Auth>(context, listen: false).setKey();
         Provider.of<Auth>(context, listen: false).isLoggedIn(context);
       } else if (response.statusCode == 523) {
         serverDownpage();

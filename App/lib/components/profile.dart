@@ -2,6 +2,7 @@
 
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,21 +30,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Flexible(
                 child: CircleAvatar(
-                  backgroundColor: kyellow,
+                  backgroundColor: Provider.of<CustomTheme>(context).isTheme
+                      ? kyellow
+                      : kbgcolor,
                   radius: 62,
                   child: isLoading
                       ? CircularProgressIndicator(
                           backgroundColor: kbgcolor,
                         )
                       : CircleAvatar(
-                          backgroundColor: kyellow,
+                          backgroundColor:
+                              Provider.of<CustomTheme>(context).isTheme
+                                  ? kyellow
+                                  : kbgcolor,
                           radius: 60,
                           backgroundImage: NetworkImage(imageInfo),
                         ),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               GestureDetector(
                 onTap: () async {
@@ -59,7 +65,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
                 child: Text(
                   'Change Avatar',
-                  style: TextStyle(color: Colors.white, fontFamily: 'roboto'),
+                  style: TextStyle(
+                    color: Provider.of<CustomTheme>(context).isTheme
+                        ? Colors.white
+                        : kbgcolor,
+                    fontSize: 18,
+                    fontFamily: 'roboto',
+                  ),
                 ),
               ),
               SizedBox(height: 50),
@@ -67,7 +79,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   name,
                   style: TextStyle(
-                      color: Colors.white, fontSize: 30, fontFamily: 'lobster'),
+                    color: Provider.of<CustomTheme>(context).isTheme
+                        ? Colors.white
+                        : kbgcolor,
+                    fontSize: 30,
+                    fontFamily: 'Lobster',
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -75,7 +92,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   email,
                   style: TextStyle(
-                      color: Colors.white, fontSize: 30, fontFamily: 'lobster'),
+                    color: Provider.of<CustomTheme>(context).isTheme
+                        ? Colors.white
+                        : kbgcolor,
+                    fontSize: 20,
+                    fontFamily: 'roboto',
+                  ),
                 ),
               ),
             ],

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, use_rethrow_when_possible
 
 import 'package:app/models/notes.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/models/user.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/cupertino.dart';
@@ -80,40 +81,30 @@ class Auth with ChangeNotifier {
   void logoutUser(context) {
     key = '';
     setKey();
+    Provider.of<Notes>(context, listen: false).clearList();
     Navigator.pushNamed(context, RouteNames.mainscreen);
   }
 
   void setKey() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('key', key);
+    print('set key $key');
   }
 
-  void getKey() async {
+  void isLoggedIn(context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    key = preferences.getString('key').toString();
-  }
+    if (preferences.containsKey('key')) {
+      key = preferences.getString('key').toString();
+    }
 
-  // void setCounter() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   preferences.setInt('counter', counter);
-  // }
-
-  // void getCounter() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   var c = preferences.getInt('counter');
-  //   counter = c.toInt();
-  // }
-
-  void isLoggedIn(context) {
-    // if (counter != 1) {
-    getKey();
-    // }
-    // counter++;
-    // print(key);
+    print('isloggedin $key');
     if (key == '') {
       Navigator.pushNamed(context, RouteNames.mainscreen);
     } else {
       Provider.of<User>(context, listen: false).getUserdetail(key);
+
+      Provider.of<CustomTheme>(context, listen: false).getIsTheme();
+      Provider.of<Notes>(context, listen: false).clearList();
       Provider.of<Notes>(context, listen: false).getList(key);
       Navigator.pushNamed(context, RouteNames.dashboard);
     }
