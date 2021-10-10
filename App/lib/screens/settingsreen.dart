@@ -58,7 +58,6 @@ class SettingsScreen extends StatelessWidget {
                 onTap: () {
                   Provider.of<CustomTheme>(context, listen: false)
                       .toggleTheme();
-                  Navigator.pushNamed(context, RouteNames.sscreen);
                 },
                 child: Sizedboxop(patanahi: 'Theme')),
             SizedBox(height: 15),
