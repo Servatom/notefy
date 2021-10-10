@@ -99,14 +99,14 @@ class Auth with ChangeNotifier {
 
     print('isloggedin $key');
     if (key == '') {
-      Navigator.pushNamed(context, RouteNames.mainscreen);
+      Navigator.pushReplacementNamed(context, RouteNames.mainscreen);
     } else {
       Provider.of<User>(context, listen: false).getUserdetail(key);
 
       Provider.of<CustomTheme>(context, listen: false).getIsTheme();
       Provider.of<Notes>(context, listen: false).clearList();
       Provider.of<Notes>(context, listen: false).getList(key);
-      Navigator.pushNamed(context, RouteNames.dashboard);
+      Navigator.pushReplacementNamed(context, RouteNames.dashboard);
     }
   }
 }
