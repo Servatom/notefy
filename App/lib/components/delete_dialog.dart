@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+
 import 'dart:ui';
 
 import 'package:app/models/auth.dart';
 import 'package:app/models/notes.dart';
+import 'package:app/models/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,11 +23,16 @@ class DeleteDialog extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: kbgcolor,
+        backgroundColor:
+            Provider.of<CustomTheme>(context, listen: false).isTheme
+                ? kbgcolor
+                : kpink,
         title: Text(
           'Do you want to delete all the tasks?',
           style: TextStyle(
-            color: Colors.white,
+            color: Provider.of<CustomTheme>(context, listen: false).isTheme
+                ? Colors.white
+                : Colors.black,
           ),
         ),
         actionsPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -36,7 +44,9 @@ class DeleteDialog extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             elevation: 10,
-            color: kyellow,
+            color: Provider.of<CustomTheme>(context, listen: false).isTheme
+                ? kyellow
+                : Color(0xFF8CD4CB),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -63,8 +73,8 @@ class DeleteDialog extends StatelessWidget {
             onPressed: () {
               String key = Provider.of<Auth>(context, listen: false).key;
               Provider.of<Notes>(context, listen: false).deleteAllNotes(key);
-              print('hello');
               Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             child: Padding(
               padding: EdgeInsets.all(10.0),

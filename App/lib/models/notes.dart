@@ -56,7 +56,6 @@ class Notes with ChangeNotifier {
     }
   }
 
-// TODO: connect this to UI
   Future getNoteDetail(String key, String noteID) async {
     try {
       http.Response response = await http.get(

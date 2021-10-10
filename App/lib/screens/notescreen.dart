@@ -5,6 +5,7 @@ import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
 import 'package:app/models/note.dart';
 import 'package:app/models/notes.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,9 +46,14 @@ class _NoteScreenState extends State<NoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kbgcolor,
+      backgroundColor: Provider.of<CustomTheme>(context, listen: false).isTheme
+          ? kbgcolor
+          : Colors.white,
       appBar: AppBar(
-        backgroundColor: kbgcolor,
+        backgroundColor:
+            Provider.of<CustomTheme>(context, listen: false).isTheme
+                ? kbgcolor
+                : Colors.white,
         elevation: 0,
         leading: IconButton(
           onPressed: () {
@@ -85,7 +91,9 @@ class _NoteScreenState extends State<NoteScreen> {
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
-            color: kyellow,
+            color: Provider.of<CustomTheme>(context, listen: false).isTheme
+                ? kyellow
+                : kpink,
             size: 35,
           ),
         ),
@@ -117,7 +125,9 @@ class _NoteScreenState extends State<NoteScreen> {
               },
               maxLines: 1,
               style: TextStyle(
-                color: Colors.white,
+                color: Provider.of<CustomTheme>(context, listen: false).isTheme
+                    ? Colors.white
+                    : Colors.black,
                 fontSize: 25,
               ),
               decoration: InputDecoration(
@@ -128,7 +138,10 @@ class _NoteScreenState extends State<NoteScreen> {
                 ),
                 hintStyle: TextStyle(
                   fontSize: 25,
-                  color: Colors.grey,
+                  color:
+                      Provider.of<CustomTheme>(context, listen: false).isTheme
+                          ? Colors.grey
+                          : Colors.black54,
                 ),
               ),
               onFieldSubmitted: (value) {},
@@ -143,7 +156,9 @@ class _NoteScreenState extends State<NoteScreen> {
               keyboardType: TextInputType.multiline,
               maxLines: null,
               style: TextStyle(
-                color: Colors.white,
+                color: Provider.of<CustomTheme>(context, listen: false).isTheme
+                    ? Colors.white
+                    : Colors.black,
                 fontSize: 20,
               ),
               decoration: InputDecoration(
@@ -154,7 +169,10 @@ class _NoteScreenState extends State<NoteScreen> {
                 ),
                 hintStyle: TextStyle(
                   fontSize: 20,
-                  color: Colors.grey,
+                  color:
+                      Provider.of<CustomTheme>(context, listen: false).isTheme
+                          ? Colors.grey
+                          : Colors.black54,
                 ),
               ),
             ))

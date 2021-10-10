@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 // main colour
@@ -19,3 +21,15 @@ const kgreyblack = Color(0xFF424242);
 const kNoteTitle = Colors.white;
 const kNoteBody = Colors.grey;
 const kNotetime = Colors.grey;
+
+final snackBar = SnackBar(
+  content: Text(
+    'Poof! All notes deleted',
+    style: TextStyle(
+      fontSize: 20,
+      fontFamily: 'roboto',
+    ),
+  ),
+  duration: Duration(seconds: 2),
+  backgroundColor: Colors.black,
+);

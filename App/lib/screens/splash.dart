@@ -2,7 +2,6 @@
 
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
-import 'package:app/models/theme.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
