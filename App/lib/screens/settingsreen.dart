@@ -1,10 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
 
 import 'package:app/components/delete_dialog.dart';
-import 'package:app/components/error_box.dart';
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
-import 'package:app/models/notes.dart';
 import 'package:app/models/theme.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:app/components/setting_tile.dart';

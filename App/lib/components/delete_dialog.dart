@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+
 import 'dart:ui';
 
 import 'package:app/models/auth.dart';
@@ -63,7 +65,6 @@ class DeleteDialog extends StatelessWidget {
             onPressed: () {
               String key = Provider.of<Auth>(context, listen: false).key;
               Provider.of<Notes>(context, listen: false).deleteAllNotes(key);
-              print('hello');
               Navigator.pop(context);
             },
             child: Padding(
