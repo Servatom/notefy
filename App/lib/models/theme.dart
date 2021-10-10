@@ -40,7 +40,7 @@ class CustomTheme extends ChangeNotifier {
   void getIsTheme() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     isTheme = preferences.getBool("isTheme") ?? true;
-    // notifyListeners();
+    notifyListeners();
   }
 
   void setIsTheme() async {
