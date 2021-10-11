@@ -1,9 +1,15 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+
+import 'package:app/models/auth.dart';
+import 'package:app/components/error_box.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
-import 'package:app/screens/mainscreen.dart';
+import 'package:app/models/notes.dart';
+import 'package:app/models/user.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
-import 'package:app/components/Roundedbutton.dart';
-import 'package:http/http.dart' as http;
+import 'package:app/components/roundedbutton.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -14,69 +20,124 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String email = '';
   String password = '';
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kbgcolor,
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: IconButton(
-                icon: Icon(Icons.keyboard_arrow_left,
-                    color: Colors.white, size: 40),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'images/logo.png',
-                  alignment: Alignment.center,
-                  scale: 1.2,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(
+            top: 50,
+            left: 20,
+            right: 20,
+            bottom: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
                 ),
-                SizedBox(
-                  height: 50,
-                ),
-                InputField(
-                    hinttext: 'Email',
-                    onChanged: (value) {
-                      email = value;
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                InputField(
-                    obscure: true,
-                    hinttext: 'Password',
-                    onChanged: (value) {
-                      password = value;
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                RoundedButton(
-                  onPressed: () async {
-                    final response = await http.post(
-                        Uri.parse(
-                            "https://notefyapi.servatom.com/api/auth/login/"),
-                        body: {"email": email, "password": password});
-                    if (response.statusCode == 200) {
-                      print("Success");
-                    } else {
-                      print(response.reasonPhrase);
-                    }
+                child: IconButton(
+                  icon: Icon(
+                    Icons.keyboard_arrow_left,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, RouteNames.mainscreen);
                   },
-                  title: "Login",
-                )
-              ],
-            ),
-          ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 35.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: Image.asset(
+                        'images/logo.png',
+                        alignment: Alignment.center,
+                        scale: 1.2,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    InputField(
+                        obscure: false,
+                        hinttext: 'Email',
+                        textcontroller: controller1,
+                        onChanged: (value) {
+                          email = value;
+                        }),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InputField(
+                        obscure: true,
+                        hinttext: 'Password',
+                        textcontroller: controller2,
+                        onChanged: (value) {
+                          password = value;
+                        }),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    RoundedButton(
+                      onPressed: () async {
+                        try {
+                          await Provider.of<Auth>(context, listen: false)
+                              .loginUser(email, password);
+
+                          String key =
+                              Provider.of<Auth>(context, listen: false).key;
+                          Provider.of<User>(context, listen: false)
+                              .getUserdetail(key);
+
+                          Provider.of<Notes>(context, listen: false)
+                              .clearList();
+                          Provider.of<Notes>(context, listen: false)
+                              .getList(key);
+                          Navigator.pushNamed(context, RouteNames.dashboard);
+                        } catch (e) {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return ErrorBox(
+                                  errorText: e.toString(),
+                                  onpressed: () {
+                                    controller1.clear();
+                                    controller2.clear();
+                                    Navigator.pop(context);
+                                  },
+                                );
+                              });
+                        }
+                      },
+                      title: "Login",
+                    ),
+                    GestureDetector(
+                      child: Text(
+                        'New here? Register Now!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, RouteNames.register);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
