@@ -9,6 +9,7 @@ ENV PYTHONUNBUFFERED=1
 
 # Install pip requirements
 COPY requirements.txt .
+RUN pip install gunicorn[gevent]
 RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
