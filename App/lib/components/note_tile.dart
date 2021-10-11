@@ -17,7 +17,7 @@ class NoteTile extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: 20,
         right: 20,
-        top: 10,
+        bottom: 10,
       ),
       child: GestureDetector(
         onTap: () {
@@ -36,8 +36,7 @@ class NoteTile extends StatelessWidget {
                 20,
               ),
             ),
-            // color: Color(0xFFf8bbd0),
-            // color: Color.fromRGBO(254, 216, 238, 1),
+            
             color: Provider.of<CustomTheme>(context).isTheme
                 ? kgreyblack
                 : klightpink,

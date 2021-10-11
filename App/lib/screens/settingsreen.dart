@@ -46,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
-            GestureDetector(
+           InkWell(
               onTap: () {
                 Navigator.pushNamed(context, RouteNames.resetpasswordscreen);
               },
