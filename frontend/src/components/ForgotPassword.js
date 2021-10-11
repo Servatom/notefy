@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import '../assets/css/ForgotPassword.css';
+
+import React, { useState } from 'react';
 
 import Alert from './Alert';
-import Button from './Button';
-import Input from './Input';
 import URL from '../URL';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -56,7 +56,8 @@ const ForgotPassword = () => {
 
 	return (
 		<>
-			<div>
+			<div className='password-container'>
+				<h1>Reset password</h1>
 				<form onSubmit={handleSubmit}>
 					<label htmlFor='password1'>New Password:</label>
 					<input
