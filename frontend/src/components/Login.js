@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import "../assets/css/Login.css";
 import "../assets/css/loader.css";
+import swal from "sweetalert";
 import typing from "../assets/media/typing.gif";
 import URL from "../URL";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import AuthContext from "../store/auth-context";
 
 const Login = () => {
@@ -13,6 +13,18 @@ const Login = () => {
 	const mq = window.matchMedia("(mix-width: 480px)");
 
 	const [coverClass, setCoverClass] = useState("cover cover-register");
+
+	const forgetPasswordHandler = () => {
+		swal({
+		text: "Take a deep breath and try to remember your password.\nDo you still need to reset your password?",
+		confirmButtonColor: "#f5e44f",
+		confirmButtonText: "Yes, delete it!",
+		buttons: ["Nope!", "Yes!"],
+		})
+		.then((value) => {
+			value ? history.push('/forgot-password') : swal.close()
+		})
+  	};
 
 	const [loading, setLoading] = useState(false);
 	const [created, setCreated] = useState(false);
@@ -201,9 +213,9 @@ const Login = () => {
 						onChange={passChangeHandler}
 						value={pass}
 					/>
-					<Link className="forgot-password" to="/forgot-password">
-						Forgot password?
-					</Link>
+			      	<a className="forgot-password" onClick={forgetPasswordHandler}>
+            			Forgot password?
+          			</a>
 					{warning.status ? (
 						<span className="warning login-warning">
 							{warning.body}
