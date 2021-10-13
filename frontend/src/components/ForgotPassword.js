@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Alert from './Alert';
 import URL from '../URL';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const PW_EMAIL_ENDPOINT = '/api/users/forgot_password/';
 const NEW_PW_ENDPOINT = '/api/users/new_password/';
@@ -58,6 +58,7 @@ const ForgotPassword = () => {
 		<>
 			<div className='password-container'>
 				<h1>Reset password</h1>
+				<p>Forgot your password? Reset it here.</p>
 				<form onSubmit={handleSubmit}>
 					<label htmlFor='password1'>New Password:</label>
 					<input
@@ -73,6 +74,11 @@ const ForgotPassword = () => {
 						onChange={handleFormChange}
 						required
 					/>
+					<p>
+						<Link to='/'>
+							Remember your password?
+						</Link>
+					</p>
 					<button type='submit' disabled={loading}>
 						Submit
 					</button>
