@@ -144,7 +144,6 @@ const ForgotPassword = () => {
 		</>
 	)
 
-
 	const renderContent = (isEmailVerified) => {
 		switch (isEmailVerified) {
 			case true:
