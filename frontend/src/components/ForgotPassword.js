@@ -7,7 +7,7 @@ import URL from '../URL';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
-const PW_EMAIL_ENDPOINT = '/api/users/forgot_password/';
+const FORGOT_PW_ENDPOINT = '/api/users/forgot_password/';
 const NEW_PW_ENDPOINT = '/api/users/new_password/';
 const UNVERIFIED_MSG = 'There was an issue verifying your email.'
 
@@ -40,8 +40,12 @@ const ForgotPassword = () => {
 		});
 	};
 
-	const submitEmail = email => axios.post(URL + PW_EMAIL_ENDPOINT, email)
-
+	const submitEmail = email => fetch(`${URL}${FORGOT_PW_ENDPOINT}`, {
+		method: 'POST',
+		'Content-Type': 'application/json',
+		body: JSON.stringify(email),
+	})	
+	
 	const handleEmailSubmit = async e => {
 		e.preventDefault()
 		try {
@@ -50,6 +54,7 @@ const ForgotPassword = () => {
 				return;
 			}
 			const response = await submitEmail(emailState.email)
+			console.log('response:', response)
 			if (response.status !== 200) {
 				setIsEmailVerified('unverified')
 				setErrorMsg(response.statusText)
@@ -87,6 +92,12 @@ const ForgotPassword = () => {
 		setPasswordState({ password1: '', password2: '' });
 	};
 
+	const submitBtn = (
+		<button type='submit' disabled={loading}>
+			Submit
+		</button>
+	)
+
 	const emailForm = (
 		<> 
 			<h1>Enter email</h1>
@@ -98,6 +109,7 @@ const ForgotPassword = () => {
 					value={emailState.email}  
 					onChange={handleEmailChange}
 				/>
+				{submitBtn}
 			</form>
 		</>
 	)
@@ -126,9 +138,7 @@ const ForgotPassword = () => {
 						Remember your password?
 					</Link>
 				</p>
-				<button type='submit' disabled={loading}>
-					Submit
-				</button>
+				{submitBtn}
 			</form>
 		</>	
 	)
@@ -136,10 +146,8 @@ const ForgotPassword = () => {
 	const errorMessage = (
 		<>
 			<p className='error-message'>{UNVERIFIED_MSG}</p>
-			<p>
-				<Link onClick={() => window.location.reload()}>
-					Try again?
-				</Link>
+			<p >
+				<span className='try-again' onClick={() => window.location.reload()}>Try again?</span>
 			</p>
 		</>
 	)
@@ -160,13 +168,13 @@ const ForgotPassword = () => {
 			<div className='password-container'>
 				{renderContent(isEmailVerified)}
 				{errorMsg && (
-					<Alert onClose={setErrorMsg}>
+					<Alert onClose={setErrorMsg(false)}>
 						<p>{errorMsg}</p>
 						<small>Tap to dismiss.</small>
 					</Alert>
 				)}
 				{successMsg && (
-					<Alert>
+					<Alert onClose={setSuccessMsg(false)}>
 						<p>{successMsg}</p>
 						<small>Tap to dismiss.</small>
 					</Alert>
