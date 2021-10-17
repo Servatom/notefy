@@ -42,8 +42,8 @@ const ForgotPassword = () => {
 
 	const submitEmail = email => fetch(`${URL}${FORGOT_PW_ENDPOINT}`, {
 		method: 'POST',
-		'Content-Type': 'application/json',
-		body: JSON.stringify(email),
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ email: email }),
 	})	
 	
 	const handleEmailSubmit = async e => {
