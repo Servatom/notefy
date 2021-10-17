@@ -6,10 +6,19 @@ import colors from "../assets/media/colors.png";
 import notesoverlap from "../assets/media/notesoverlap.png";
 import MoonToggle from "../components/MoonToggle";
 import Login from "../components/Login";
+import Alert from "../components/Alert";
 
-function LandingPage() {
+function LandingPage(props) {
   return (
     <>
+           {
+            props.isError?
+            <Alert onClose={props.setIsError}> 
+                <p>Something went wrong, please try again later.</p>
+                <small>Tap to dismiss this alert.</small>
+            </Alert>
+            :null
+          }
       <div className="landing-container">
         <MoonToggle />
         <div className="lbox">

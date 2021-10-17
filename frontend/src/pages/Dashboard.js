@@ -12,6 +12,7 @@ import AuthContext from "../store/auth-context";
 import Settings from "../components/Settings";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ToDo from "../components/ToDo/ToDo";
+import Alert from "../components/Alert";
 
 const Dashboard = (props) => {
     const [notes, setNotes] = useState([
@@ -51,7 +52,7 @@ const Dashboard = (props) => {
         };
 
         fetch(
-            "https://notefyapi.servatom.com/api/users/detail/",
+            `${URL}/api/users/detail/`,
             requestOptions
         )
             .then((response) => response.json())
@@ -81,7 +82,7 @@ const Dashboard = (props) => {
         };
 
         fetch(
-            "https://notefyapi.servatom.com/api/notes/create/",
+            `${URL}/api/notes/create/`,
             requestOptions
         )
             .then((response) => response.text())
@@ -102,7 +103,7 @@ const Dashboard = (props) => {
             redirect: "follow",
         };
 
-        fetch("https://notefyapi.servatom.com/api/notes/", requestOptions)
+        fetch(`${URL}/api/notes/`, requestOptions)
             .then((response) => response.json())
             .then((result) => setNotes(result))
             .catch((error) => console.log("error", error));
@@ -122,7 +123,7 @@ const Dashboard = (props) => {
             redirect: "follow",
         };
 
-        fetch(`https://notefyapi.servatom.com/api/notes/${id}/`, requestOptions)
+        fetch(`${URL}/api/notes/${id}/`, requestOptions)
             .then((response) => {
                 // console.log(response.status);
                 getNotes();
@@ -152,7 +153,7 @@ const Dashboard = (props) => {
         };
 
         fetch(
-            `https://notefyapi.servatom.com/api/notes/${editedNote.id}/`,
+            `${URL}/api/notes/${editedNote.id}/`,
             requestOptions
         )
             .then((response) => {
@@ -205,6 +206,14 @@ const Dashboard = (props) => {
                     />
                 </div>
                 <div className="cont">
+                {
+                    props.isError?
+                    <Alert onClose={props.setIsError}> 
+                        <p>Something went wrong, please try again later.</p>
+                        <small>Tap to dismiss this alert.</small>
+                    </Alert>
+                    :null
+                }
                     <Switch>
                         <Route exact path="/dashboard">
                             <Searchbar searchHandler={setSearchText} />

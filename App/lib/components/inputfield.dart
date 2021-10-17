@@ -1,37 +1,67 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class InputField extends StatelessWidget {
-  bool obscure = false;
+  InputField({
+    required this.hinttext,
+    required this.onChanged,
+    required this.obscure,
+    required this.textcontroller,
+  });
+  final bool obscure;
   final String hinttext;
   final Function onChanged;
-  InputField(
-      {required this.hinttext, required this.onChanged, this.obscure = false});
+  final TextEditingController textcontroller;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: textcontroller,
       textAlign: TextAlign.center,
-      style: TextStyle(color: Colors.black),
+      cursorColor: Colors.black,
+      style: TextStyle(
+        color: Colors.black,
+        fontFamily: 'PoppinsB',
+      ),
       onChanged: (value) {
         onChanged(value);
       },
       obscureText: obscure,
       decoration: InputDecoration(
         hintText: hinttext,
-        hintStyle: TextStyle(decorationColor: Colors.black54),
+        hintStyle: TextStyle(
+          decorationColor: Colors.black54,
+        ),
         filled: true,
         fillColor: Colors.white,
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 10,
+        ),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: kyellow, width: 1)),
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              10.0,
+            ),
+          ),
+          borderSide: BorderSide(
+            color: kyellow,
+            width: 1,
+          ),
+        ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.0),
+          ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide(color: Colors.black, width: 2.0),
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.0),
+          ),
         ),
       ),
     );

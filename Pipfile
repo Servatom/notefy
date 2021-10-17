@@ -9,6 +9,7 @@ djangorestframework = "*"
 dj-rest-auth = "*"
 django-allauth = "*"
 django-cors-headers = "*"
+django-environ = "*"
 
 [dev-packages]
 
