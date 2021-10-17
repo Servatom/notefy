@@ -1,1 +1,1 @@
-python3 manage.py runsslserver --certificate /app/origin.pem --key /app/key.pem 0.0.0.0:6969
+gunicorn --certfile=origin.pem --keyfile=key.pem --worker-class gevent --bind 0.0.0.0:6969 config.wsgi:application

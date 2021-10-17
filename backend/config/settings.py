@@ -5,9 +5,13 @@ import environ
 env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-FRONTEND_URL = env("FRONTEND_URL", default="http://localhost:3000")
 
+# Reading the .env file
 env.read_env(os.path.join(BASE_DIR, ".env"))
+
+
+FRONTEND_URL = env("FRONTEND_URL", default="http://localhost:3000")
+print(FRONTEND_URL)
 
 SECRET_KEY = env("SECRET_KEY", default="secret")
 
@@ -133,7 +137,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 EMAIL_BACKEND = env(
     "EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
 )
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = env("EMAIL_HOST", default="")
 EMAIL_PORT = 587
 EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")

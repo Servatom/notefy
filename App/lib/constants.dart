@@ -1,20 +1,35 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
-final kbgcolor = Color(0xFF1A1A1A);
-final kyellow = Color(0xFFF2E88B);
-final kinputtext = InputDecoration(
-  filled: true,
-  fillColor: Colors.white,
-  contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-  border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      borderSide: BorderSide(color: kyellow, width: 1)),
-  enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
-    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+// main colour
+const kbgcolor = Color(0xFF1A1A1A);
+
+const kyellow = Color(0xFFF2E88B);
+const kpink = Color(0xFFFFD9DF);
+
+const kmelon = Color(0xFFF7B2AD);
+const kcambridgeblue = Color(0xFF9ABCA7);
+const ksilverpink = Color(0xFFCEB7B3);
+const ksteelteal = Color(0xFF62929E);
+const kgreenyellow = Color(0xFFDDF45B);
+const klightpink = Color(0xFFfce4ec);
+
+const kgreyblack = Color(0xFF424242);
+
+// note tile
+const kNoteTitle = Colors.white;
+const kNoteBody = Colors.grey;
+const kNotetime = Colors.grey;
+
+final snackBar = SnackBar(
+  content: Text(
+    'Poof! All notes deleted',
+    style: TextStyle(
+      fontSize: 20,
+      fontFamily: 'roboto',
+    ),
   ),
-  focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
-    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-  ),
+  duration: Duration(seconds: 2),
+  backgroundColor: Colors.black,
 );
