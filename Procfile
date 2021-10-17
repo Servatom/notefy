@@ -1,1 +1,1 @@
-web: gunicorn backend.config.wsgi --bind
+web: gunicorn backend.config.wsgi
