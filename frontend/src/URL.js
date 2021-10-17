@@ -1,4 +1,4 @@
 
-const URL = 'https://notefyapi.servatom.com';
+const URL = 'https://notefy-test.herokuapp.com';
 
 export default URL;
