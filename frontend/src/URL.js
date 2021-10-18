@@ -1,4 +1,4 @@
 
-const URL = 'https://notefyapi.servatom.com';
+const URL = process.env.REACT_APP_API_ENDPOINT;
 
 export default URL;
