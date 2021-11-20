@@ -40,12 +40,16 @@ class ToDoCategoryView(APIView):
             category = ToDoCategory.objects.get(
                 author=request.user, id=request.data["cat_id"]
             )
-            category.delete()
-
-            # delete all items of category
-            items = ToDoItem.objects.filter(category=category)
-            items.delete()
-            return Response({"message": "Successfully Deleted"}, status=204)
+            if category is not None:
+                # delete all items of category
+                items = ToDoItem.objects.filter(category=category)
+                items.delete()
+                # delete category
+                category.delete()
+                print("here")
+                return Response({"message": "Successfully Deleted"})
+            else:
+                return Response({"message": "Category not found"}, status=404)
         except:
             return Response({"message": "Error"})
 
@@ -107,7 +111,7 @@ class ToDoItemView(APIView):
                 category__author=request.user, id=todo_item
             )
             todo_item.delete()
-            return Response({"message": "successfully deleted"}, status=204)
+            return Response({"message": "successfully deleted"})
         except:
             return Response({"message": "Error"}, status=400)
 
