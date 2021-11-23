@@ -1,6 +1,4 @@
-// ignore_for_file: avoid_print
-
-import 'dart:ffi';
+// ignore_for_file: avoid_print, prefer_final_fields
 
 import 'package:app/models/todo_components.dart';
 import 'package:flutter/cupertino.dart';
