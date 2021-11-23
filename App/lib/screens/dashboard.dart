@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, avoid_print, unused_import, curly_braces_in_flow_control_structures
 
-
-
 import 'package:app/models/auth.dart';
 import 'package:app/components/drawer.dart';
 import 'package:app/components/note_tile.dart';
@@ -26,66 +24,34 @@ class _DashBoardState extends State<DashBoard> {
     List notesList = Provider.of<Notes>(context, listen: true).notesList;
     return Scaffold(
       drawer: DashboardDrawer(),
-      body: NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          SliverAppBar(
-            floating: true,
-            snap: true,
-            iconTheme: IconThemeData(color: kbgcolor),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Notefy',
-                  style: TextStyle(
-                    color: kbgcolor,
-                    fontFamily: 'roboto',
-                  ),
-                ),
-                Image.asset(
-                  'images/logo.png',
-                  scale: 10,
-                ),
-              ],
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Notefy',
+              style: TextStyle(
+                color: kbgcolor,
+                fontFamily: 'roboto',
+              ),
             ),
-            centerTitle: true,
-            actions: [
-              IconButton(
-                onPressed: () {
-                  print('hello');
-                },
-                icon: Icon(
-                  Icons.search,
-                ),
-              )
-            ],
-          ),
-        ],
-        body: NotificationListener<UserScrollNotification>(
-          onNotification: (notification) {
-            if (notification.direction == ScrollDirection.forward) {
-              if (!isVisible)
-                setState(() {
-                  isVisible = true;
-                });
-            } else if (notification.direction == ScrollDirection.reverse) {
-              if (isVisible)
-                setState(() {
-                  isVisible = false;
-                });
-            }
-            return true;
-          },
-          child: ListView.builder(
-            itemCount: notesList.length,
-            itemBuilder: (context, index) {
-              return NoteTile(
-                note: notesList[index],
-              );
-            },
-          ),
+            Image.asset(
+              'images/logo.png',
+              scale: 10,
+            ),
+          ],
         ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              print('hello');
+            },
+            icon: Icon(
+              Icons.search,
+            ),
+          )
+        ],
       ),
       floatingActionButton: isVisible
           ? FloatingActionButton(
@@ -109,6 +75,33 @@ class _DashBoardState extends State<DashBoard> {
               ),
             )
           : null,
+      body: NotificationListener<UserScrollNotification>(
+        onNotification: (notification) {
+          if (notification.direction == ScrollDirection.forward) {
+            if (!isVisible)
+              setState(() {
+                isVisible = true;
+              });
+          } else if (notification.direction == ScrollDirection.reverse) {
+            if (isVisible)
+              setState(() {
+                isVisible = false;
+              });
+          }
+          return true;
+        },
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 20),
+          child: ListView.builder(
+            itemCount: notesList.length,
+            itemBuilder: (context, index) {
+              return NoteTile(
+                note: notesList[index],
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }
