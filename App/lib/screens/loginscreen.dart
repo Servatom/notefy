@@ -5,6 +5,7 @@ import 'package:app/components/error_box.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
 import 'package:app/models/notes.dart';
+import 'package:app/models/todo.dart';
 import 'package:app/models/user.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
@@ -102,6 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               .clearList();
                           Provider.of<Notes>(context, listen: false)
                               .getList(key);
+
+                          Provider.of<ToDo>(context, listen: false)
+                              .getCategoriesList(key);
+                          Provider.of<ToDo>(context, listen: false).clearList();
                           Navigator.pushNamed(context, RouteNames.dashboard);
                         } catch (e) {
                           showDialog(

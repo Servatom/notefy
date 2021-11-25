@@ -2,6 +2,7 @@
 
 import 'package:app/models/notes.dart';
 import 'package:app/models/theme.dart';
+import 'package:app/models/todo.dart';
 import 'package:app/models/user.dart';
 import 'package:app/routers/approutes.dart';
 import 'package:app/routers/routenames.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: Notes()),
         ChangeNotifierProvider.value(value: User()),
         ChangeNotifierProvider.value(value: CustomTheme()),
+        ChangeNotifierProvider.value(value: ToDo()),
       ],
       child: Homew(),
     );
