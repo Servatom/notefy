@@ -9,6 +9,11 @@ class ToDo with ChangeNotifier {
   List<Category> _categories = [];
   List<TodoItem> _items = [];
 
+  List<Category> getCateList() {
+    print(_categories);
+    return [..._categories];
+  }
+
   Future createCategory(String key, String categoryName) async {
     try {
       print('creating new category');
@@ -22,7 +27,7 @@ class ToDo with ChangeNotifier {
       if (response.statusCode == 200) {
         _categories.add(
           Category(
-            id: data["id"],
+            id: data["id"].toString(),
             category: data["category"],
             createdAt: data["created_at"],
             updatedAt: data["updated_at"],
@@ -51,7 +56,7 @@ class ToDo with ChangeNotifier {
         for (int i = 0; i < tempCategories.length; i++) {
           _categories.add(
             Category(
-              id: tempCategories[i]["id"],
+              id: tempCategories[i]["id"].toString(),
               category: tempCategories[i]["category"],
               createdAt: tempCategories[i]["created_at"],
               updatedAt: tempCategories[i]["updated_at"],
@@ -124,7 +129,7 @@ class ToDo with ChangeNotifier {
       if (response.statusCode == 200) {
         _items.add(
           TodoItem(
-            id: data["id"],
+            id: data["id"].toString(),
             categoryId: data["category_id"],
             categoryName: data["category"],
             createdAt: data["created_at"],
@@ -156,7 +161,7 @@ class ToDo with ChangeNotifier {
         for (int i = 0; i < tempItems.length; i++) {
           _items.add(
             TodoItem(
-              id: tempItems[i]["id"],
+              id: tempItems[i]["id"].toString(),
               categoryId: tempItems[i]["category_id"],
               categoryName: tempItems[i]["category"],
               createdAt: tempItems[i]["created_at"],
@@ -221,5 +226,10 @@ class ToDo with ChangeNotifier {
     } catch (e) {
       print(e);
     }
+  }
+
+  void clearList() {
+    _categories = [];
+    _items = [];
   }
 }

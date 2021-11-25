@@ -2,6 +2,7 @@
 
 import 'package:app/models/notes.dart';
 import 'package:app/models/theme.dart';
+import 'package:app/models/todo.dart';
 import 'package:app/models/user.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/cupertino.dart';
@@ -106,6 +107,8 @@ class Auth with ChangeNotifier {
       Provider.of<CustomTheme>(context, listen: false).getIsTheme();
       Provider.of<Notes>(context, listen: false).clearList();
       Provider.of<Notes>(context, listen: false).getList(key);
+      Provider.of<ToDo>(context, listen: false).getCategoriesList(key);
+      Provider.of<ToDo>(context, listen: false).clearList();
       Navigator.pushReplacementNamed(context, RouteNames.dashboard);
     }
   }
