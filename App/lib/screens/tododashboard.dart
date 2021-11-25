@@ -27,8 +27,11 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
                   context: context,
                   isScrollControlled: true,
                   builder: (context) => SingleChildScrollView(
-                    child: Container(
-                      child: BottomModalSheetTodo(),
+                    child: Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        child: BottomModalSheetTodo(),
+                      ),
                     ),
                   ),
                 );
