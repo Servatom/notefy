@@ -1,6 +1,8 @@
 import 'package:app/models/note.dart';
+import 'package:app/models/todo_components.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:app/screens/dashboard.dart';
+import 'package:app/screens/items_screen.dart';
 import 'package:app/screens/loginscreen.dart';
 import 'package:app/screens/mainscreen.dart';
 import 'package:app/screens/notescreen.dart';
@@ -32,6 +34,12 @@ class AppRoutes {
         return MaterialPageRoute<dynamic>(builder: (_) => ResetPassScreen());
       case RouteNames.serverdownpage:
         return MaterialPageRoute<dynamic>(builder: (_) => ServerDown());
+      case RouteNames.itemscreen:
+        var cat = settings.arguments as Category;
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => ItemsScreen(
+                  category: cat,
+                ));
       case RouteNames.noterscreen:
         var notes = settings.arguments as Note;
         return MaterialPageRoute<dynamic>(

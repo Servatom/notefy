@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
 
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
@@ -9,6 +9,16 @@ import 'package:provider/provider.dart';
 
 class BottomModalSheetTodo extends StatelessWidget {
   late String text;
+  final String title;
+  final String buttonText;
+  final String catId;
+  final bool isCategory; // true for category and false for item
+  BottomModalSheetTodo({
+    required this.title,
+    required this.buttonText,
+    required this.isCategory,
+    required this.catId,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +41,7 @@ class BottomModalSheetTodo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Add Category',
+              title,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30,
@@ -57,21 +67,40 @@ class BottomModalSheetTodo extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            FlatButton(
-              color: Provider.of<CustomTheme>(context).isTheme
-                  ? kgreyblack
-                  : kpink,
-              onPressed: () {
-                String key = Provider.of<Auth>(context, listen: false).key;
-                Provider.of<ToDo>(context, listen: false)
-                    .createCategory(key, text);
-                Navigator.pop(context);
-              },
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  'Add',
-                  style: TextStyle(color: Colors.white),
+            Container(
+              decoration: BoxDecoration(
+                color: Provider.of<CustomTheme>(context).isTheme
+                    ? kgreyblack
+                    : kpink,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  String key = Provider.of<Auth>(context, listen: false).key;
+                  if (isCategory) {
+                    // creating a category
+                    Provider.of<ToDo>(context, listen: false)
+                        .createCategory(key, text);
+                  } else {
+                    // creating an item
+                    Provider.of<ToDo>(context, listen: false).createItem(
+                      key,
+                      catId, // get catID
+                      text,
+                    );
+                  }
+                  Navigator.pop(context);
+                },
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      buttonText,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
                 ),
               ),
             ),

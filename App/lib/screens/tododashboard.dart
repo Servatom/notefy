@@ -4,6 +4,7 @@ import 'package:app/constants.dart';
 import 'package:app/models/theme.dart';
 import 'package:app/models/todo.dart';
 import 'package:app/models/todo_components.dart';
+import 'package:app/routers/routenames.dart';
 import 'package:app/screens/add_new_todo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -30,7 +31,12 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
                     child: Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        child: BottomModalSheetTodo(),
+                        child: BottomModalSheetTodo(
+                          title: 'Add Category',
+                          buttonText: 'Add',
+                          isCategory: true,
+                          catId: '',
+                        ),
                       ),
                     ),
                   ),
@@ -64,7 +70,7 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
             itemCount: categoriesList.length,
             itemBuilder: (context, index) {
               return TodoCategoryTile(
-                categoryName: categoriesList[index].category,
+                category: categoriesList[index],
               );
             },
           ),
@@ -75,8 +81,8 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
 }
 
 class TodoCategoryTile extends StatelessWidget {
-  String categoryName;
-  TodoCategoryTile({required this.categoryName});
+  Category category;
+  TodoCategoryTile({required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +94,11 @@ class TodoCategoryTile extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          print('todo category tile clicked');
+          Navigator.pushNamed(
+            context,
+            RouteNames.itemscreen,
+            arguments: category,
+          );
         },
         child: SizedBox(
           height: 125,
@@ -112,7 +122,7 @@ class TodoCategoryTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    categoryName,
+                    category.category,
                     style: TextStyle(color: kNoteTitle),
                   ),
                 ],
