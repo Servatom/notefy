@@ -104,9 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           Provider.of<Notes>(context, listen: false)
                               .getList(key);
 
+                          Provider.of<ToDo>(context, listen: false).clearList();
                           Provider.of<ToDo>(context, listen: false)
                               .getCategoriesList(key);
-                          Provider.of<ToDo>(context, listen: false).clearList();
+                          Provider.of<ToDo>(context, listen: false)
+                              .listAllTodoItems(key);
                           Navigator.pushNamed(context, RouteNames.dashboard);
                         } catch (e) {
                           showDialog(
