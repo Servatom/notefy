@@ -56,7 +56,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                         title: 'Add Item',
                         buttonText: 'Add',
                         isCategory: false,
-                        catId: widget.category.category,
+                        catId: widget.category.id,
                       ),
                     ),
                   ),
