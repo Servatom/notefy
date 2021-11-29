@@ -14,6 +14,13 @@ class ToDo with ChangeNotifier {
     return [..._categories];
   }
 
+  List<TodoItem> getItemListForCategory(String catID) {
+    print('getting the list of all items in the todo list');
+    List<TodoItem> items =
+        _items.where((element) => element.categoryId == catID).toList();
+    return items;
+  }
+
   Future createCategory(String key, String categoryName) async {
     try {
       print('creating new category');
@@ -125,7 +132,7 @@ class ToDo with ChangeNotifier {
         body: {"cat_id": catId, "item": item},
       );
       final data = jsonDecode(response.body);
-      print(data);
+      print('data = $data');
       if (response.statusCode == 200) {
         _items.add(
           TodoItem(
@@ -138,6 +145,7 @@ class ToDo with ChangeNotifier {
             updatedAt: data["updated_at"],
           ),
         );
+        print('addition succesful');
         notifyListeners();
       } else {
         throw 'Error in creating a new item';
@@ -162,7 +170,7 @@ class ToDo with ChangeNotifier {
           _items.add(
             TodoItem(
               id: tempItems[i]["id"].toString(),
-              categoryId: tempItems[i]["category_id"],
+              categoryId: tempItems[i]["category_id"].toString(),
               categoryName: tempItems[i]["category"],
               createdAt: tempItems[i]["created_at"],
               isDone: tempItems[i]["isDone"],
@@ -171,6 +179,7 @@ class ToDo with ChangeNotifier {
             ),
           );
         }
+        print('listing all the items');
         notifyListeners();
       } else {
         throw 'Error in getting the list of all items';

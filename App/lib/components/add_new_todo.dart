@@ -55,9 +55,21 @@ class BottomModalSheetTodo extends StatelessWidget {
                 text = value;
               },
               onSubmitted: (value) {
+                text = value;
+                print(text);
                 String key = Provider.of<Auth>(context, listen: false).key;
-                Provider.of<ToDo>(context, listen: false)
-                    .createCategory(key, text);
+                if (isCategory) {
+                  // creating a category
+                  Provider.of<ToDo>(context, listen: false)
+                      .createCategory(key, text);
+                } else {
+                  // creating an item
+                  Provider.of<ToDo>(context, listen: false).createItem(
+                    key,
+                    catId, // get catID
+                    text,
+                  );
+                }
                 Navigator.pop(context);
               },
               style: TextStyle(
@@ -78,6 +90,7 @@ class BottomModalSheetTodo extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {
+                  print(text);
                   String key = Provider.of<Auth>(context, listen: false).key;
                   if (isCategory) {
                     // creating a category
