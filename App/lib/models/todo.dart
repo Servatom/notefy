@@ -21,6 +21,10 @@ class ToDo with ChangeNotifier {
     return items;
   }
 
+  List<TodoItem> getAllItems() {
+    return [..._items];
+  }
+
   Future createCategory(String key, String categoryName) async {
     try {
       print('creating new category');
@@ -125,7 +129,7 @@ class ToDo with ChangeNotifier {
 
   Future createItem(String key, String catId, String item) async {
     try {
-      print('creating new item');
+      print('creating new item = $catId = $item');
       http.Response response = await http.post(
         Uri.parse('https://notefyapi.servatom.com/api/todo/item/'),
         headers: {'Authorization': 'Token $key'},
@@ -137,7 +141,7 @@ class ToDo with ChangeNotifier {
         _items.add(
           TodoItem(
             id: data["id"].toString(),
-            categoryId: data["category_id"],
+            categoryId: data["category_id"].toString(),
             categoryName: data["category"],
             createdAt: data["created_at"],
             isDone: data["isDone"],
