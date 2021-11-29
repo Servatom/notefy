@@ -21,6 +21,10 @@ class ToDo with ChangeNotifier {
     return items;
   }
 
+  List<TodoItem> getAllItems() {
+    return [..._items];
+  }
+
   Future createCategory(String key, String categoryName) async {
     try {
       print('creating new category');

@@ -163,14 +163,24 @@ class _ItemsScreenState extends State<ItemsScreen> {
               child: Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 20),
-                  child: ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return TodoItemListTile(
-                          isChecked: items[index].isDone,
-                          taskTitle: items[index].item);
-                    },
-                  ),
+                  child: (items.isNotEmpty)
+                      ? ListView.builder(
+                          itemCount: items.length,
+                          itemBuilder: (context, index) {
+                            return TodoItemListTile(
+                                isChecked: items[index].isDone,
+                                taskTitle: items[index].item);
+                          },
+                        )
+                      : Text(
+                          'No items yet',
+                          style: TextStyle(
+                            color: Provider.of<CustomTheme>(context).isTheme
+                                ? kNoteBody
+                                : Colors.black54,
+                            fontSize: 16,
+                          ),
+                        ),
                 ),
               ),
             ),
