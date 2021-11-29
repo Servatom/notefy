@@ -19,7 +19,8 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
   bool isVisible = true;
   @override
   Widget build(BuildContext context) {
-    List<Category> categoriesList = Provider.of<ToDo>(context).getCateList();
+    List<Category> tempList = Provider.of<ToDo>(context).getCateList();
+    List categoriesList = tempList.reversed.toList();
     return Scaffold(
       floatingActionButton: isVisible
           ? FloatingActionButton(
