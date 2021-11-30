@@ -46,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
-           InkWell(
+            InkWell(
               onTap: () {
                 Navigator.pushNamed(context, RouteNames.resetpasswordscreen);
               },
@@ -65,10 +65,32 @@ class SettingsScreen extends StatelessWidget {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return DeleteDialog();
+                        return DeleteDialog(
+                          boxTitle: 'Do you want to delete all the notes?',
+                          buttonTitle: 'Delete All',
+                          toDelete: 1,
+                          catID: '',
+                          itemId: '',
+                        );
                       });
                 },
                 child: SettingTile(title: 'Delete all notes')),
+            SizedBox(height: 15),
+            GestureDetector(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return DeleteDialog(
+                          boxTitle: 'Do you want to delete all the categories?',
+                          buttonTitle: 'Delete All',
+                          toDelete: 4,
+                          catID: '',
+                          itemId: '',
+                        );
+                      });
+                },
+                child: SettingTile(title: 'Delete all categories')),
             SizedBox(height: 15),
             GestureDetector(
                 onTap: () {

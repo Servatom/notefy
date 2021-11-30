@@ -1,16 +1,29 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, curly_braces_in_flow_control_structures
 
 import 'dart:ui';
 
 import 'package:app/models/auth.dart';
 import 'package:app/models/notes.dart';
 import 'package:app/models/theme.dart';
+import 'package:app/models/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
 class DeleteDialog extends StatelessWidget {
+  final String buttonTitle;
+  final String boxTitle;
+  final int toDelete;
+  final String catID;
+  final String itemId;
+  DeleteDialog({
+    required this.boxTitle,
+    required this.buttonTitle,
+    required this.toDelete,
+    required this.catID,
+    required this.itemId,
+  });
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
@@ -28,7 +41,7 @@ class DeleteDialog extends StatelessWidget {
                 ? kbgcolor
                 : kpink,
         title: Text(
-          'Do you want to delete all the tasks?',
+          boxTitle,
           style: TextStyle(
             color: Provider.of<CustomTheme>(context, listen: false).isTheme
                 ? Colors.white
@@ -72,14 +85,41 @@ class DeleteDialog extends StatelessWidget {
             color: Colors.red,
             onPressed: () {
               String key = Provider.of<Auth>(context, listen: false).key;
-              Provider.of<Notes>(context, listen: false).deleteAllNotes(key);
+              if (toDelete == 1) {
+                Provider.of<Notes>(context, listen: false).deleteAllNotes(key);
+              }
+              if (toDelete == 2) {
+                Provider.of<ToDo>(context, listen: false)
+                    .deleteCategory(key, catID);
+              }
+              if (toDelete == 3) {
+                Provider.of<ToDo>(context, listen: false)
+                    .deleteToDoItem(key, itemId);
+              }
+              if (toDelete == 4) {
+                Provider.of<ToDo>(context, listen: false)
+                    .deleteAllCategories(key);
+              }
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              if (toDelete == 1)
+                ScaffoldMessenger.of(context).showSnackBar(snackBarDeleteNotes);
+              if (toDelete == 2) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(snackBarDeleteCategory);
+                Navigator.pop(context);
+              }
+              if (toDelete == 3) {
+                ScaffoldMessenger.of(context).showSnackBar(snackBarDeleteItem);
+              }
+              if (toDelete == 4) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(snackBarDeleteAllCategories);
+              }
             },
             child: Padding(
               padding: EdgeInsets.all(10.0),
               child: Text(
-                'Delete All',
+                buttonTitle,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
