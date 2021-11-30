@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_constructors_in_immutables, curly_braces_in_flow_control_structures, avoid_print
 
+import 'package:app/components/delete_dialog.dart';
 import 'package:app/components/todo_item_tile.dart';
 import 'package:app/constants.dart';
 import 'package:app/models/auth.dart';
@@ -96,7 +97,19 @@ class _ItemsScreenState extends State<ItemsScreen> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return DeleteDialog(
+                      boxTitle: 'Do you want to delete this category?',
+                      buttonTitle: 'Delete',
+                      toDelete: 2,
+                      catID: widget.category.id,
+                      itemId: '',
+                    );
+                  });
+            },
             icon: Icon(Icons.delete, color: Colors.red),
           ),
         ],

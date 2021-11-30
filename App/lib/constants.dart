@@ -22,9 +22,42 @@ const kNoteTitle = Colors.white;
 const kNoteBody = Colors.grey;
 const kNotetime = Colors.grey;
 
-final snackBar = SnackBar(
+final snackBarDeleteNotes = SnackBar(
   content: Text(
     'Poof! All notes deleted',
+    style: TextStyle(
+      fontSize: 20,
+      fontFamily: 'roboto',
+    ),
+  ),
+  duration: Duration(seconds: 2),
+  backgroundColor: Colors.black,
+);
+final snackBarDeleteCategory = SnackBar(
+  content: Text(
+    'Poof! Category deleted',
+    style: TextStyle(
+      fontSize: 20,
+      fontFamily: 'roboto',
+    ),
+  ),
+  duration: Duration(seconds: 2),
+  backgroundColor: Colors.black,
+);
+final snackBarDeleteItem = SnackBar(
+  content: Text(
+    'Item deleted',
+    style: TextStyle(
+      fontSize: 20,
+      fontFamily: 'roboto',
+    ),
+  ),
+  duration: Duration(seconds: 2),
+  backgroundColor: Colors.black,
+);
+final snackBarDeleteAllCategories = SnackBar(
+  content: Text(
+    'Poof! All Categories deleted',
     style: TextStyle(
       fontSize: 20,
       fontFamily: 'roboto',

@@ -127,6 +127,12 @@ class ToDo with ChangeNotifier {
     }
   }
 
+  void deleteAllCategories(String key) {
+    for (int i = 0; i < _categories.length; i++) {
+      deleteCategory(key, _categories[i].id);
+    }
+  }
+
   Future createItem(String key, String catId, String item) async {
     try {
       print('creating new item = $catId = $item');
