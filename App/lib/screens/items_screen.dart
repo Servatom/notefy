@@ -116,47 +116,51 @@ class _ItemsScreenState extends State<ItemsScreen> {
       ),
       body: Container(
         padding: EdgeInsets.only(
-          left: 20,
-          right: 20,
           bottom: 20,
         ),
         child: Column(
           children: [
-            TextFormField(
-              initialValue: widget.category.category,
-              textAlign: TextAlign.center,
-              onChanged: (value) {
-                title = value;
-              },
-              maxLines: 1,
-              style: TextStyle(
-                color: Provider.of<CustomTheme>(context, listen: false).isTheme
-                    ? Colors.white
-                    : Colors.black,
-                fontSize: 30,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
               ),
-              decoration: InputDecoration(
-                hintText: 'Category Name',
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                hintStyle: TextStyle(
-                  fontSize: 25,
+              child: TextFormField(
+                initialValue: widget.category.category,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  title = value;
+                },
+                maxLines: 1,
+                style: TextStyle(
                   color:
                       Provider.of<CustomTheme>(context, listen: false).isTheme
-                          ? Colors.grey
-                          : Colors.black54,
+                          ? Colors.white
+                          : Colors.black,
+                  fontSize: 30,
                 ),
+                decoration: InputDecoration(
+                  hintText: 'Category Name',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  hintStyle: TextStyle(
+                    fontSize: 25,
+                    color:
+                        Provider.of<CustomTheme>(context, listen: false).isTheme
+                            ? Colors.grey
+                            : Colors.black54,
+                  ),
+                ),
+                onFieldSubmitted: (value) {
+                  String key = Provider.of<Auth>(context, listen: false).key;
+                  Provider.of<ToDo>(context, listen: false).updateCategory(
+                    key,
+                    title,
+                    widget.category.id,
+                  );
+                },
               ),
-              onFieldSubmitted: (value) {
-                String key = Provider.of<Auth>(context, listen: false).key;
-                Provider.of<ToDo>(context, listen: false).updateCategory(
-                  key,
-                  title,
-                  widget.category.id,
-                );
-              },
             ),
             NotificationListener<UserScrollNotification>(
               onNotification: (notification) {
@@ -174,18 +178,30 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 return true;
               },
               child: Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: (items.isNotEmpty)
-                      ? ListView.builder(
+                child: (items.isNotEmpty)
+                    ? Padding(
+                        padding: EdgeInsets.only(
+                          top: 20,
+                          bottom: 20,
+                          left: 20,
+                          right: 10,
+                        ),
+                        child: ListView.builder(
                           itemCount: items.length,
                           itemBuilder: (context, index) {
                             return TodoItemListTile(
-                                isChecked: items[index].isDone,
-                                taskTitle: items[index].item);
+                              item: items[index],
+                            );
                           },
-                        )
-                      : Text(
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 20,
+                          right: 20,
+                          left: 20,
+                        ),
+                        child: Text(
                           'No items yet',
                           style: TextStyle(
                             color: Provider.of<CustomTheme>(context).isTheme
@@ -194,7 +210,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                             fontSize: 16,
                           ),
                         ),
-                ),
+                      ),
               ),
             ),
           ],
