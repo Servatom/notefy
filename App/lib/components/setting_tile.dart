@@ -33,7 +33,7 @@ class SettingTile extends StatelessWidget {
               color: Provider.of<CustomTheme>(context).isTheme
                   ? Colors.white
                   : Colors.black,
-              fontSize: 25,
+              fontSize: 23,
             ),
           ),
         ),
