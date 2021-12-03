@@ -67,7 +67,7 @@ const Note = (props) => {
       </div>
       {
         isExpansed ?
-          <ExpandNote note={props.note} deleteHandler={deleteHandler} onClose={noteMinimiser} editHandler={props.onEdit} isEdit={edit} />
+          <ExpandNote note={props.note} deleteHandler={deleteHandler} onClose={noteMinimiser} editHandler={props.onEdit} isEdit={edit} countPreference={props.countPreference}/>
           : null
       }
     </>

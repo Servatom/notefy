@@ -25,15 +25,30 @@ const Dashboard = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const authCtx = useContext(AuthContext);
 
+    const [countPreference, setCountPreference] = useState('word');
+
     useEffect(() => {
         // let savedNotes = JSON.parse(localStorage.getItem('notes-local'))
 
         // if(savedNotes)
         // setNotes(savedNotes);
+        let countChoice = JSON.parse(localStorage.getItem('countPrefernce'))
+        
+        if(countChoice)
+        setCountPreference(countChoice);
 
         getNotes();
         getUserDetails();
     }, []);
+
+    useEffect(()=>{
+        localStorage.setItem('countPrefernce',JSON.stringify(countPreference));
+    },[countPreference]);
+
+    const togglePreference = (val)=>
+    {
+        setCountPreference(val);
+    }
 
     // stores notes to local storage whenever the notes list changes
     // useEffect(() => {
@@ -224,6 +239,7 @@ const Dashboard = (props) => {
                                 addNew={newNoteHandler}
                                 deleteNote={deleteNoteHandler}
                                 editNote={editNoteHandler}
+                                countPreference={countPreference}
                             />
                             {!notes.length ? watermark() : null}
                         </Route>
@@ -236,6 +252,8 @@ const Dashboard = (props) => {
                             <Settings
                                 userInfo={userInfo}
                                 setUserInfo={setUserInfo}
+                                countPreference={countPreference}
+                                changePreference={togglePreference}
                             />
                         </Route>
                     </Switch>
