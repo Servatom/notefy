@@ -6,7 +6,8 @@ const ExpandNote=(props)=>{
     
     
     const [noteText, setNoteText] = useState(props.note.body);
-    const [wordcount, setWordCount] = useState(noteText.length);
+    const [charCount, setCharCount] = useState(noteText.length);
+    const [wordCount, setWordCount] = useState(noteText.trim().split(/\s+/).length);
     const [edit, setEdit] = useState(props.isEdit);
     
     
@@ -32,7 +33,7 @@ const ExpandNote=(props)=>{
         else
         return(
             <>
-                <small>{wordcount}</small>
+                <small>{props.countPreference=='word'?wordCount:charCount}</small>
                 <button className="saveBtn" onClick={saveHandler}>Save</button>
             </>
         )
@@ -42,7 +43,8 @@ const ExpandNote=(props)=>{
     const changeHandler =(event)=>
     {
         setNoteText(event.target.value);
-        setWordCount(noteText.length+1);
+        setCharCount(noteText.length+1);
+        setWordCount(noteText.trim().split(/\s+/).length)
     }
 
     const saveHandler=()=>{

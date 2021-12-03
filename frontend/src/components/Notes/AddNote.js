@@ -5,10 +5,13 @@ import {nanoid} from 'nanoid';
 const AddNote=(props)=>{
     
     const [noteText, setNoteText] = useState("");
+    const [footerCount, setFooterCount] = useState(0);
 
     const changeHandler =(event)=>
     {
         setNoteText(event.target.value);
+        props.countPreference === 'word'?setFooterCount(noteText.trim().split(/\s+/).length):setFooterCount(noteText.length);
+
     }
 const saveHandler=()=>
 {
@@ -36,11 +39,13 @@ const saveHandler=()=>
             onChange={changeHandler}
             value={noteText}/>
             <div className="note-footer">
-                <small>{noteText.length}</small>
+                <small>{noteText.length?footerCount:0}</small>
                 <button className="saveBtn" onClick={saveHandler}>Save</button>
             </div>
         </div>
     );
 }
+
+// props.countPreference=='word'?noteText.length:noteText.trim().split(/\s+/).length
 
 export default AddNote;

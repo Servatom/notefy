@@ -20,10 +20,10 @@ const NotesList =(props) =>
     return(
         
             <div className="notes-list">    
-                <AddNote onSave={props.addNew}/>
+                <AddNote onSave={props.addNew} countPreference={props.countPreference}/>
                 {
                     sortedNotes.map((note)=>{
-                        return(<Note key={note.id} note={note} onDelete={props.deleteNote} onEdit={props.editNote} />)
+                        return(<Note key={note.id} note={note} onDelete={props.deleteNote} onEdit={props.editNote} countPreference={props.countPreference} />)
                     })
                 } 
             </div>

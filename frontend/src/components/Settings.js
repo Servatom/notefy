@@ -146,6 +146,17 @@ const Settings =(props)=>
                     <span className="changeAvatar" onClick={changeAvatarHandler}>Change Avatar</span>
                 </div>
             </div>
+            <div className='controlContainer'>
+                <h3>Word Count Preference:</h3>
+                <div className='option'>
+                    <input type='radio' name='countPreference' value='word' id='word' checked={props.countPreference==='word'} onClick={()=>{props.changePreference('word')}}/>
+                    <label for='word'>Word</label>
+                </div>
+                <div className='option'>
+                    <input type='radio' name='countPreference' value='char' id='char' checked={props.countPreference==='char'} onClick={()=>{props.changePreference('char')}}/>
+                    <label for='char'>Character</label>
+                </div>
+            </div>
             <div className="form-wrapper settingsForm">
                 <form>
                 <h2>Change Password:</h2>
