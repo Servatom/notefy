@@ -221,6 +221,10 @@ Computer Science and Engineering, TIET</a> <b>@</b> <a href="https://www.thapar.
   :boy: <b>Adamay Mann</b> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>meadamann2002@gmail.com</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/mannadamay12">@mannadamay12</a> <br>
+  
+  :boy: <b>Nirbhay Makhija</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>nmakhija_be20@thapar.edu</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/Nirbhay-nrb">@Nirbhay-nrb</a> <br>
 </p>
 
 ## Contributions
