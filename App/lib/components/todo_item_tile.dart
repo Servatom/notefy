@@ -45,16 +45,16 @@ class _TodoItemListTileState extends State<TodoItemListTile> {
             child: Checkbox(
               value: widget.item.isDone,
               onChanged: (value) {
-                setState(() {
-                  widget.item.isDone = !widget.item.isDone;
-                  String key = Provider.of<Auth>(context, listen: false).key;
-                  Provider.of<ToDo>(context, listen: false).updateToDoItem(
-                    key,
-                    widget.item.id,
-                    widget.item.isDone,
-                    widget.item.item,
-                  );
-                });
+                String key = Provider.of<Auth>(context, listen: false).key;
+
+                widget.item.isDone = !widget.item.isDone;
+                print(widget.item.isDone);
+                Provider.of<ToDo>(context, listen: false).updateToDoItem(
+                  key,
+                  widget.item.id,
+                  widget.item.isDone,
+                  widget.item.item,
+                );
               },
               activeColor:
                   Provider.of<CustomTheme>(context, listen: false).isTheme
@@ -67,6 +67,92 @@ class _TodoItemListTileState extends State<TodoItemListTile> {
             ),
           ),
           PopupMenuButton(
+            onSelected: (value) {
+              if (value == 0) {
+                print("edit");
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      print('inside dialogue');
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(
+                              10,
+                            ),
+                          ),
+                        ),
+                        backgroundColor:
+                            Provider.of<CustomTheme>(context, listen: false)
+                                    .isTheme
+                                ? kbgcolor
+                                : kpink,
+                        title: Text(
+                          'Edit Item',
+                          style: TextStyle(
+                            color:
+                                Provider.of<CustomTheme>(context, listen: false)
+                                        .isTheme
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
+                        ),
+                        actionsPadding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        actions: [
+                          MaterialButton(
+                            minWidth: 60,
+                            height: 40,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 10,
+                            color:
+                                Provider.of<CustomTheme>(context, listen: false)
+                                        .isTheme
+                                    ? kyellow
+                                    : Color(0xFF8CD4CB),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          MaterialButton(
+                            minWidth: 60,
+                            height: 40,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 10,
+                            color: Colors.green,
+                            onPressed: () {},
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                'Okay',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    });
+              }
+            },
             color: Provider.of<CustomTheme>(context, listen: false).isTheme
                 ? Colors.white
                 : kpink,
@@ -80,88 +166,7 @@ class _TodoItemListTileState extends State<TodoItemListTile> {
               return [
                 PopupMenuItem(
                   child: Text('Edit'),
-                  onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(
-                                  10,
-                                ),
-                              ),
-                            ),
-                            backgroundColor:
-                                Provider.of<CustomTheme>(context, listen: false)
-                                        .isTheme
-                                    ? kbgcolor
-                                    : kpink,
-                            title: Text(
-                              'Edit Item',
-                              style: TextStyle(
-                                color: Provider.of<CustomTheme>(context,
-                                            listen: false)
-                                        .isTheme
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ),
-                            actionsPadding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            actions: [
-                              MaterialButton(
-                                minWidth: 60,
-                                height: 40,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                elevation: 10,
-                                color: Provider.of<CustomTheme>(context,
-                                            listen: false)
-                                        .isTheme
-                                    ? kyellow
-                                    : Color(0xFF8CD4CB),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text(
-                                    'Cancel',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              MaterialButton(
-                                minWidth: 60,
-                                height: 40,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                elevation: 10,
-                                color: Colors.green,
-                                onPressed: () {},
-                                child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text(
-                                    'Okay',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        });
-                  },
+                  value: 0,
                 ),
                 PopupMenuItem(
                   child: Text('Delete'),

@@ -202,16 +202,17 @@ class ToDo with ChangeNotifier {
   Future updateToDoItem(
       String key, String itemId, bool isDone, String item) async {
     try {
-      print('updating an item');
+      print('updating an item = $isDone');
       http.Response response = await http.put(
         Uri.parse('https://notefyapi.servatom.com/api/todo/item/'),
-        headers: {'Authorization': 'Token $key'},
-        body: {
-          "todo_item_id": itemId,
-          "is_done": isDone.toString(),
-          "item": item
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Token $key'
         },
+        body: jsonEncode(
+            {"todo_item_id": itemId, "isDone": isDone, "item": item}),
       );
+      print("update done");
       final data = jsonDecode(response.body);
       print(data);
       int index = _items.indexWhere((element) => element.id == itemId);
@@ -220,9 +221,8 @@ class ToDo with ChangeNotifier {
         _items[index].isDone = data["isDone"];
         _items[index].updatedAt = data["updated_at"];
         notifyListeners();
-        // } else {
-        //   throw 'error in updating item';
-        // }
+      } else {
+        throw 'error in updating item';
       }
     } catch (e) {
       print(e);
