@@ -46,20 +46,20 @@ class SettingsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, RouteNames.resetpasswordscreen);
               },
-              child: SettingTile(title: 'Reset Password'),
+              child: SettingTile(icon: Icons.lock, title: 'Reset Password'),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 10),
             GestureDetector(
                 onTap: () {
                   Provider.of<CustomTheme>(context, listen: false)
                       .toggleTheme();
                 },
-                child: SettingTile(title: 'Theme')),
-            SizedBox(height: 15),
+                child: SettingTile(icon: Icons.color_lens, title: 'Theme')),
+            SizedBox(height: 10),
             GestureDetector(
                 onTap: () {
                   showDialog(
@@ -74,8 +74,9 @@ class SettingsScreen extends StatelessWidget {
                         );
                       });
                 },
-                child: SettingTile(title: 'Delete all notes')),
-            SizedBox(height: 15),
+                child: SettingTile(
+                    icon: Icons.delete_sweep, title: 'Delete all notes')),
+            SizedBox(height: 10),
             GestureDetector(
                 onTap: () {
                   showDialog(
@@ -90,13 +91,14 @@ class SettingsScreen extends StatelessWidget {
                         );
                       });
                 },
-                child: SettingTile(title: 'Delete all categories')),
-            SizedBox(height: 15),
+                child: SettingTile(
+                    icon: Icons.delete, title: 'Delete all categories')),
+            SizedBox(height: 10),
             GestureDetector(
                 onTap: () {
                   Provider.of<Auth>(context, listen: false).logoutUser(context);
                 },
-                child: SettingTile(title: 'Logout')),
+                child: SettingTile(icon: Icons.logout, title: 'Logout')),
           ],
         ),
       ),

@@ -75,29 +75,63 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               SizedBox(height: 50),
-              Container(
-                child: Text(
-                  name,
-                  style: TextStyle(
-                    color: Provider.of<CustomTheme>(context).isTheme
-                        ? Colors.white
-                        : kbgcolor,
-                    fontSize: 30,
-                    fontFamily: 'Lobster',
-                  ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 20,
+                  right: 10,
                 ),
-              ),
-              SizedBox(height: 20),
-              Container(
-                child: Text(
-                  email,
-                  style: TextStyle(
-                    color: Provider.of<CustomTheme>(context).isTheme
-                        ? Colors.white
-                        : kbgcolor,
-                    fontSize: 20,
-                    fontFamily: 'roboto',
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.account_circle,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Text(
+                          // 'Nirbhay Makhija',
+                          name,
+                          style: TextStyle(
+                            color: Provider.of<CustomTheme>(context).isTheme
+                                ? Colors.white
+                                : kbgcolor,
+                            fontSize: 20,
+                            fontFamily: 'roboto',
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.email,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 7,
+                        ),
+                        Flexible(
+                          child: Text(
+                            // 'nirbhaymakhijachauhanalisha@gmail.com',
+                            email,
+                            style: TextStyle(
+                              color: Provider.of<CustomTheme>(context).isTheme
+                                  ? Colors.white
+                                  : kbgcolor,
+                              fontSize: 18,
+                              fontFamily: 'roboto',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
