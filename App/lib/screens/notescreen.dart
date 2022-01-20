@@ -22,6 +22,8 @@ class _NoteScreenState extends State<NoteScreen> {
   late String title;
   late String body;
   late String noteID;
+  var titleCopy = '';
+  var bodyCopy = '';
   void setVariable() {
     print(widget.note);
     if (widget.note != null) {
@@ -34,6 +36,8 @@ class _NoteScreenState extends State<NoteScreen> {
       body = '';
       noteID = '';
     }
+    titleCopy = title;
+    bodyCopy = body;
   }
 
   @override
@@ -57,7 +61,9 @@ class _NoteScreenState extends State<NoteScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            if (title == '') {
+            if (title == '' && body == '' && noteID == '') {
+              Navigator.pop(context);
+            } else if (title == '') {
               showDialog(
                   context: context,
                   builder: (context) {
@@ -83,17 +89,21 @@ class _NoteScreenState extends State<NoteScreen> {
                   .createNote(key, title, body);
               Navigator.pop(context);
             } else if (noteID != '') {
-              String key = Provider.of<Auth>(context, listen: false).key;
-              Provider.of<Notes>(context, listen: false)
-                  .updateNote(key, title, body, noteID);
-              Navigator.pop(context);
+              if (title == titleCopy && body == bodyCopy) {
+                Navigator.pop(context);
+              } else {
+                String key = Provider.of<Auth>(context, listen: false).key;
+                Provider.of<Notes>(context, listen: false)
+                    .updateNote(key, title, body, noteID);
+                Navigator.pop(context);
+              }
             }
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
             color: Provider.of<CustomTheme>(context, listen: false).isTheme
                 ? kyellow
-                : kpink,
+                : kbgcolor,
             size: 35,
           ),
         ),

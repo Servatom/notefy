@@ -20,6 +20,7 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
   @override
   Widget build(BuildContext context) {
     List<Category> tempList = Provider.of<ToDo>(context).getCateList();
+    tempList.sort((a, b) => a.updatedAt.compareTo(b.updatedAt));
     List categoriesList = tempList.reversed.toList();
     return Scaffold(
       floatingActionButton: isVisible

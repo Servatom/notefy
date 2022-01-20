@@ -18,7 +18,8 @@ class _NotesDashBoardState extends State<NotesDashBoard> {
   bool isVisible = true;
   @override
   Widget build(BuildContext context) {
-    List tempList = Provider.of<Notes>(context, listen: true).notesList;
+    List<Note> tempList = Provider.of<Notes>(context, listen: true).notesList;
+    tempList.sort((a, b) => a.updateTime.compareTo(b.updateTime));
     List notesList = tempList.reversed.toList();
     return Scaffold(
       floatingActionButton: isVisible
