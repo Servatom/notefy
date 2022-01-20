@@ -35,7 +35,9 @@ class SettingTile extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: Colors.white,
+                color: Provider.of<CustomTheme>(context, listen: false).isTheme
+                    ? Colors.white
+                    : Colors.black,
                 size: 28,
               ),
               SizedBox(

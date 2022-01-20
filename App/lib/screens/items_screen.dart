@@ -90,7 +90,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
             Icons.keyboard_arrow_left,
             color: Provider.of<CustomTheme>(context, listen: false).isTheme
                 ? kyellow
-                : kpink,
+                : kbgcolor,
             size: 35,
           ),
         ),

@@ -88,13 +88,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Icon(
                           Icons.account_circle,
-                          color: Colors.white,
+                          color:
+                              Provider.of<CustomTheme>(context, listen: false)
+                                      .isTheme
+                                  ? Colors.white
+                                  : Colors.black,
                         ),
                         SizedBox(
                           width: 7,
                         ),
                         Text(
-                          // 'Nirbhay Makhija',
                           name,
                           style: TextStyle(
                             color: Provider.of<CustomTheme>(context).isTheme
@@ -111,14 +114,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Icon(
                           Icons.email,
-                          color: Colors.white,
+                          color:
+                              Provider.of<CustomTheme>(context, listen: false)
+                                      .isTheme
+                                  ? Colors.white
+                                  : Colors.black,
                         ),
                         SizedBox(
                           width: 7,
                         ),
                         Flexible(
                           child: Text(
-                            // 'nirbhaymakhijachauhanalisha@gmail.com',
                             email,
                             style: TextStyle(
                               color: Provider.of<CustomTheme>(context).isTheme

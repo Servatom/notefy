@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class BottomModalSheetTodo extends StatelessWidget {
-  late String text;
+  String text = '';
   final String title;
   final String buttonText;
   final String catId;
@@ -31,7 +31,7 @@ class BottomModalSheetTodo extends StatelessWidget {
           vertical: 20,
         ),
         decoration: BoxDecoration(
-          color: kyellow,
+          color: kpink,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
@@ -55,13 +55,15 @@ class BottomModalSheetTodo extends StatelessWidget {
                 text = value;
               },
               onSubmitted: (value) {
-                text = value;
-                print(text);
+                print('adding new item to todo');
                 String key = Provider.of<Auth>(context, listen: false).key;
-                if (isCategory) {
+                if (text == '') {
+                  Navigator.pop(context);
+                } else if (isCategory) {
                   // creating a category
                   Provider.of<ToDo>(context, listen: false)
                       .createCategory(key, text);
+                  Navigator.pop(context);
                 } else {
                   // creating an item
                   Provider.of<ToDo>(context, listen: false).createItem(
@@ -69,8 +71,8 @@ class BottomModalSheetTodo extends StatelessWidget {
                     catId, // get catID
                     text,
                   );
+                  Navigator.pop(context);
                 }
-                Navigator.pop(context);
               },
               style: TextStyle(
                 fontSize: 18,
@@ -81,21 +83,22 @@ class BottomModalSheetTodo extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                color: Provider.of<CustomTheme>(context).isTheme
-                    ? kgreyblack
-                    : kpink,
+                color: kgreyblack,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
                 ),
               ),
               child: GestureDetector(
                 onTap: () {
-                  print(text);
+                  print('adding new item to todo');
                   String key = Provider.of<Auth>(context, listen: false).key;
-                  if (isCategory) {
+                  if (text == '') {
+                    Navigator.pop(context);
+                  } else if (isCategory) {
                     // creating a category
                     Provider.of<ToDo>(context, listen: false)
                         .createCategory(key, text);
+                    Navigator.pop(context);
                   } else {
                     // creating an item
                     Provider.of<ToDo>(context, listen: false).createItem(
@@ -103,8 +106,8 @@ class BottomModalSheetTodo extends StatelessWidget {
                       catId, // get catID
                       text,
                     );
+                    Navigator.pop(context);
                   }
-                  Navigator.pop(context);
                 },
                 child: Center(
                   child: Padding(

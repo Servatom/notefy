@@ -48,7 +48,6 @@ class _TodoItemListTileState extends State<TodoItemListTile> {
                 String key = Provider.of<Auth>(context, listen: false).key;
 
                 widget.item.isDone = !widget.item.isDone;
-                print(widget.item.isDone);
                 Provider.of<ToDo>(context, listen: false).updateToDoItem(
                   key,
                   widget.item.id,
@@ -67,92 +66,6 @@ class _TodoItemListTileState extends State<TodoItemListTile> {
             ),
           ),
           PopupMenuButton(
-            onSelected: (value) {
-              if (value == 0) {
-                print("edit");
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      print('inside dialogue');
-                      return AlertDialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(
-                              10,
-                            ),
-                          ),
-                        ),
-                        backgroundColor:
-                            Provider.of<CustomTheme>(context, listen: false)
-                                    .isTheme
-                                ? kbgcolor
-                                : kpink,
-                        title: Text(
-                          'Edit Item',
-                          style: TextStyle(
-                            color:
-                                Provider.of<CustomTheme>(context, listen: false)
-                                        .isTheme
-                                    ? Colors.white
-                                    : Colors.black,
-                          ),
-                        ),
-                        actionsPadding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        actions: [
-                          MaterialButton(
-                            minWidth: 60,
-                            height: 40,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            elevation: 10,
-                            color:
-                                Provider.of<CustomTheme>(context, listen: false)
-                                        .isTheme
-                                    ? kyellow
-                                    : Color(0xFF8CD4CB),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          MaterialButton(
-                            minWidth: 60,
-                            height: 40,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            elevation: 10,
-                            color: Colors.green,
-                            onPressed: () {},
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                'Okay',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    });
-              }
-            },
             color: Provider.of<CustomTheme>(context, listen: false).isTheme
                 ? Colors.white
                 : kpink,
@@ -178,9 +91,129 @@ class _TodoItemListTileState extends State<TodoItemListTile> {
                 ),
               ];
             },
+            onSelected: (value) {
+              if (value == 0) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return EditItemDialog(widget.item);
+                    });
+              }
+            },
           ),
         ],
       ),
+    );
+  }
+}
+
+class EditItemDialog extends StatelessWidget {
+  final TodoItem item;
+  EditItemDialog(this.item);
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            10,
+          ),
+        ),
+      ),
+      backgroundColor: Provider.of<CustomTheme>(context, listen: false).isTheme
+          ? kbgcolor
+          : kpink,
+      content: TextFormField(
+        autofocus: true,
+        initialValue: item.item,
+        onChanged: (value) {
+          item.item = value;
+        },
+        textInputAction: TextInputAction.newline,
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        style: TextStyle(
+          color: Provider.of<CustomTheme>(context, listen: false).isTheme
+              ? Colors.white
+              : Colors.black,
+          fontSize: 20,
+        ),
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+            color: Provider.of<CustomTheme>(context, listen: false).isTheme
+                ? Colors.white
+                : Colors.black,
+          )),
+        ),
+      ),
+      actionsPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      actions: [
+        MaterialButton(
+          minWidth: 60,
+          height: 40,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          elevation: 10,
+          color: Provider.of<CustomTheme>(context, listen: false).isTheme
+              ? kyellow
+              : Color(0xFF8CD4CB),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              'Cancel',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        MaterialButton(
+          minWidth: 60,
+          height: 40,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          elevation: 10,
+          color: Colors.green,
+          onPressed: () {
+            String key = Provider.of<Auth>(context, listen: false).key;
+            if (item.item == '') {
+              Provider.of<ToDo>(context, listen: false)
+                  .deleteToDoItem(key, item.id);
+            } else {
+              Provider.of<ToDo>(context, listen: false).updateToDoItem(
+                key,
+                item.id,
+                item.isDone,
+                item.item,
+              );
+            }
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              'Okay',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
