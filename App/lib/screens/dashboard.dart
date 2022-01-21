@@ -33,10 +33,14 @@ class _DashBoardState extends State<DashBoard> {
           bottom: TabBar(
             tabs: [
               Tab(
-                icon: Icon(Icons.create),
+                icon: Icon(
+                  Icons.create,
+                ),
               ),
               Tab(
-                icon: Icon(Icons.check_box),
+                icon: Icon(
+                  Icons.check_box,
+                ),
               ),
             ],
           ),

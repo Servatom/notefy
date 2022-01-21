@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, use_key_in_widget_constructors, must_be_immutable
 
 import 'package:app/components/note_tile.dart';
 import 'package:app/models/note.dart';
 import 'package:app/models/notes.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -19,6 +20,13 @@ class NotesDashBoard extends StatefulWidget {
 
 class _NotesDashBoardState extends State<NotesDashBoard> {
   bool isVisible = true;
+
+  @override
+  void initState() {
+    widget.toSearch = '';
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Note> tempList =
@@ -28,6 +36,7 @@ class _NotesDashBoardState extends State<NotesDashBoard> {
     return Scaffold(
       floatingActionButton: isVisible
           ? FloatingActionButton(
+              heroTag: 'button2',
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -79,20 +88,45 @@ class _NotesDashBoardState extends State<NotesDashBoard> {
                         widget.toSearch = value;
                       });
                     },
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Provider.of<CustomTheme>(context).isTheme
+                          ? Colors.white
+                          : Colors.black,
+                    ),
                     decoration: InputDecoration(
                       hintText: 'Search by title',
                       hintStyle: TextStyle(color: Colors.grey),
                       filled: true,
-                      fillColor: Color(0xFF3D3D3D),
+                      fillColor: Provider.of<CustomTheme>(context).isTheme
+                          ? Color(0xFF3D3D3D)
+                          : Color(0xFFFFE7EF),
                       border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Provider.of<CustomTheme>(context).isTheme
+                              ? Colors.black
+                              : Colors.white,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Provider.of<CustomTheme>(context).isTheme
+                              ? Colors.black
+                              : Colors.white,
+                          width: 1,
+                        ),
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.black,
+                          color: Provider.of<CustomTheme>(context).isTheme
+                              ? Colors.black
+                              : Colors.white,
                           width: 1,
                         ),
                         borderRadius: BorderRadius.all(

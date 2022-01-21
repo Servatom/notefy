@@ -31,7 +31,7 @@ class BottomModalSheetTodo extends StatelessWidget {
           vertical: 20,
         ),
         decoration: BoxDecoration(
-          color: kpink,
+          color: Provider.of<CustomTheme>(context).isTheme ? kyellow : kpink,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),

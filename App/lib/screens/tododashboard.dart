@@ -2,6 +2,7 @@
 
 import 'package:app/components/todo_category_tile.dart';
 import 'package:app/constants.dart';
+import 'package:app/models/theme.dart';
 import 'package:app/models/todo.dart';
 import 'package:app/models/todo_components.dart';
 import 'package:app/routers/routenames.dart';
@@ -20,6 +21,13 @@ class ToDoDashBoard extends StatefulWidget {
 
 class _ToDoDashBoardState extends State<ToDoDashBoard> {
   bool isVisible = true;
+
+  @override
+  void initState() {
+    widget.toSearch = '';
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Category> tempList =
@@ -29,6 +37,7 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
     return Scaffold(
       floatingActionButton: isVisible
           ? FloatingActionButton(
+              heroTag: 'button1',
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
@@ -86,20 +95,45 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
                         widget.toSearch = value;
                       });
                     },
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Provider.of<CustomTheme>(context).isTheme
+                          ? Colors.white
+                          : Colors.black,
+                    ),
                     decoration: InputDecoration(
                       hintText: 'Search by category',
                       hintStyle: TextStyle(color: Colors.grey),
                       filled: true,
-                      fillColor: Color(0xFF3D3D3D),
+                      fillColor: Provider.of<CustomTheme>(context).isTheme
+                          ? Color(0xFF3D3D3D)
+                          : Color(0xFFFFE7EF),
                       border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Provider.of<CustomTheme>(context).isTheme
+                              ? Colors.black
+                              : Colors.white,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Provider.of<CustomTheme>(context).isTheme
+                              ? Colors.black
+                              : Colors.white,
+                          width: 1,
+                        ),
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.black,
+                          color: Provider.of<CustomTheme>(context).isTheme
+                              ? Colors.black
+                              : Colors.white,
                           width: 1,
                         ),
                         borderRadius: BorderRadius.all(
