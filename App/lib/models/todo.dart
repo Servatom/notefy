@@ -9,9 +9,14 @@ class ToDo with ChangeNotifier {
   List<Category> _categories = [];
   List<TodoItem> _items = [];
 
-  List<Category> getCateList() {
-    print(_categories);
-    return [..._categories];
+  List<Category> getCateList(String target) {
+    if (target == '') {
+      return [..._categories];
+    } else {
+      return _categories
+          .where((element) => element.category.contains(target))
+          .toList();
+    }
   }
 
   List<TodoItem> getItemListForCategory(String catID) {

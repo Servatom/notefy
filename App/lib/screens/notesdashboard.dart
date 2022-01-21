@@ -10,6 +10,9 @@ import 'package:provider/provider.dart';
 import 'package:app/constants.dart';
 
 class NotesDashBoard extends StatefulWidget {
+  bool search;
+  String toSearch;
+  NotesDashBoard(this.search, this.toSearch);
   @override
   State<NotesDashBoard> createState() => _NotesDashBoardState();
 }
@@ -18,7 +21,8 @@ class _NotesDashBoardState extends State<NotesDashBoard> {
   bool isVisible = true;
   @override
   Widget build(BuildContext context) {
-    List<Note> tempList = Provider.of<Notes>(context, listen: true).notesList;
+    List<Note> tempList =
+        Provider.of<Notes>(context, listen: true).notesList(widget.toSearch);
     tempList.sort((a, b) => a.updateTime.compareTo(b.updateTime));
     List notesList = tempList.reversed.toList();
     return Scaffold(
@@ -61,13 +65,54 @@ class _NotesDashBoardState extends State<NotesDashBoard> {
         },
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 20),
-          child: ListView.builder(
-            itemCount: notesList.length,
-            itemBuilder: (context, index) {
-              return NoteTile(
-                note: notesList[index],
-              );
-            },
+          child: Column(
+            children: <Widget>[
+              if (widget.search)
+                Padding(
+                  padding:
+                      const EdgeInsets.only(right: 20, left: 20, bottom: 10),
+                  child: TextField(
+                    autofocus: true,
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      setState(() {
+                        widget.toSearch = value;
+                      });
+                    },
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      hintText: 'Search by title',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      filled: true,
+                      fillColor: Color(0xFF3D3D3D),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: notesList.length,
+                  itemBuilder: (context, index) {
+                    return NoteTile(
+                      note: notesList[index],
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
