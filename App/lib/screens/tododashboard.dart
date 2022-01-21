@@ -11,6 +11,9 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class ToDoDashBoard extends StatefulWidget {
+  bool search;
+  String toSearch;
+  ToDoDashBoard(this.search, this.toSearch);
   @override
   State<ToDoDashBoard> createState() => _ToDoDashBoardState();
 }
@@ -19,7 +22,8 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
   bool isVisible = true;
   @override
   Widget build(BuildContext context) {
-    List<Category> tempList = Provider.of<ToDo>(context).getCateList();
+    List<Category> tempList =
+        Provider.of<ToDo>(context).getCateList(widget.toSearch);
     tempList.sort((a, b) => a.updatedAt.compareTo(b.updatedAt));
     List categoriesList = tempList.reversed.toList();
     return Scaffold(
@@ -68,20 +72,61 @@ class _ToDoDashBoardState extends State<ToDoDashBoard> {
         },
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 20),
-          child: ListView.builder(
-            itemCount: categoriesList.length,
-            itemBuilder: (context, index) {
-              return TodoCategoryTile(
-                category: categoriesList[index],
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    RouteNames.itemscreen,
-                    arguments: categoriesList[index],
-                  );
-                },
-              );
-            },
+          child: Column(
+            children: [
+              if (widget.search)
+                Padding(
+                  padding:
+                      const EdgeInsets.only(right: 20, left: 20, bottom: 10),
+                  child: TextField(
+                    autofocus: true,
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      setState(() {
+                        widget.toSearch = value;
+                      });
+                    },
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      hintText: 'Search by category',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      filled: true,
+                      fillColor: Color(0xFF3D3D3D),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: categoriesList.length,
+                  itemBuilder: (context, index) {
+                    return TodoCategoryTile(
+                      category: categoriesList[index],
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteNames.itemscreen,
+                          arguments: categoriesList[index],
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),

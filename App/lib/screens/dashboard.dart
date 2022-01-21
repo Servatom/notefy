@@ -21,8 +21,8 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  bool isVisible = true;
-
+  bool search = false;
+  String toSearch = '';
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -62,9 +62,13 @@ class _DashBoardState extends State<DashBoard> {
             IconButton(
               onPressed: () {
                 print('hello');
+                setState(() {
+                  search = !search;
+                  toSearch = '';
+                });
               },
               icon: Icon(
-                Icons.search,
+                search ? Icons.clear : Icons.search,
                 color: kbgcolor,
               ),
             )
@@ -72,8 +76,8 @@ class _DashBoardState extends State<DashBoard> {
         ),
         body: TabBarView(
           children: [
-            NotesDashBoard(),
-            ToDoDashBoard(),
+            NotesDashBoard(search, toSearch),
+            ToDoDashBoard(search, toSearch),
           ],
         ),
       ),
