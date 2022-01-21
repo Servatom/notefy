@@ -19,6 +19,7 @@ class TodoItemListTile extends StatefulWidget {
 }
 
 class _TodoItemListTileState extends State<TodoItemListTile> {
+  String editedItem = '';
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -93,10 +94,11 @@ class _TodoItemListTileState extends State<TodoItemListTile> {
             },
             onSelected: (value) {
               if (value == 0) {
+                editedItem = widget.item.item;
                 showDialog(
                     context: context,
                     builder: (context) {
-                      return EditItemDialog(widget.item);
+                      return EditItemDialog(editedItem, widget.item);
                     });
               }
             },
@@ -108,8 +110,9 @@ class _TodoItemListTileState extends State<TodoItemListTile> {
 }
 
 class EditItemDialog extends StatelessWidget {
-  final TodoItem item;
-  EditItemDialog(this.item);
+  String editedItem;
+  final TodoItem itemObject;
+  EditItemDialog(this.editedItem, this.itemObject);
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -125,9 +128,9 @@ class EditItemDialog extends StatelessWidget {
           : kpink,
       content: TextFormField(
         autofocus: true,
-        initialValue: item.item,
+        initialValue: itemObject.item,
         onChanged: (value) {
-          item.item = value;
+          editedItem = value;
         },
         textInputAction: TextInputAction.newline,
         keyboardType: TextInputType.multiline,
@@ -188,15 +191,15 @@ class EditItemDialog extends StatelessWidget {
           color: Colors.green,
           onPressed: () {
             String key = Provider.of<Auth>(context, listen: false).key;
-            if (item.item == '') {
+            if (editedItem == '') {
               Provider.of<ToDo>(context, listen: false)
-                  .deleteToDoItem(key, item.id);
+                  .deleteToDoItem(key, itemObject.id);
             } else {
               Provider.of<ToDo>(context, listen: false).updateToDoItem(
                 key,
-                item.id,
-                item.isDone,
-                item.item,
+                itemObject.id,
+                itemObject.isDone,
+                editedItem,
               );
             }
             Navigator.pop(context);
