@@ -114,106 +114,119 @@ class _ItemsScreenState extends State<ItemsScreen> {
           ),
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.only(
-          bottom: 20,
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: TextFormField(
-                initialValue: widget.category.category,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  title = value;
-                },
-                maxLines: 1,
-                style: TextStyle(
-                  color:
-                      Provider.of<CustomTheme>(context, listen: false).isTheme
-                          ? Colors.white
-                          : Colors.black,
-                  fontSize: 30,
+      body: WillPopScope(
+        onWillPop: () async {
+          String key = Provider.of<Auth>(context, listen: false).key;
+          Provider.of<ToDo>(context, listen: false).updateCategory(
+            key,
+            title,
+            widget.category.id,
+          );
+          Navigator.pop(context);
+          return true;
+        },
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: 20,
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
                 ),
-                decoration: InputDecoration(
-                  hintText: 'Category Name',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  hintStyle: TextStyle(
-                    fontSize: 25,
+                child: TextFormField(
+                  initialValue: widget.category.category,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    title = value;
+                  },
+                  maxLines: 1,
+                  style: TextStyle(
                     color:
                         Provider.of<CustomTheme>(context, listen: false).isTheme
-                            ? Colors.grey
-                            : Colors.black54,
+                            ? Colors.white
+                            : Colors.black,
+                    fontSize: 30,
                   ),
+                  decoration: InputDecoration(
+                    hintText: 'Category Name',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    hintStyle: TextStyle(
+                      fontSize: 25,
+                      color: Provider.of<CustomTheme>(context, listen: false)
+                              .isTheme
+                          ? Colors.grey
+                          : Colors.black54,
+                    ),
+                  ),
+                  onFieldSubmitted: (value) {
+                    String key = Provider.of<Auth>(context, listen: false).key;
+                    Provider.of<ToDo>(context, listen: false).updateCategory(
+                      key,
+                      title,
+                      widget.category.id,
+                    );
+                  },
                 ),
-                onFieldSubmitted: (value) {
-                  String key = Provider.of<Auth>(context, listen: false).key;
-                  Provider.of<ToDo>(context, listen: false).updateCategory(
-                    key,
-                    title,
-                    widget.category.id,
-                  );
-                },
               ),
-            ),
-            NotificationListener<UserScrollNotification>(
-              onNotification: (notification) {
-                if (notification.direction == ScrollDirection.forward) {
-                  if (!isVisible)
-                    setState(() {
-                      isVisible = true;
-                    });
-                } else if (notification.direction == ScrollDirection.reverse) {
-                  if (isVisible)
-                    setState(() {
-                      isVisible = false;
-                    });
-                }
-                return true;
-              },
-              child: Expanded(
-                child: (items.isNotEmpty)
-                    ? Padding(
-                        padding: EdgeInsets.only(
-                          top: 20,
-                          bottom: 20,
-                          left: 20,
-                          right: 10,
-                        ),
-                        child: ListView.builder(
-                          itemCount: items.length,
-                          itemBuilder: (context, index) {
-                            return TodoItemListTile(
-                              item: items[index],
-                            );
-                          },
-                        ),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 20,
-                          right: 20,
-                          left: 20,
-                        ),
-                        child: Text(
-                          'No items yet',
-                          style: TextStyle(
-                            color: Provider.of<CustomTheme>(context).isTheme
-                                ? kNoteBody
-                                : Colors.black54,
-                            fontSize: 16,
+              NotificationListener<UserScrollNotification>(
+                onNotification: (notification) {
+                  if (notification.direction == ScrollDirection.forward) {
+                    if (!isVisible)
+                      setState(() {
+                        isVisible = true;
+                      });
+                  } else if (notification.direction ==
+                      ScrollDirection.reverse) {
+                    if (isVisible)
+                      setState(() {
+                        isVisible = false;
+                      });
+                  }
+                  return true;
+                },
+                child: Expanded(
+                  child: (items.isNotEmpty)
+                      ? Padding(
+                          padding: EdgeInsets.only(
+                            top: 20,
+                            bottom: 20,
+                            left: 20,
+                            right: 10,
+                          ),
+                          child: ListView.builder(
+                            itemCount: items.length,
+                            itemBuilder: (context, index) {
+                              return TodoItemListTile(
+                                item: items[index],
+                              );
+                            },
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(
+                            bottom: 20,
+                            right: 20,
+                            left: 20,
+                          ),
+                          child: Text(
+                            'No items yet',
+                            style: TextStyle(
+                              color: Provider.of<CustomTheme>(context).isTheme
+                                  ? kNoteBody
+                                  : Colors.black54,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
-                      ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

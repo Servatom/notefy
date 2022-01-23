@@ -81,34 +81,34 @@ class BottomModalSheetTodo extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: kgreyblack,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
+            GestureDetector(
+              onTap: () {
+                print('adding new item to todo');
+                String key = Provider.of<Auth>(context, listen: false).key;
+                if (text == '') {
+                  Navigator.pop(context);
+                } else if (isCategory) {
+                  // creating a category
+                  Provider.of<ToDo>(context, listen: false)
+                      .createCategory(key, text);
+                  Navigator.pop(context);
+                } else {
+                  // creating an item
+                  Provider.of<ToDo>(context, listen: false).createItem(
+                    key,
+                    catId, // get catID
+                    text,
+                  );
+                  Navigator.pop(context);
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: kgreyblack,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
                 ),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  print('adding new item to todo');
-                  String key = Provider.of<Auth>(context, listen: false).key;
-                  if (text == '') {
-                    Navigator.pop(context);
-                  } else if (isCategory) {
-                    // creating a category
-                    Provider.of<ToDo>(context, listen: false)
-                        .createCategory(key, text);
-                    Navigator.pop(context);
-                  } else {
-                    // creating an item
-                    Provider.of<ToDo>(context, listen: false).createItem(
-                      key,
-                      catId, // get catID
-                      text,
-                    );
-                    Navigator.pop(context);
-                  }
-                },
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.all(10.0),
