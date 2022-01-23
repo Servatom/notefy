@@ -96,20 +96,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           String key =
                               Provider.of<Auth>(context, listen: false).key;
-                          Provider.of<User>(context, listen: false)
-                              .getUserdetail(key);
+                          if (key != '') {
+                            Provider.of<User>(context, listen: false)
+                                .getUserdetail(key);
 
-                          Provider.of<Notes>(context, listen: false)
-                              .clearList();
-                          Provider.of<Notes>(context, listen: false)
-                              .getList(key);
+                            Provider.of<Notes>(context, listen: false)
+                                .clearList();
+                            Provider.of<Notes>(context, listen: false)
+                                .getList(key);
 
-                          Provider.of<ToDo>(context, listen: false).clearList();
-                          Provider.of<ToDo>(context, listen: false)
-                              .getCategoriesList(key);
-                          Provider.of<ToDo>(context, listen: false)
-                              .listAllTodoItems(key);
-                          Navigator.pushNamed(context, RouteNames.dashboard);
+                            Provider.of<ToDo>(context, listen: false)
+                                .clearList();
+                            Provider.of<ToDo>(context, listen: false)
+                                .getCategoriesList(key);
+                            Provider.of<ToDo>(context, listen: false)
+                                .listAllTodoItems(key);
+                            Navigator.pushNamed(context, RouteNames.dashboard);
+                          }
                         } catch (e) {
                           showDialog(
                               context: context,

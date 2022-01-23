@@ -120,73 +120,118 @@ class _NoteScreenState extends State<NoteScreen> {
           ),
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.only(
-          left: 20,
-          right: 20,
-          bottom: 20,
-        ),
-        child: Column(
-          children: [
-            TextFormField(
-              initialValue: title == 'k' ? body.split(' ').first : title,
-              onChanged: (value) {
-                title = value;
-              },
-              maxLines: 1,
-              style: TextStyle(
-                color: Provider.of<CustomTheme>(context, listen: false).isTheme
-                    ? Colors.white
-                    : Colors.black,
-                fontSize: 25,
-              ),
-              decoration: InputDecoration(
-                hintText: 'Title',
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                hintStyle: TextStyle(
+      body: WillPopScope(
+        onWillPop: () async {
+          if (title == '' && body == '' && noteID == '') {
+            Navigator.pop(context);
+          } else if (title == '') {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return ErrorBox(
+                      errorText: 'Title cannot be empty',
+                      onpressed: () {
+                        Navigator.pop(context);
+                      });
+                });
+          } else if (body == '') {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return ErrorBox(
+                      errorText: 'Body cannot be empty',
+                      onpressed: () {
+                        Navigator.pop(context);
+                      });
+                });
+          } else if (noteID == '') {
+            String key = Provider.of<Auth>(context, listen: false).key;
+            Provider.of<Notes>(context, listen: false)
+                .createNote(key, title, body);
+            Navigator.pop(context);
+          } else if (noteID != '') {
+            if (title == titleCopy && body == bodyCopy) {
+              Navigator.pop(context);
+            } else {
+              String key = Provider.of<Auth>(context, listen: false).key;
+              Provider.of<Notes>(context, listen: false)
+                  .updateNote(key, title, body, noteID);
+              Navigator.pop(context);
+            }
+          }
+
+          return true;
+        },
+        child: Container(
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+            bottom: 20,
+          ),
+          child: Column(
+            children: [
+              TextFormField(
+                initialValue: title == 'k' ? body.split(' ').first : title,
+                onChanged: (value) {
+                  title = value;
+                },
+                maxLines: 1,
+                style: TextStyle(
+                  color:
+                      Provider.of<CustomTheme>(context, listen: false).isTheme
+                          ? Colors.white
+                          : Colors.black,
                   fontSize: 25,
+                ),
+                decoration: InputDecoration(
+                  hintText: 'Title',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  hintStyle: TextStyle(
+                    fontSize: 25,
+                    color:
+                        Provider.of<CustomTheme>(context, listen: false).isTheme
+                            ? Colors.grey
+                            : Colors.black54,
+                  ),
+                ),
+                onFieldSubmitted: (value) {},
+              ),
+              Expanded(
+                  child: TextFormField(
+                initialValue: body,
+                onChanged: (value) {
+                  body = value;
+                },
+                textInputAction: TextInputAction.newline,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                style: TextStyle(
                   color:
                       Provider.of<CustomTheme>(context, listen: false).isTheme
-                          ? Colors.grey
-                          : Colors.black54,
-                ),
-              ),
-              onFieldSubmitted: (value) {},
-            ),
-            Expanded(
-                child: TextFormField(
-              initialValue: body,
-              onChanged: (value) {
-                body = value;
-              },
-              textInputAction: TextInputAction.newline,
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              style: TextStyle(
-                color: Provider.of<CustomTheme>(context, listen: false).isTheme
-                    ? Colors.white
-                    : Colors.black,
-                fontSize: 20,
-              ),
-              decoration: InputDecoration(
-                hintText: 'Body',
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                hintStyle: TextStyle(
+                          ? Colors.white
+                          : Colors.black,
                   fontSize: 20,
-                  color:
-                      Provider.of<CustomTheme>(context, listen: false).isTheme
-                          ? Colors.grey
-                          : Colors.black54,
                 ),
-              ),
-            ))
-          ],
+                decoration: InputDecoration(
+                  hintText: 'Body',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  hintStyle: TextStyle(
+                    fontSize: 20,
+                    color:
+                        Provider.of<CustomTheme>(context, listen: false).isTheme
+                            ? Colors.grey
+                            : Colors.black54,
+                  ),
+                ),
+              ))
+            ],
+          ),
         ),
       ),
     );
