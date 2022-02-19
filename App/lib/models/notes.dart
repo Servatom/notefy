@@ -12,9 +12,18 @@ import 'note.dart';
 class Notes with ChangeNotifier {
   List<Note> _notes = [];
   List<String> ids = [];
-  List<Note> get notesList {
-    return [..._notes];
+
+  List<Note> notesList(String target) {
+    if (target == '') {
+      return [..._notes];
+    } else {
+      return _notes.where((element) => element.title.contains(target)).toList();
+    }
   }
+
+  // List<Note> searchList(String target) {
+  //   _notes.where((element) => element.title == target).toList();
+  // }
 
   void clearList() {
     _notes.clear();

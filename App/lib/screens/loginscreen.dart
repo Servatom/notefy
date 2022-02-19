@@ -5,6 +5,7 @@ import 'package:app/components/error_box.dart';
 import 'package:app/components/inputfield.dart';
 import 'package:app/constants.dart';
 import 'package:app/models/notes.dart';
+import 'package:app/models/todo.dart';
 import 'package:app/models/user.dart';
 import 'package:app/routers/routenames.dart';
 import 'package:flutter/material.dart';
@@ -95,14 +96,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           String key =
                               Provider.of<Auth>(context, listen: false).key;
-                          Provider.of<User>(context, listen: false)
-                              .getUserdetail(key);
+                          if (key != '') {
+                            Provider.of<User>(context, listen: false)
+                                .getUserdetail(key);
 
-                          Provider.of<Notes>(context, listen: false)
-                              .clearList();
-                          Provider.of<Notes>(context, listen: false)
-                              .getList(key);
-                          Navigator.pushNamed(context, RouteNames.dashboard);
+                            Provider.of<Notes>(context, listen: false)
+                                .clearList();
+                            Provider.of<Notes>(context, listen: false)
+                                .getList(key);
+
+                            Provider.of<ToDo>(context, listen: false)
+                                .clearList();
+                            Provider.of<ToDo>(context, listen: false)
+                                .getCategoriesList(key);
+                            Provider.of<ToDo>(context, listen: false)
+                                .listAllTodoItems(key);
+                            Navigator.pushNamed(context, RouteNames.dashboard);
+                          }
                         } catch (e) {
                           showDialog(
                               context: context,

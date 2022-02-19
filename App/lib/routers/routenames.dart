@@ -9,4 +9,5 @@ class RouteNames {
   static const String splash = '/splash';
   static const String resetpasswordscreen = '/resetpassword';
   static const String serverdownpage = '/serverdown';
+  static const String itemscreen = '/itemscreen';
 }

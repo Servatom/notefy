@@ -33,6 +33,11 @@ class _SplashscreenState extends State<Splashscreen> {
 
       print('response code = ${response.statusCode}');
       if (response.statusCode == 404) {
+        await Future.delayed(
+          Duration(
+            milliseconds: 1500,
+          ),
+        );
         Provider.of<Auth>(context, listen: false).isLoggedIn(context);
       } else if (response.statusCode == 523) {
         serverDownpage();
