@@ -225,6 +225,10 @@ Computer Science and Engineering, TIET</a> <b>@</b> <a href="https://www.thapar.
   :boy: <b>Nirbhay Makhija</b> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>nmakhija_be20@thapar.edu</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/Nirbhay-nrb">@Nirbhay-nrb</a> <br>
+  
+  :boy: <b>Rohit Kumar</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>rkumar_be20@thapar.edu</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/krohitk17">@krohitk17</a> <br>
 </p>
 
 ## Contributions
